@@ -6,8 +6,8 @@ contract Factory {
 
   Tickets[] public deployedTickets;
   
-  function createTicket(uint minimum) public {
-    Tickets newTicket = new Tickets(minimum, payable(msg.sender));
+  function createTicket() public {
+    Tickets newTicket = new Tickets(msg.sender);
     deployedTickets.push(newTicket);
   }
 
