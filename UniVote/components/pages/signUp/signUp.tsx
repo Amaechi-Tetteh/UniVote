@@ -1,4 +1,4 @@
-import React, { useState, Dispatch, SetStateAction } from "react";
+import React, { useState, Dispatch, SetStateAction, Props } from "react";
 
 import {
   View,
@@ -11,7 +11,7 @@ import { isEmail, isString } from "./helperFunctions";
 import { styles } from "../../shared/styles/styles";
 import { styles as loginStyles } from "./styles";
 
-export default function SignUpcreen(): JSX.Element {
+export default function SignUpScreen({navigation}: any): JSX.Element {
   const [formIsValid, setValidStatus] = useState([true, true, true])
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -45,9 +45,11 @@ export default function SignUpcreen(): JSX.Element {
 
   const onSignUp = () => {
     let isValidArray: boolean[] = validateInputs([email, password, name], formItems);
-    if (isValidArray.every(Boolean)) console.log("success");
+    if (isValidArray.every(Boolean))  console.log('boo')
     else setValidStatus(isValidArray);
   };
+
+  const onLogin = () => navigation.navigate('Login')
 
   return (
     <View style={styles.centered_container}>
@@ -59,7 +61,7 @@ export default function SignUpcreen(): JSX.Element {
         ]}
       >
         <View style={loginStyles.header}>
-          <Text style={loginStyles.header_text}>Signup</Text>
+          <Text style={styles.header_text}>Signup</Text>
         </View>
         <View style={loginStyles.form_wrapper}>
           {renderForm(formItems, formIsValid)}
@@ -78,6 +80,7 @@ export default function SignUpcreen(): JSX.Element {
         >
           <TouchableOpacity
             style={[styles.blue_button, loginStyles.clear_button]}
+            onPress={onLogin}
           >
             <Text style={styles.grey_text}>ALREADY HAVE AN ACCOUNT?</Text>
           </TouchableOpacity>
@@ -112,15 +115,17 @@ const renderForm = (
     return formItems.map((item, i) => {
       return (
         <View style={loginStyles.form_item} key={item.label}>
-          <Text style={loginStyles.label_text}>{item.label}</Text>
+          <Text style={styles.form_label_text}>{item.label}</Text>
           <TextInput
             style={[
               loginStyles.input,
+              styles.input_text,
               validStatus[i]
                 ? loginStyles.valid_input
                 : loginStyles.invalid_input,
             ]}
             placeholder={item.placeholder}
+            placeholderTextColor='rgb(180, 180 ,180)'
             value ={item.value}
             onChangeText={item.onChange}
             keyboardType="numeric"

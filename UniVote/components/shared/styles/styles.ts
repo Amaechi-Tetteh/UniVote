@@ -18,7 +18,15 @@ export const styles = StyleSheet.create({
     height: "100%",
     flexDirection: "column",
     textAlign: "center",
+    backgroundColor:'white'
   },
+
+  header_text:{
+fontSize: length_factor * 24,
+marginTop: 35* length_factor,
+    fontFamily:'BoldFont',
+  },
+
 
   screen_padding: {
     paddingLeft: 16 * length_factor,
@@ -39,10 +47,24 @@ export const styles = StyleSheet.create({
 
   grey_text: {
     color: "rgb(153, 153, 153)",
-    fontWeight: "normal",
+    fontFamily:"SemiBoldFont",
+    fontSize: 14 * length_factor,
+    letterSpacing: 1*length_factor
   },
 
   white_button_text: {
     color: "white",
   },
+
+  form_label_text:{
+      color:"rgb(66, 66, 66)",
+    textAlign:'left',
+    fontFamily:'RegularFont'
+
+  },
+  input_text:{
+
+    color:'rgb(180, 180 ,180)',
+    fontSize: 16*length_factor
+  }
 });

@@ -11,20 +11,17 @@ export const styles = StyleSheet.create({
         width:'100%'
     },
 
-header_text:{
-fontSize: length_factor * 24,
-marginTop: 55* length_factor
-},
-
 input:{
     width:'100%',
     borderRadius: 4.5 * length_factor,
-    height: 40*length_factor,
+    height: 40.8*length_factor,
     marginTop:10 * length_factor,
     borderWidth: 1 * length_factor,
     paddingRight: 10 * length_factor,
     paddingLeft: 10 * length_factor,
-    borderColor: 'rgb(221,221,221)'
+    borderColor: 'rgb(221,221,221)',
+    lineHeight: 20*length_factor,
+    
 },
 
 valid_input:{
@@ -45,10 +42,6 @@ form_wrapper:{
 form_item:{
 
     paddingBottom:15 * length_factor
-},
-
-label_text:{
-    textAlign:'left'
 },
 
 button_wrapper:{
