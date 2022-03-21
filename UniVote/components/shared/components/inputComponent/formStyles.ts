@@ -1,5 +1,6 @@
-import { StyleSheet, Dimensions } from "react-native";
-import { length_factor } from "../../shared/styles/styles";
+import { StyleSheet } from "react-native";
+
+import { length_factor } from "../../styles/styles";
 
 export const styles = StyleSheet.create({
 
@@ -39,19 +40,17 @@ form_item:{
 
     paddingBottom:15 * length_factor
 },
+form_label_text:{
+    color:"rgb(66, 66, 66)",
+  textAlign:'left',
+  fontFamily:'RegularFont'
 
-button_wrapper:{
-    paddingTop: 35 * length_factor,
-    width:'100%'
 },
-second_button_padding:{
+input_text:{
 
-    paddingTop: 20 * length_factor
-},
-clear_button:{
-    backgroundColor: 'none',
-    height: 36 * length_factor
-},
+  color:'rgb(180, 180 ,180)',
+  fontSize: 16*length_factor
+}
 
 
 });

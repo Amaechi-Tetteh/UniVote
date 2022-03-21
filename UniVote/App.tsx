@@ -20,7 +20,8 @@ const loadFonts = () => {
     RegularFont: require("./fonts/sf-pro-text-regular.ttf"),
     HeavyFont: require("./fonts/sf-pro-text-heavy.ttf"),
     LightFont:require("./fonts/sf-pro-text-light.ttf"),
-    BoldFont:require("./fonts/sf-pro-text-bold.ttf")
+    BoldFont:require("./fonts/sf-pro-text-bold.ttf"),
+    OswlandBoldFont:require("./fonts/Oswald-Bold.ttf")
 
   });
 };

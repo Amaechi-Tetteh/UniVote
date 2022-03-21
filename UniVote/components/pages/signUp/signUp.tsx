@@ -1,15 +1,16 @@
-import React, { useState, Dispatch, SetStateAction, Props } from "react";
-
+import React, { useState} from "react";
+import { loginItem } from "../../shared/types";
+import { renderForm } from "../../shared/components/inputComponent/renderForm";
 import {
   View,
   Text,
   SafeAreaView,
-  TextInput,
   TouchableOpacity,
 } from "react-native";
-import { isEmail, isString } from "./helperFunctions";
+import { validateInputs, isEmail, isString } from "../../shared/components/inputComponent/validationFunctions";
 import { styles } from "../../shared/styles/styles";
 import { styles as loginStyles } from "./styles";
+import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu";
 
 export default function SignUpScreen({navigation}: any): JSX.Element {
   const [formIsValid, setValidStatus] = useState([true, true, true])
@@ -18,7 +19,7 @@ export default function SignUpScreen({navigation}: any): JSX.Element {
   const [name, setName] = useState('')
 
 
-  const formItems: signUp[] = [
+  const formItems: loginItem[] = [
   {
     label: "Email",
     placeholder: "Enter email...",
@@ -49,7 +50,7 @@ export default function SignUpScreen({navigation}: any): JSX.Element {
     else setValidStatus(isValidArray);
   };
 
-  const onLogin = () => navigation.navigate('Login')
+  const onLogin = () => navigation.navigate(NAVIGATION_ROUTES.LOGIN)
 
   return (
     <View style={styles.centered_container}>
@@ -91,46 +92,6 @@ export default function SignUpScreen({navigation}: any): JSX.Element {
 }
 
 
-const validateInputs = (inputs: string[], formItems: signUp[]): boolean[] => {
-  let isValidArray: boolean[] = [];
-  formItems.map((item, i) => {
-    isValidArray.push(item.validator(inputs[i]));
-  });
-  return isValidArray;
-};
 
 
-interface signUp {
-  label: string;
-  validator(input: string): boolean;
-  placeholder: string;
-  onChange: Dispatch<SetStateAction<string>>;
-  value:string
-}
 
-const renderForm = (
-    formItems: signUp[],
-    validStatus: boolean[]
-  ): JSX.Element[] => {
-    return formItems.map((item, i) => {
-      return (
-        <View style={loginStyles.form_item} key={item.label}>
-          <Text style={styles.form_label_text}>{item.label}</Text>
-          <TextInput
-            style={[
-              loginStyles.input,
-              styles.input_text,
-              validStatus[i]
-                ? loginStyles.valid_input
-                : loginStyles.invalid_input,
-            ]}
-            placeholder={item.placeholder}
-            placeholderTextColor='rgb(180, 180 ,180)'
-            value ={item.value}
-            onChangeText={item.onChange}
-            keyboardType="numeric"
-          />
-        </View>
-      );
-    });
-  };

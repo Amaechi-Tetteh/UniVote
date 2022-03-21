@@ -56,15 +56,5 @@ marginTop: 35* length_factor,
     color: "white",
   },
 
-  form_label_text:{
-      color:"rgb(66, 66, 66)",
-    textAlign:'left',
-    fontFamily:'RegularFont'
-
-  },
-  input_text:{
-
-    color:'rgb(180, 180 ,180)',
-    fontSize: 16*length_factor
-  }
+  
 });
