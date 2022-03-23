@@ -4,9 +4,30 @@ import { length_factor } from "../../styles/styles";
 export const styles = StyleSheet.create({
 
 menu_container:{
+
+ display:'flex',
+ width:'100%',
+ height:120 * length_factor,
+ justifyContent:'center',
+
+ 
+
+
+},
+
+menu_item:{
+    color:"rgb(102, 102, 102)",
+    flex:1,
+},
+
+menu_wrapper:{
     width:'100%',
-    display: 'flex',
-    flexDirection:'row'
+    alignContent:'center',
+    display:'flex',
+    flexDirection:'row',
+    justifyContent:'space-evenly',
+    alignItems:'center'
+   
 }
 
 });

@@ -43,6 +43,16 @@ marginTop: 35* length_factor,
     alignContent: "center",
   },
 
+  yellow_button:{
+   backgroundColor: "rgb(192, 164, 27)",
+    borderColor: "rgb(153, 153, 153)",
+    height: 40 * length_factor,
+    borderRadius: 4 * length_factor,
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center",
+  },
+
   button_text: {},
 
   grey_text: {

@@ -46,7 +46,11 @@ export default function SignUpScreen({navigation}: any): JSX.Element {
 
   const onSignUp = () => {
     let isValidArray: boolean[] = validateInputs([email, password, name], formItems);
-    if (isValidArray.every(Boolean))  console.log('boo')
+    if (isValidArray.every(Boolean)) {
+      console.log('boo')
+      navigation.navigate(NAVIGATION_ROUTES.TRENDING_PROPOSALS)
+
+    }
     else setValidStatus(isValidArray);
   };
 

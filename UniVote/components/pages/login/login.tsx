@@ -57,7 +57,7 @@ export default function LoginScreen({navigation}: any): JSX.Element {
         ]}
       >
         <View style={loginStyles.header}>
-          <Text style={styles.header_text}>Signup</Text>
+          <Text style={styles.header_text}>Login</Text>
         </View>
         <View style={loginStyles.form_wrapper}>
           {renderForm(formItems, formIsValid)}
@@ -92,7 +92,7 @@ export default function LoginScreen({navigation}: any): JSX.Element {
             style={[styles.blue_button, loginStyles.clear_button]}
             onPress={onSignUp}
           >
-            <Text style={styles.grey_text}>SIGNUP</Text>
+            <Text style={styles.grey_text}>LOGIN</Text>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

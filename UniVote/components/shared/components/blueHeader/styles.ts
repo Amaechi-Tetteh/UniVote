@@ -5,14 +5,18 @@ export const styles = StyleSheet.create({
   header: {
     width: "100%",
     backgroundColor: "#1414f5",
+    height: 56 * length_factor,
+    justifyContent:'center'
   },
   title:{
 
-    fontFamily: "OswaldFont",
-    color:"white"
+    fontFamily: "OswlandBoldFont",
+    color:"white",
+    fontSize: 20 * length_factor
   },
 
   back_arrow:{
-      position:'absolute'
+      position:'absolute',
+      left:16 * length_factor
   }
 });

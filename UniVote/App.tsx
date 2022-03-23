@@ -9,6 +9,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SignUpScreen from "./components/pages/signUp/signUp";
 import LoginScreen from "./components/pages/login/login";
+import TrendingItemsScreen from "./components/pages/trending/trending";
+import SearchProposalScreen from "./components/pages/searchProposal/searchProposal";
+import { NAVIGATION_ROUTES } from "./components/shared/components/menu/menu"
 
 const store = createStore(rootReducer, composeWithDevTools());
 
@@ -47,8 +50,11 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Stack.Screen name="SignUp" component={SignUpScreen} />
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
+           <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
+          <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
+          <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
+          
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
