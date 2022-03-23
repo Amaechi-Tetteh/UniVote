@@ -13,7 +13,7 @@ import TrendingItemsScreen from "./components/pages/trending/trending";
 import SearchProposalScreen from "./components/pages/searchProposal/searchProposal";
 import { NAVIGATION_ROUTES } from "./components/shared/components/menu/menu";
 import AddProposalScreen from "./components/pages/addProposal/addProposal";
-
+import ProposalDetailsScreen from "./components/pages/proposalDetails/proposalDetails";
 const store = createStore(rootReducer, composeWithDevTools());
 
 const Stack = createStackNavigator();
@@ -48,6 +48,10 @@ export default function App() {
             headerShown: false,
           }}
         >
+          <Stack.Screen
+            name={NAVIGATION_ROUTES.PROPOSAL_DETAILS}
+            component={ProposalDetailsScreen}
+          />
           <Stack.Screen
             name={NAVIGATION_ROUTES.SIGN_UP}
             component={SignUpScreen}

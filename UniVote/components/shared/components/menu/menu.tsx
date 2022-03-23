@@ -18,6 +18,7 @@ export enum NAVIGATION_ROUTES {
   TRENDING_PROPOSALS = "Trending Proposals",
   ACCOUNT_DETAILS = "Account Details",
   SETTINGS = "Settings",
+  PROPOSAL_DETAILS = "Proposal Details"
 }
 
 const menuItems: menuItem[] = [
