@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { View, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import {length_factor} from '../../../shared/styles/styles'
+
 interface menuItem {
   target: NAVIGATION_ROUTES;
   iconName: keyof typeof MaterialIcons.glyphMap;
@@ -27,7 +28,7 @@ const menuItems: menuItem[] = [
   { target: NAVIGATION_ROUTES.SETTINGS, iconName: "settings", size:50},
 ];
 
-export default function Menu({ navigation }: any): JSX.Element {
+export default function Menu( {navigation}:any ): JSX.Element {
   const onNavigate = (target: NAVIGATION_ROUTES) => navigation.navigate(target);
 
   const renderMenuItems = (menuItems: menuItem[]) => {
@@ -36,7 +37,7 @@ export default function Menu({ navigation }: any): JSX.Element {
     { menuItems.map((item, i) => {
       return (
         <TouchableOpacity onPress={() => onNavigate(item.target)} key={i}>
-          <MaterialIcons name={item.iconName} style={styles.menu_item} size={item.size}  />
+          <MaterialIcons name={item.iconName} style={styles.menu_item} size={item.size*length_factor}  />
         </TouchableOpacity>
       );
     })}

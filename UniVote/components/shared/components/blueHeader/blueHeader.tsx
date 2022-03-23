@@ -5,7 +5,8 @@ import { MaterialIcons } from "@expo/vector-icons";
 import { length_factor } from "../../styles/styles";
 
 export default function BlueHeader({ navigation, title, showArrow }: any): JSX.Element {
-  const onPressBack = () => navigation.navigate.goBack();
+  const onPressBack = ():void => navigation.goBack();
+  
   return (
     <View style={styles.header}>
 {showArrow ? <MaterialIcons

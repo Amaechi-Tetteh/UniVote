@@ -31,7 +31,8 @@ export default function LoginScreen({navigation}: any): JSX.Element {
       placeholder: "Enter password...",
       validator: isString,
       onChange: setPassword,
-      value: password
+      value: password,
+      secure:true
     },
    
   ];

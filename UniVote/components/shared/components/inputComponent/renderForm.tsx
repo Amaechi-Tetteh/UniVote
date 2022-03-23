@@ -27,6 +27,7 @@ export const renderForm = (
             value ={item.value}
             onChangeText={item.onChange}
             keyboardType="numeric"
+            secureTextEntry={item.secure? true: false} 
           />
         </View>
       );

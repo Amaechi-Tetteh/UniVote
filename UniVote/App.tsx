@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AppLoading from "expo-app-loading";
 import * as Font from "expo-font";
 import { Provider } from "react-redux";
@@ -11,7 +11,8 @@ import SignUpScreen from "./components/pages/signUp/signUp";
 import LoginScreen from "./components/pages/login/login";
 import TrendingItemsScreen from "./components/pages/trending/trending";
 import SearchProposalScreen from "./components/pages/searchProposal/searchProposal";
-import { NAVIGATION_ROUTES } from "./components/shared/components/menu/menu"
+import { NAVIGATION_ROUTES } from "./components/shared/components/menu/menu";
+import AddProposalScreen from "./components/pages/addProposal/addProposal";
 
 const store = createStore(rootReducer, composeWithDevTools());
 
@@ -22,18 +23,15 @@ const loadFonts = () => {
     SemiBoldFont: require("./fonts/sf-pro-text-semi-bold.ttf"),
     RegularFont: require("./fonts/sf-pro-text-regular.ttf"),
     HeavyFont: require("./fonts/sf-pro-text-heavy.ttf"),
-    LightFont:require("./fonts/sf-pro-text-light.ttf"),
-    BoldFont:require("./fonts/sf-pro-text-bold.ttf"),
-    OswlandBoldFont:require("./fonts/Oswald-Bold.ttf")
-
+    LightFont: require("./fonts/sf-pro-text-light.ttf"),
+    BoldFont: require("./fonts/sf-pro-text-bold.ttf"),
+    OswlandBoldFont: require("./fonts/Oswald-Bold.ttf"),
   });
 };
 
-
-
 export default function App() {
   const [fontLoaded, setFontLoaded] = useState(false);
-   if (!fontLoaded) {
+  if (!fontLoaded) {
     return (
       <AppLoading
         startAsync={loadFonts}
@@ -50,11 +48,26 @@ export default function App() {
             headerShown: false,
           }}
         >
-          <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
-           <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
-          <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
-          <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
-          
+          <Stack.Screen
+            name={NAVIGATION_ROUTES.SIGN_UP}
+            component={SignUpScreen}
+          />
+          <Stack.Screen
+            name={NAVIGATION_ROUTES.LOGIN}
+            component={LoginScreen}
+          />
+          <Stack.Screen
+            name={NAVIGATION_ROUTES.TRENDING_PROPOSALS}
+            component={TrendingItemsScreen}
+          />
+          <Stack.Screen
+            name={NAVIGATION_ROUTES.CREATE_PROPOSAL}
+            component={AddProposalScreen}
+          />
+          <Stack.Screen
+            name={NAVIGATION_ROUTES.SEARCH_PROPOSAL}
+            component={SearchProposalScreen}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>

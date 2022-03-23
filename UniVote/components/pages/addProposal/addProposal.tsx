@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { styles } from "../../shared/styles/styles";
 import BlueHeader from "../../shared/components/blueHeader/blueHeader";
 import { loginItem } from "../../shared/types";
@@ -10,11 +16,30 @@ import {
 } from "../../shared/components/inputComponent/validationFunctions";
 import { renderForm } from "../../shared/components/inputComponent/renderForm";
 import Menu from "../../shared/components/menu/menu";
+import { styles as formStyles } from "../signUp/styles";
+import { styles as addProposalStyles } from "./styles";
+import * as ImagePicker from "expo-image-picker";
+import { MaterialIcons } from "@expo/vector-icons";
+import { length_factor } from "../../shared/styles/styles";
 
 export default function AddProposalScreen({ navigation }: any): JSX.Element {
   const [formIsValid, setValidStatus] = useState([true, true]);
   const [proposalName, setProposalName] = useState("");
   const [proposalDetails, setProposalDetails] = useState("");
+  const [image, setImage] = useState("");
+
+  const handleUpload = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
 
   const formItems: loginItem[] = [
     {
@@ -44,7 +69,11 @@ export default function AddProposalScreen({ navigation }: any): JSX.Element {
 
   return (
     <View style={styles.centered_container}>
-      <BlueHeader navigation={navigation} title="Create Proposal" />
+      <BlueHeader
+        navigation={navigation}
+        title="Create Proposal"
+        showArrow={true}
+      />
       <SafeAreaView
         style={[
           styles.centered_container,
@@ -52,11 +81,37 @@ export default function AddProposalScreen({ navigation }: any): JSX.Element {
           { width: "100%", justifyContent: "flex-start" },
         ]}
       >
-        {renderForm(formItems, formIsValid)}
+        <View
+          style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}
+        >
+          {renderForm(formItems, formIsValid)}
+          <Text style={addProposalStyles.upload_text}>Upload Image</Text>
+          <View style={addProposalStyles.image_container}>
+            {image ? (
+              <Image
+                source={{ uri: image }}
+                style={addProposalStyles.upload_image}
+              />
+            ) : (
+              <TouchableOpacity
+                onPress={handleUpload}
+                style={addProposalStyles.upload_button}
+              >
+                <MaterialIcons
+                  name="image"
+                  size={36 * length_factor}
+                  color="#bebebe"
+                />
+              </TouchableOpacity>
+            )}
+          </View>
+        </View>
 
-        <Text></Text>
+        <TouchableOpacity onPress={onCreate} style={[styles.blue_button, {width:'50%', marginTop:21*length_factor}]}>
+<Text style={[styles.button_text, {color:'white'}]}>CREATE</Text>
+        </TouchableOpacity>
 
-        <Menu />
+        <Menu navigation={navigation} />
       </SafeAreaView>
     </View>
   );

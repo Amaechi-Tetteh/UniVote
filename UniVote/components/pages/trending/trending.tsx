@@ -65,6 +65,7 @@ export default function TrendingItemsScreen({ navigation }: any): JSX.Element {
       >
         <View style={proposalStyles.header_wrapper}>
           <Text style={proposalStyles.yellow_subtitle}>Trending Proposals</Text>
+          <Text style={proposalStyles.title}>Private Proposals</Text>
         </View>
         <View style={proposalStyles.trending_items_container}>
           {renderTrendingItems(proposals)}

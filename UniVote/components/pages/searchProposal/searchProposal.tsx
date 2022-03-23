@@ -10,7 +10,7 @@ import { styles } from "../../shared/styles/styles";
 import BlueHeader from "../../shared/components/blueHeader/blueHeader";
 import { styles as formStyles } from "../signUp/styles";
 import Menu from "../../shared/components/menu/menu";
-
+import { length_factor } from "../../shared/styles/styles";
 export default function SearchProposalScreen({ navigation }: any): JSX.Element {
   const [searchTerm, setSearchTerm] = useState("");
   const [formIsValid, setValidStatus] = useState([true]);
@@ -45,7 +45,7 @@ export default function SearchProposalScreen({ navigation }: any): JSX.Element {
           { width: "100%", justifyContent: "flex-start" },
         ]}
       >
-        <View style={formStyles.form_wrapper}>
+        <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
           {renderForm(formItems, formIsValid)}
         </View>
         <View style={formStyles.button_wrapper}>

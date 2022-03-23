@@ -49,7 +49,8 @@ export const styles = StyleSheet.create({
     color: "rgb(140, 118, 0)",
     fontFamily: "SemiBoldFont",
     fontSize: length_factor * 30,
-    textAlign:'left'
+    textAlign:'left',
+    paddingBottom:8*length_factor
   },
 
   trending_items_container: {
@@ -60,7 +61,7 @@ export const styles = StyleSheet.create({
 
   header_wrapper:{
     width:'100%',
-    marginTop: 40 * length_factor
+    marginTop:10 * length_factor
   },
   flat_list_wrapper:{
     width:'100%',
