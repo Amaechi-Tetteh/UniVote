@@ -107,7 +107,7 @@ export default function AddProposalScreen({ navigation }: any): JSX.Element {
             )}
           </View>
         </View>
-  <Button text="CREATE" width="50%" color={BUTTON_COLORS.BLUE} onPress={onCreate} showPlusIcon={true} flexBasis={160}/>
+  <Button text="CREATE" width="50%" color={BUTTON_COLORS.BLUE} onPress={onCreate} showPlusIcon={true} flexBasis={160} paddingTop={14}/>
       
         <Menu navigation={navigation} />
       </SafeAreaView>
