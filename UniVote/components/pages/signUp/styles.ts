@@ -48,10 +48,7 @@ second_button_padding:{
 
     paddingTop: 20 * length_factor
 },
-clear_button:{
-    backgroundColor: 'none',
-    height: 36 * length_factor
-},
+
 
 
 });

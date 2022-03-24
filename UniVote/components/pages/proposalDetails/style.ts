@@ -35,10 +35,11 @@ export const styles = StyleSheet.create({
         alignContent:'flex-start',
        padding: 5*length_factor,
        
+
     },
 
     comment_container:{
-        height:100*length_factor
+        height:72*length_factor
     },
 
     title_container:{

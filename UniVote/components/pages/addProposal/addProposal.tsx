@@ -21,7 +21,8 @@ import { styles as addProposalStyles } from "./styles";
 import * as ImagePicker from "expo-image-picker";
 import { MaterialIcons } from "@expo/vector-icons";
 import { length_factor } from "../../shared/styles/styles";
-
+import Button from "../../shared/components/button/button";
+import { BUTTON_COLORS } from "../../shared/components/button/button";
 export default function AddProposalScreen({ navigation }: any): JSX.Element {
   const [formIsValid, setValidStatus] = useState([true, true]);
   const [proposalName, setProposalName] = useState("");
@@ -106,11 +107,8 @@ export default function AddProposalScreen({ navigation }: any): JSX.Element {
             )}
           </View>
         </View>
-
-        <TouchableOpacity onPress={onCreate} style={[styles.blue_button, {width:'50%', marginTop:21*length_factor}]}>
-<Text style={[styles.button_text, {color:'white'}]}>CREATE</Text>
-        </TouchableOpacity>
-
+  <Button text="CREATE" width="50%" color={BUTTON_COLORS.BLUE} onPress={onCreate} showPlusIcon={true} flexBasis={160}/>
+      
         <Menu navigation={navigation} />
       </SafeAreaView>
     </View>
