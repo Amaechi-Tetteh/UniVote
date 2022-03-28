@@ -7,7 +7,6 @@ menu_container:{
 
  display:'flex',
  width:'100%',
- height:120 * length_factor,
  justifyContent:'center',
 
  
@@ -25,7 +24,7 @@ menu_wrapper:{
     alignContent:'center',
     display:'flex',
     flexDirection:'row',
-    justifyContent:'space-evenly',
+    justifyContent:'space-between',
     alignItems:'center'
    
 }

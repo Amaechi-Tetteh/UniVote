@@ -12,8 +12,13 @@ import LoginScreen from "./components/pages/login/login"
 import TrendingItemsScreen from "./components/pages/trending/trending"
 import SearchProposalScreen from "./components/pages/searchProposal/searchProposal"
 import { NAVIGATION_ROUTES } from "./components/shared/components/menu/menu"
-import AddProposalScreen from "./components/pages/addProposal/addProposal"
+import CreateProposalScreen from "./components/pages/createProposal/createProposal"
 import ProposalDetailsScreen from "./components/pages/proposalDetails/proposalDetails"
+import { NativeBaseProvider, Box } from "native-base"
+import CreateReferendumScreen from "./components/pages/createReferendum/createReferendum"
+import CreateItemScreen from "./components/pages/createNewItem/createNewItem"
+import SearchResultsScreen from "./components/pages/searchResults/searchResults"
+
 const store = createStore(rootReducer, composeWithDevTools())
 
 const Stack = createStackNavigator()
@@ -38,20 +43,29 @@ export default function App() {
     }
     return (
         <Provider store={store}>
-            <NavigationContainer>
-                <Stack.Navigator
-                    screenOptions={{
-                        headerShown: false
-                    }}
-                >
-                    <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
-                    <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
-                    <Stack.Screen name={NAVIGATION_ROUTES.PROPOSAL_DETAILS} component={ProposalDetailsScreen} />
-                    <Stack.Screen name={NAVIGATION_ROUTES.CREATE_PROPOSAL} component={AddProposalScreen} />
-                    <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
-                    <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
-                </Stack.Navigator>
-            </NavigationContainer>
+            <NativeBaseProvider>
+                <NavigationContainer>
+                    <Stack.Navigator
+                        screenOptions={{
+                            headerShown: false
+                        }}
+                    >
+                        <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
+                        <Stack.Screen
+                            name={NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM}
+                            component={CreateItemScreen}
+                        />
+                        <Stack.Screen name={NAVIGATION_ROUTES.CREATE_REFERENDUM} component={CreateReferendumScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.CREATE_PROPOSAL} component={CreateProposalScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_RESULTS} component={SearchResultsScreen} />
+
+                        <Stack.Screen name={NAVIGATION_ROUTES.PROPOSAL_DETAILS} component={ProposalDetailsScreen} />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </NativeBaseProvider>
         </Provider>
     )
 }

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { loginItem } from "../../shared/types"
 import { renderForm } from "../../shared/components/inputComponent/renderForm"
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native"
+import { View, Text, SafeAreaView, TouchableOpacity, MaskedViewBase } from "react-native"
 import { validateInputs, isString } from "../../shared/components/inputComponent/validationFunctions"
 import { styles } from "../../shared/styles/styles"
 import BlueHeader from "../../shared/components/blueHeader/blueHeader"
@@ -10,6 +10,7 @@ import Menu from "../../shared/components/menu/menu"
 import { length_factor } from "../../shared/styles/styles"
 import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
+import { MenuContainer, MainContainer } from "../../shared/components/containers/containers"
 
 export default function SearchProposalScreen({ navigation }: any): JSX.Element {
     const [searchTerm, setSearchTerm] = useState("")
@@ -41,19 +42,22 @@ export default function SearchProposalScreen({ navigation }: any): JSX.Element {
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >
-                <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
-                    {renderForm(formItems, formIsValid)}
-                </View>
+                <MainContainer>
+                    <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
+                        {renderForm(formItems, formIsValid)}
+                    </View>
 
-                <Button
-                    text="Search Proposal"
-                    width="100%"
-                    color={BUTTON_COLORS.YELLOW}
-                    onPress={onSearch}
-                    paddingTop={35}
-                />
-
-                <Menu navigation={navigation} />
+                    <Button
+                        text="Search Proposal"
+                        width="100%"
+                        color={BUTTON_COLORS.YELLOW}
+                        onPress={onSearch}
+                        paddingTop={35}
+                    />
+                </MainContainer>
+                <MenuContainer>
+                    <Menu navigation={navigation} />
+                </MenuContainer>
             </SafeAreaView>
         </View>
     )

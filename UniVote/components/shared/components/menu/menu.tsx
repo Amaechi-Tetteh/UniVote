@@ -12,19 +12,22 @@ interface menuItem {
 
 export enum NAVIGATION_ROUTES {
   SEARCH_PROPOSAL = "Search Proposal",
+  SEARCH_RESULTS = "Seach Results",
   SIGN_UP = "SignUp",
   LOGIN = "Login",
   CREATE_PROPOSAL = "Create Proposal",
+  CREATE_REFERENDUM = "Create Referendum",
+  CREATE_PROPOSAL_OR_REFERENDUM = "Create proposal or referendum",
   TRENDING_PROPOSALS = "Trending Proposals",
   ACCOUNT_DETAILS = "Account Details",
   SETTINGS = "Settings",
-  PROPOSAL_DETAILS = "Proposal Details"
+  PROPOSAL_DETAILS = "Proposal Details",
 }
 
 const menuItems: menuItem[] = [
   { target: NAVIGATION_ROUTES.SEARCH_PROPOSAL, iconName: "search", size: 50 },
   { target: NAVIGATION_ROUTES.TRENDING_PROPOSALS, iconName: "home", size:50 },
-  { target: NAVIGATION_ROUTES.CREATE_PROPOSAL, iconName: "add-circle", size:60},
+  { target: NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM, iconName: "add-circle", size:60},
   { target: NAVIGATION_ROUTES.ACCOUNT_DETAILS, iconName: "person", size:60},
   { target: NAVIGATION_ROUTES.SETTINGS, iconName: "settings", size:50},
 ];
