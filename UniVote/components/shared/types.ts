@@ -1,5 +1,5 @@
-import React, { useState, Dispatch, SetStateAction, Props } from "react"
-
+import  { Dispatch, SetStateAction} from "react"
+import {NavigationProp, ParamListBase} from '@react-navigation/native';
 export interface loginItem {
     label: string
     validator(input: string): boolean
@@ -21,4 +21,10 @@ export interface DropDown {
 export interface DropDownItem {
     label: string
     value: string
+}
+
+export interface Navigation extends NavigationProp<ParamListBase>{}
+
+export interface NavigationProps{
+    navigation: Navigation
 }

@@ -18,6 +18,7 @@ import { NativeBaseProvider, Box } from "native-base"
 import CreateReferendumScreen from "./components/pages/createReferendum/createReferendum"
 import CreateItemScreen from "./components/pages/createNewItem/createNewItem"
 import SearchResultsScreen from "./components/pages/searchResults/searchResults"
+import AccountDetailsScreen from "./components/pages/accountDetails/accountDetails"
 
 const store = createStore(rootReducer, composeWithDevTools())
 
@@ -50,6 +51,8 @@ export default function App() {
                             headerShown: false
                         }}
                     >
+                          <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_DETAILS} component={AccountDetailsScreen} />
+                          <Stack.Screen name={NAVIGATION_ROUTES.PROPOSAL_DETAILS} component={ProposalDetailsScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
                         <Stack.Screen
@@ -62,7 +65,7 @@ export default function App() {
                         <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_RESULTS} component={SearchResultsScreen} />
 
-                        <Stack.Screen name={NAVIGATION_ROUTES.PROPOSAL_DETAILS} component={ProposalDetailsScreen} />
+                      
                     </Stack.Navigator>
                 </NavigationContainer>
             </NativeBaseProvider>

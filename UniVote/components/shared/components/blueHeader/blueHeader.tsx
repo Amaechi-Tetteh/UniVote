@@ -3,13 +3,14 @@ import { View, Text } from "react-native";
 import { styles } from "./styles";
 import { MaterialIcons } from "@expo/vector-icons";
 import { length_factor } from "../../styles/styles";
+import { Navigation } from "../../types";
 
-export default function BlueHeader({ navigation, title, showArrow }: any): JSX.Element {
-  const onPressBack = ():void => navigation.goBack();
-  
+export default function BlueHeader({ navigation, title, showArrow }: Props): JSX.Element {
+  const onPressBack = (): void => navigation.goBack();
+
   return (
     <View style={styles.header}>
-{showArrow ? <MaterialIcons
+      {showArrow ? <MaterialIcons
         name="arrow-back"
         size={24 * length_factor}
         color="white"
@@ -19,4 +20,12 @@ export default function BlueHeader({ navigation, title, showArrow }: any): JSX.E
       <Text style={styles.title}>{title}</Text>
     </View>
   );
+}
+
+
+interface Props {
+  title: string,
+  showArrow: boolean,
+  navigation: Navigation
+
 }

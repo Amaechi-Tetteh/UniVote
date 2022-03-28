@@ -8,7 +8,8 @@ import { styles as loginStyles } from "./styles"
 import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
-export default function SignUpScreen({ navigation }: any): JSX.Element {
+import { NavigationProps } from "../../shared/types"
+export default function SignUpScreen({ navigation }: NavigationProps): JSX.Element {
     const [formIsValid, setValidStatus] = useState([true, true, true])
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")

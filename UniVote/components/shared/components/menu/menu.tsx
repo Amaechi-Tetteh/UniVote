@@ -1,8 +1,30 @@
 import {MaterialIcons } from "@expo/vector-icons";
-import React, { useState } from "react";
+import React  from "react";
 import { View, TouchableOpacity } from "react-native";
 import { styles } from "./styles";
 import {length_factor} from '../../../shared/styles/styles'
+import { NavigationProps } from "../../types";
+
+export default function Menu( {navigation}:NavigationProps ): JSX.Element {
+  const onNavigate = (target: NAVIGATION_ROUTES) => navigation.navigate(target);
+
+  const renderMenuItems = (menuItems: menuItem[]) => {
+    return(
+      <View style={styles.menu_wrapper}>
+    { menuItems.map((item, i) => {
+      return (
+        <TouchableOpacity onPress={() => onNavigate(item.target)} key={i}>
+          <MaterialIcons name={item.iconName} style={styles.menu_item} size={item.size*length_factor}  />
+        </TouchableOpacity>
+      );
+    })}
+    </View>
+    )
+  };
+
+  return <View style={styles.menu_container}>{renderMenuItems(menuItems)}</View>;
+}
+
 
 interface menuItem {
   target: NAVIGATION_ROUTES;
@@ -31,23 +53,3 @@ const menuItems: menuItem[] = [
   { target: NAVIGATION_ROUTES.ACCOUNT_DETAILS, iconName: "person", size:60},
   { target: NAVIGATION_ROUTES.SETTINGS, iconName: "settings", size:50},
 ];
-
-export default function Menu( {navigation}:any ): JSX.Element {
-  const onNavigate = (target: NAVIGATION_ROUTES) => navigation.navigate(target);
-
-  const renderMenuItems = (menuItems: menuItem[]) => {
-    return(
-      <View style={styles.menu_wrapper}>
-    { menuItems.map((item, i) => {
-      return (
-        <TouchableOpacity onPress={() => onNavigate(item.target)} key={i}>
-          <MaterialIcons name={item.iconName} style={styles.menu_item} size={item.size*length_factor}  />
-        </TouchableOpacity>
-      );
-    })}
-    </View>
-    )
-  };
-
-  return <View style={styles.menu_container}>{renderMenuItems(menuItems)}</View>;
-}

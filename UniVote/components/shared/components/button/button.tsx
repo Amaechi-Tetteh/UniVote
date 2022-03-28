@@ -4,11 +4,6 @@ import { styles } from "./styles"
 import { MaterialIcons } from "@expo/vector-icons"
 import { length_factor } from "../../styles/styles"
 
-export enum BUTTON_COLORS {
-    CLEAR = "clear",
-    BLUE = "blue",
-    YELLOW = "yellow"
-}
 
 export default function Button({
     text,
@@ -18,16 +13,15 @@ export default function Button({
     paddingTop,
     flexBasis,
     showPlusIcon = false
-}: any): JSX.Element {
+}: Props): JSX.Element {
     const getBackgroundColor = (color: BUTTON_COLORS) => {
-        console.log(color)
         if (color === BUTTON_COLORS.BLUE) return "#2115f5"
         if (color === BUTTON_COLORS.YELLOW) return "rgb(192, 164, 27)"
         return "white"
     }
 
     return (
-        <View style={[styles.button_wrapper, { paddingTop: paddingTop * length_factor }]}>
+        <View style={[styles.button_wrapper, { paddingTop: paddingTop? paddingTop * length_factor: 0 }]}>
             <TouchableOpacity
                 style={[
                     styles.button,
@@ -50,4 +44,19 @@ export default function Button({
             </TouchableOpacity>
         </View>
     )
+}
+export enum BUTTON_COLORS {
+    CLEAR = "clear",
+    BLUE = "blue",
+    YELLOW = "yellow"
+}
+
+interface Props{
+    text: string,
+    width?: string|number,
+    color: BUTTON_COLORS,
+    showPlusIcon?: boolean,
+    paddingTop?: number,
+    flexBasis?: number,
+    onPress: any
 }

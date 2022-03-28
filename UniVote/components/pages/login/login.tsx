@@ -7,8 +7,9 @@ import { isEmail, isString, validateInputs } from "../../shared/components/input
 import { renderForm } from "../../shared/components/inputComponent/renderForm"
 import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
+import { NavigationProps } from "../../shared/types"
 
-export default function LoginScreen({ navigation }: any): JSX.Element {
+export default function LoginScreen({ navigation }: NavigationProps): JSX.Element {
     const [formIsValid, setValidStatus] = useState([true, true])
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
