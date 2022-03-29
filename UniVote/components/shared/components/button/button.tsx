@@ -12,12 +12,19 @@ export default function Button({
     onPress,
     paddingTop,
     flexBasis,
+    textTheme,
     showPlusIcon = false
 }: Props): JSX.Element {
     const getBackgroundColor = (color: BUTTON_COLORS) => {
         if (color === BUTTON_COLORS.BLUE) return "#2115f5"
         if (color === BUTTON_COLORS.YELLOW) return "rgb(192, 164, 27)"
         return "white"
+    }
+    const getTextStyle= (color: BUTTON_COLORS, textTheme: TEXT_THEMES|undefined, showPlusIcon: boolean):any=>{
+
+        if(color === BUTTON_COLORS.CLEAR) return [styles.grey_text]
+        if(textTheme === TEXT_THEMES.ALL_CAPS || showPlusIcon ) return [styles.text, styles.boldText]
+        return [styles.text]
     }
 
     return (
@@ -34,10 +41,7 @@ export default function Button({
                     <MaterialIcons name="add" color="white" size={24 * length_factor} style={styles.icon} />
                 ) : null}
                 <Text
-                    style={[
-                        color !== BUTTON_COLORS.CLEAR ? styles.text : styles.grey_text,
-                        showPlusIcon ? styles.boldText : null
-                    ]}
+                    style={getTextStyle(color, textTheme, showPlusIcon)}
                 >
                     {text}
                 </Text>
@@ -50,6 +54,10 @@ export enum BUTTON_COLORS {
     BLUE = "blue",
     YELLOW = "yellow"
 }
+export enum TEXT_THEMES {
+   ALL_CAPS = 'ALL_CAPS',
+   CAPATILISED =  'CAPATALISED'
+}
 
 interface Props{
     text: string,
@@ -58,5 +66,6 @@ interface Props{
     showPlusIcon?: boolean,
     paddingTop?: number,
     flexBasis?: number,
+    textTheme?: TEXT_THEMES,
     onPress: any
 }

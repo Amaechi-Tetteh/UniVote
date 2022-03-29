@@ -25,7 +25,7 @@ export default function CreateItemScreen({ navigation }: any): JSX.Element {
     const renderChoices = (choices: CreationChoices[]): JSX.Element[] => {
         return choices.map((choice, i) => {
             return (
-                <TouchableOpacity onPress={() => onPress(choice.navigateTo)} style={createItemStyles.button}>
+                <TouchableOpacity onPress={() => onPress(choice.navigateTo)} style={createItemStyles.button} key={i}>
                     <Text style={createItemStyles.button_text}>{choice.label}</Text>
                 </TouchableOpacity>
             )

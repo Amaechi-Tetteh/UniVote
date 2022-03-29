@@ -9,23 +9,16 @@ import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { NavigationProps } from "../../shared/types"
 import { MenuContainer, MainContainer } from "../../shared/components/containers/containers"
 
-export default function ProposalDetailsScreen({ navigation }: NavigationProps): JSX.Element {
+export default function ReferendumlDetailsScreen({ navigation }: NavigationProps): JSX.Element {
     const number_of_votes: number = 16
     const title: string = "Fix pothole on Library Road"
     const details: string =
         "Potholes really need to be fixed very soon. Otherwise all the cars will be destroyed and the council will be sued"
-    const comments: comment[] = [
-        { user: "marc", comment: "this really sucks" },
-        { user: "bob", comment: "yes i agree. its very bad" },
-        {
-            user: "mary",
-            comment: "when will it get fixed? Some more textto see if i can get it to wrap onto a new line"
-        }
-    ]
+
     const onVote = () => console.log("vote")
     return (
         <View style={styles.centered_container}>
-            <BlueHeader title={"Proposal Details"} navigation={navigation} showArrow={true} />
+            <BlueHeader title={"Referendum Details"} navigation={navigation} showArrow={true} />
             <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
                 <MainContainer>
                     <View style={proposalDetailStyles.image_container}>
@@ -66,18 +59,8 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                             showPlusIcon={true}
                             paddingTop={15}
                         />
-
-                        <Text style={proposalDetailStyles.text}>Comments</Text>
-                        <ScrollView
-                            contentContainerStyle={{
-                                flex: 1,
-                                flexDirection: "row",
-                                flexWrap: "wrap"
-                            }}
-                            style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.comment_container]}
-                        >
-                            {renderComments(comments)}
-                        </ScrollView>
+               
+                        
                     </View>
                 </MainContainer>
                 <MenuContainer>
@@ -90,22 +73,4 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
     )
 }
 
-interface comment {
-    user: string
-    comment: string
-}
 
-const renderComments = (comments: comment[]): JSX.Element[] => {
-    console.log(comments)
-
-    return comments.map((item, i) => {
-        return (
-            <React.Fragment key={i}>
-                <Text style={proposalDetailStyles.text} >
-                    {item.user}... {item.comment}
-                </Text>
-                <View style={{ width: "100%", height: 20 }}></View>
-            </React.Fragment>
-        )
-    })
-}

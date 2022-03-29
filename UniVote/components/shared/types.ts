@@ -28,3 +28,18 @@ export interface Navigation extends NavigationProp<ParamListBase>{}
 export interface NavigationProps{
     navigation: Navigation
 }
+
+export enum PROPOSAL_TYPE{
+
+    PROPOSAL = 'Proposal',
+    REFERNDUM = 'Referendum'
+
+}
+
+export interface proposalSummary{
+
+proposalId: string,
+title: string,
+numberOfVotes: number,
+type: PROPOSAL_TYPE
+}

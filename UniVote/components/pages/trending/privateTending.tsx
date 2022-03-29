@@ -1,18 +1,16 @@
 import React, { useState } from "react"
 import { proposalSummary, PROPOSAL_TYPE } from "../../shared/types"
-import { NavigationProps, Navigation } from "../../shared/types"
+import { NavigationProps } from "../../shared/types"
 import { NAVIGATION_ROUTES } from "../../../components/shared/components/menu/menu"
-import TrendingItemsTemplate, {HeaderText} from "./trendingItemsTemplate"
+import TrendingItemsTemplate, { HeaderText } from "./trendingItemsTemplate"
 
-
-
-export default function TrendingItemsScreen({ navigation }: NavigationProps): JSX.Element {
+export default function PrivateTrendingItemsScreen({ navigation }: NavigationProps): JSX.Element {
     const proposals: proposalSummary[] = [
         {
             title: "Proposal 1",
             proposalId: "11111",
             numberOfVotes: 20,
-            type: PROPOSAL_TYPE.PROPOSAL
+            type: PROPOSAL_TYPE.REFERNDUM
         },
         {
             title: "Proposal 1",
@@ -52,11 +50,16 @@ export default function TrendingItemsScreen({ navigation }: NavigationProps): JS
         }
     ]
 
-    const headerText:HeaderText = {title:"Trending", subTitle: 'Private'}
+    const headerText: HeaderText = { title: "Private", subTitle: "Trending" }
 
-    const onPressHeader = () => navigation.navigate(NAVIGATION_ROUTES.PRIVATE_TRENDING_PROPOSALS)
+    const onPressHeader = () => navigation.navigate(NAVIGATION_ROUTES.TRENDING_PROPOSALS)
 
     return (
-<TrendingItemsTemplate proposals={proposals} navigation = {navigation} headerText={headerText} onPressHeader ={ onPressHeader} />
+        <TrendingItemsTemplate
+            proposals={proposals}
+            navigation={navigation}
+            headerText={headerText}
+            onPressHeader={onPressHeader}
+        />
     )
 }

@@ -1,4 +1,4 @@
-import { proposalSummary } from "./types";
+import { proposalSummary } from "../../shared/types";
 import React from "react";
 import {
   View,
@@ -28,7 +28,7 @@ export default function TrendingItems ({
       </View>
       <View style={styles.summary_container}>
         <View style={styles.left_text}>
-          <Text style={styles.user_text}>{item.userHash}</Text>
+          <Text style={styles.user_text}>{item.type}</Text>
         </View>
         <View style={styles.right_text}>
           <Text style={styles.vote_text}>{item.numberOfVotes} votes</Text>

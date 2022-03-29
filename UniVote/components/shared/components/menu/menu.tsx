@@ -41,9 +41,12 @@ export enum NAVIGATION_ROUTES {
   CREATE_REFERENDUM = "Create Referendum",
   CREATE_PROPOSAL_OR_REFERENDUM = "Create proposal or referendum",
   TRENDING_PROPOSALS = "Trending Proposals",
+  PRIVATE_TRENDING_PROPOSALS = 'Private Trending Proposals',
   ACCOUNT_DETAILS = "Account Details",
   SETTINGS = "Settings",
   PROPOSAL_DETAILS = "Proposal Details",
+  REFERENDUM_DETAILS = "Referendum Details"
+
 }
 
 const menuItems: menuItem[] = [

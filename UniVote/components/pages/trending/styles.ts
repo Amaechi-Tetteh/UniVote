@@ -37,6 +37,7 @@ export const styles = StyleSheet.create({
   user_text: {
     fontFamily: "RegularFont",
     textAlign: "left",
+     color: "rgb(66, 66, 66)",
   },
 
   vote_text: {
