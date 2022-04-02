@@ -4,7 +4,7 @@ export interface loginItem {
     label: string
     validator(input: string): boolean
     placeholder: string
-    onChange: Dispatch<SetStateAction<string>>
+    onChange: (text: string) => void
     value: string
     secure?: boolean
 }

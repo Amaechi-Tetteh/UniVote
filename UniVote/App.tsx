@@ -53,6 +53,8 @@ export default function App() {
                             headerShown: false
                         }}
                     >
+                        <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
                         <Stack.Screen
                             name={NAVIGATION_ROUTES.REFERENDUM_DETAILS}
                             component={ReferendumlDetailsScreen}
@@ -62,8 +64,7 @@ export default function App() {
                             component={PrivateTrendingItemsScreen}
                         />
                         <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
+
                         <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_DETAILS} component={AccountDetailsScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.PROPOSAL_DETAILS} component={ProposalDetailsScreen} />
 

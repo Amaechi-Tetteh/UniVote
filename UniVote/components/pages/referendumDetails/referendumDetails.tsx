@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState} from "react"
 import { View, Text, SafeAreaView, ScrollView, Image } from "react-native"
 import { styles as proposalDetailStyles } from "./style"
 import { styles } from "../../shared/styles/styles"
@@ -8,14 +8,26 @@ import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { NavigationProps } from "../../shared/types"
 import { MenuContainer, MainContainer } from "../../shared/components/containers/containers"
+import { renderCheckBoxes, CheckBoxItem } from "../../shared/components/checkboxList/checkboxList"
 
 export default function ReferendumlDetailsScreen({ navigation }: NavigationProps): JSX.Element {
+
+     const candidates: CheckBoxItem[] = [
+    //   {selected: false, label: 'Raphael Barberis', onChange}
+   ]
+   
+const [selectedItems, setSelectedItems] = useState(candidates)
+
     const number_of_votes: number = 16
     const title: string = "Fix pothole on Library Road"
     const details: string =
         "Potholes really need to be fixed very soon. Otherwise all the cars will be destroyed and the council will be sued"
 
     const onVote = () => console.log("vote")
+
+  
+    
+
     return (
         <View style={styles.centered_container}>
             <BlueHeader title={"Referendum Details"} navigation={navigation} showArrow={true} />
@@ -50,6 +62,7 @@ export default function ReferendumlDetailsScreen({ navigation }: NavigationProps
                         >
                             <Text style={proposalDetailStyles.text}>{details}</Text>
                         </ScrollView>
+<Text>Candidates/Choices</Text>
 
                         <Button
                             text="VOTE"

@@ -1,12 +1,54 @@
 export interface comment {
-  user: string;
-  comment: string;
+    user: string
+    comment: string
 }
 
-export interface proposalDetails {
-  title: string;
-  description: string;
-  proposalId: string;
-  numberOfVotes: number;
-  comments: comment[];
+export enum ITEM_TYPE {
+    PROPOSAL = "PROPOSAL",
+    REFERENDUM = "REFERENDUM"
+}
+export enum PROPOSAL_TYPE {
+    PRIVATE = "Private proposal",
+    PUBLIC = "Public proposal"
+}
+
+export enum REFERENDUM_TYPE {
+    PRIVATE = "Private referendum",
+    PUBLIC = "Public referendum"
+}
+
+export interface ReferendumChoices {
+    label: string
+    selected: boolean
+}
+
+export interface SelectedReferendumChoice {
+    index: number
+    selected: boolean
+}
+
+export interface ProposalDetails {
+    title: string
+    description: string
+    proposalId: string
+    numberOfVotes: number
+    comments?: comment[]
+    type: ITEM_TYPE
+    choices?: ReferendumChoices[]
+}
+
+export interface NewProposal {
+    name: string
+    details: string
+    type: PROPOSAL_TYPE
+    group: string
+    image: string
+}
+
+export interface NewReferendum{
+    name: string,
+    details:string,
+    type: REFERENDUM_TYPE,
+    group: string,
+    choices: string[]
 }

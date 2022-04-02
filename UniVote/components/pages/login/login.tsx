@@ -8,11 +8,25 @@ import { renderForm } from "../../shared/components/inputComponent/renderForm"
 import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { NavigationProps } from "../../shared/types"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../../reducers"
+import { setEmailAction, setPasswordAction, setLoggedInAction } from "../../../actions/actions.login"
+import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 
 export default function LoginScreen({ navigation }: NavigationProps): JSX.Element {
+    const dispatch = useDispatch()
+
     const [formIsValid, setValidStatus] = useState([true, true])
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+
+    const loginState = useSelector((state: RootState) => state.login)
+
+    const setPassword = (password: string) => {
+        console.log(password)
+        dispatch(setPasswordAction(password))
+    }
+    const setEmail = (email: string) => {
+        dispatch(setEmailAction(email))
+    }
 
     const formItems: loginItem[] = [
         {
@@ -20,22 +34,24 @@ export default function LoginScreen({ navigation }: NavigationProps): JSX.Elemen
             placeholder: "Enter email...",
             validator: isEmail,
             onChange: setEmail,
-            value: email
+            value: loginState.email
         },
         {
             label: "Password",
             placeholder: "Enter password...",
             validator: isString,
             onChange: setPassword,
-            value: password,
+            value: loginState.password,
             secure: true
         }
     ]
 
     const onLogin = () => {
-        let isValidArray: boolean[] = validateInputs([email, password], formItems)
-        if (isValidArray.every(Boolean)) console.log("boo")
-        else setValidStatus(isValidArray)
+        let isValidArray: boolean[] = validateInputs([loginState.email, loginState.password], formItems)
+        if (isValidArray.every(Boolean)) {
+            dispatch(setLoggedInAction(true))
+            navigation.navigate(NAVIGATION_ROUTES.TRENDING_PROPOSALS)
+        } else setValidStatus(isValidArray)
     }
 
     const onForgotPassword = () => {}
