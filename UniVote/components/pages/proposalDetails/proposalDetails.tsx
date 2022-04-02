@@ -8,21 +8,19 @@ import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { NavigationProps } from "../../shared/types"
 import { MenuContainer, MainContainer } from "../../shared/components/containers/containers"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../../reducers"
+import { voteOnProposalAction } from "../../../actions/actions.proposalDetails"
 
 export default function ProposalDetailsScreen({ navigation }: NavigationProps): JSX.Element {
-    const number_of_votes: number = 16
-    const title: string = "Fix pothole on Library Road"
-    const details: string =
-        "Potholes really need to be fixed very soon. Otherwise all the cars will be destroyed and the council will be sued"
-    const comments: comment[] = [
-        { user: "marc", comment: "this really sucks" },
-        { user: "bob", comment: "yes i agree. its very bad" },
-        {
-            user: "mary",
-            comment: "when will it get fixed? Some more textto see if i can get it to wrap onto a new line"
-        }
-    ]
-    const onVote = () => console.log("vote")
+
+    const dispatch = useDispatch()
+
+    const proposalDetails = useSelector((state:RootState) => state.proposalDetails)
+    
+    const onVote = () => dispatch(voteOnProposalAction())
+
+
     return (
         <View style={styles.centered_container}>
             <BlueHeader title={"Proposal Details"} navigation={navigation} showArrow={true} />
@@ -30,12 +28,12 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                 <MainContainer>
                     <View style={proposalDetailStyles.image_container}>
                         <Image
-                            source={require("../../../assets/example_img.png")}
+                            source={{uri: proposalDetails.image}}
                             style={{ width: "100%", height: "100%" }}
                         />
                     </View>
                     <View style={[styles.screen_padding, proposalDetailStyles.content_container]}>
-                        <Text style={proposalDetailStyles.text}>{number_of_votes} Current Number of Votes</Text>
+                        <Text style={proposalDetailStyles.text}>{proposalDetails.numberOfVotes} Current Number of Votes</Text>
 
                         <ScrollView
                             contentContainerStyle={{
@@ -45,7 +43,7 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                             }}
                             style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.title_container]}
                         >
-                            <Text style={proposalDetailStyles.text}>{title}</Text>
+                            <Text style={proposalDetailStyles.text}>{proposalDetails.title}</Text>
                         </ScrollView>
                         <ScrollView
                             contentContainerStyle={{
@@ -55,7 +53,7 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                             }}
                             style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.title_container]}
                         >
-                            <Text style={proposalDetailStyles.text}>{details}</Text>
+                            <Text style={proposalDetailStyles.text}>{proposalDetails.description}</Text>
                         </ScrollView>
 
                         <Button
@@ -76,7 +74,7 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                             }}
                             style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.comment_container]}
                         >
-                            {renderComments(comments)}
+                            {renderComments(proposalDetails.comments!) }
                         </ScrollView>
                     </View>
                 </MainContainer>

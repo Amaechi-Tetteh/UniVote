@@ -13,7 +13,8 @@ const initialState: ProposalDetailsState = {
     description: "",
     comments: [],
     choices: [],
-    type: ITEM_TYPE.PROPOSAL
+    type: ITEM_TYPE.PROPOSAL, 
+    image:''
 }
 
 export function setProposalReducer( payload: ProposalDetails): ProposalDetailsState {

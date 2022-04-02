@@ -13,30 +13,43 @@ import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { MenuContainer, MainContainer } from "../../shared/components/containers/containers"
 import { NavigationProps } from "../../shared/types"
 import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../../reducers"
+import { setSearchTermAction, setSearchResultsAction } from "../../../actions/actions.search"
+import { ResultItem } from "../searchResults/searchResults"
+import { image_example } from "../searchResults/image"
 
 export default function SearchProposalScreen({ navigation }: NavigationProps): JSX.Element {
-    const [searchTerm, setSearchTerm] = useState("")
+    const dispatch = useDispatch()
     const [formIsValid, setValidStatus] = useState([true])
+
+    const searchTerm = useSelector((state: RootState) => state.search.searchTerm)
+
+    const onChange = (searchTerm: string) => {
+        dispatch(setSearchTermAction(searchTerm))
+    }
 
     const formItems: loginItem[] = [
         {
             label: "Proposal",
             placeholder: "Enter Proposal Name/Keyword...",
             validator: isString,
-            onChange: setSearchTerm,
+            onChange: onChange,
             value: searchTerm
         }
     ]
 
     const onSearch = () => {
         let isValidArray: boolean[] = validateInputs([searchTerm], formItems)
-        if (isValidArray.every(Boolean)) navigation.navigate(NAVIGATION_ROUTES.SEARCH_RESULTS)
-        else setValidStatus(isValidArray)
+        if (isValidArray.every(Boolean)) {
+            dispatch(setSearchResultsAction(exampleResults))
+            navigation.navigate(NAVIGATION_ROUTES.SEARCH_RESULTS)
+        } else setValidStatus(isValidArray)
     }
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader title= 'Search Proposal' navigation={navigation} showArrow={true} />
+            <BlueHeader title="Search Proposal" navigation={navigation} showArrow={true} />
             <SafeAreaView
                 style={[
                     styles.centered_container,
@@ -64,3 +77,21 @@ export default function SearchProposalScreen({ navigation }: NavigationProps): J
         </View>
     )
 }
+
+const exampleResults: ResultItem[] = [
+    {
+        proposalId: "sdddsds",
+        title: "test title for app with a really long long title, so long long",
+        image: "data:image/webp;base64," + image_example
+    },
+    {
+        proposalId: "sdddssddsdsds",
+        title: "test title for app2",
+        image: "data:image/webp;base64," + image_example
+    },
+    {
+        proposalId: "sdddssddsdsdssds",
+        title: "test title for app3",
+        image: "data:image/webp;base64," + image_example
+    }
+]

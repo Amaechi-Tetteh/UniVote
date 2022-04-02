@@ -9,10 +9,12 @@ import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { MaterialIcons } from "@expo/vector-icons"
 import { TEXT_THEMES } from "../../shared/components/button/button"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../../reducers"
+import { capitaliseFirstLetter } from "../../shared/functions/functions.capitaliseFirstLetter"
 
 export default function AccountDetailsScreen({ navigation }: any): JSX.Element {
-    const name: string = "Name"
-    const hashCode: string = "individual hash code"
+    const userDetails = useSelector((state: RootState) => state.login)
     const handlePerks = () => console.log("hello")
     const default_image: string =
         "https://proton-resources-production.imgix.net/c672f2a7711de5d7a98baf48284b527a54899170f2bcf0928ca79da580585da9.png?orient=&auto=compress"
@@ -29,7 +31,10 @@ export default function AccountDetailsScreen({ navigation }: any): JSX.Element {
             >
                 <MainContainer>
                     <View style={accountDetailStyles.image_container}>
-                        <Image source={{ uri: default_image }} style={accountDetailStyles.image} />
+                        <Image
+                            source={{ uri: userDetails.userImage ? userDetails.userImage : default_image }}
+                            style={accountDetailStyles.image}
+                        />
                     </View>
                     <View style={accountDetailStyles.stars_container}>
                         <View style={accountDetailStyles.star_wrapper}>
@@ -42,8 +47,8 @@ export default function AccountDetailsScreen({ navigation }: any): JSX.Element {
                             <MaterialIcons name="star-border" style={accountDetailStyles.star} />
                         </View>
                     </View>
-                    <Text style={accountDetailStyles.name_text}>{name}</Text>
-                    <Text style={accountDetailStyles.hash_text}>{hashCode}</Text>
+                    <Text style={accountDetailStyles.name_text}>{capitaliseFirstLetter(userDetails.fullName ? userDetails.fullName : 'Unknown User')}</Text>
+                    <Text style={accountDetailStyles.hash_text}>{userDetails.hashcode ? userDetails.hashcode : 'no hash code found'}</Text>
                     <Button
                         flexBasis={160}
                         text="PERKS"

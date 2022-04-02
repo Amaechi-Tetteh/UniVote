@@ -1,5 +1,5 @@
-import  { Dispatch, SetStateAction} from "react"
 import {NavigationProp, ParamListBase} from '@react-navigation/native';
+import { ITEM_TYPE } from "../../reducers/types";
 export interface loginItem {
     label: string
     validator(input: string): boolean
@@ -41,5 +41,5 @@ export interface proposalSummary{
 proposalId: string,
 title: string,
 numberOfVotes: number,
-type: PROPOSAL_TYPE
+type: ITEM_TYPE
 }

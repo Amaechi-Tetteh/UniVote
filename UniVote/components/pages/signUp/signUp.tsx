@@ -9,11 +9,26 @@ import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { NavigationProps } from "../../shared/types"
+import { useDispatch, useSelector } from "react-redux"
+import { RootState } from "../../../reducers"
+import { setEmailAction, setPasswordAction, setLoggedInAction, setFullNameAction } from "../../../actions/actions.login"
+
 export default function SignUpScreen({ navigation }: NavigationProps): JSX.Element {
+    const dispatch = useDispatch()
     const [formIsValid, setValidStatus] = useState([true, true, true])
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
-    const [name, setName] = useState("")
+
+    const loginState = useSelector((state: RootState) => state.login)
+
+    const setPassword = (password: string) => {
+        dispatch(setPasswordAction(password))
+    }
+    const setEmail = (email: string) => {
+        dispatch(setEmailAction(email))
+    }
+
+    const setFullName = (name: string) => {
+        dispatch(setFullNameAction(name))
+    }
 
     const formItems: loginItem[] = [
         {
@@ -21,29 +36,29 @@ export default function SignUpScreen({ navigation }: NavigationProps): JSX.Eleme
             placeholder: "Enter email...",
             validator: isEmail,
             onChange: setEmail,
-            value: email
+            value: loginState.email
         },
         {
             label: "Password",
             placeholder: "Enter password...",
             validator: isString,
             onChange: setPassword,
-            value: password,
+            value: loginState.password,
             secure: true
         },
         {
             label: "Full Name",
             placeholder: "Enter full name...",
             validator: isString,
-            onChange: setName,
-            value: name
+            onChange: setFullName,
+            value: loginState.fullName
         }
     ]
 
     const onSignUp = () => {
-        let isValidArray: boolean[] = validateInputs([email, password, name], formItems)
+        let isValidArray: boolean[] = validateInputs([loginState.email, loginState.password, loginState.fullName], formItems)
         if (isValidArray.every(Boolean)) {
-            console.log("boo")
+            dispatch(setLoggedInAction(true))
             navigation.navigate(NAVIGATION_ROUTES.TRENDING_PROPOSALS)
         } else setValidStatus(isValidArray)
     }

@@ -6,14 +6,18 @@ export interface LoginState {
     isLoggedIn: boolean
     email: string
     fullName: string
-    password: string
+    password: string,
+    userImage: string,
+    hashcode: string
 }
 
 const initialState: LoginState = {
     isLoggedIn: false,
     email: "",
     fullName: "",
-    password: ""
+    password: "",
+    userImage: '',
+    hashcode: ''
 }
 
 export function resetLoginReducer(state: LoginState): LoginState {

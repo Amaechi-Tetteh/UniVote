@@ -7,17 +7,19 @@ import { styles as proposalStyles } from "./styles"
 import BlueHeader from "../../shared/components/blueHeader/blueHeader"
 import Menu from "../../shared/components/menu/menu"
 import { MenuContainer, MainContainer } from "../../shared/components/containers/containers"
-import {  Navigation } from "../../shared/types"
-import { NAVIGATION_ROUTES } from "../../../components/shared/components/menu/menu"
+import { Navigation } from "../../shared/types"
+import { ITEM_TYPE } from "../../../reducers/types"
 
-
-export default function TrendingItemsTemplate({ navigation, proposals, onPressHeader, headerText }:Props): JSX.Element {
-
-    const handlePress = (id:string, navigation:Navigation)=> navigation.navigate(NAVIGATION_ROUTES.PROPOSAL_DETAILS)
-
+export default function TrendingItemsTemplate({
+    navigation,
+    proposals,
+    onPressHeader,
+    headerText,
+    onPressItem
+}: Props): JSX.Element {
     return (
         <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title='blockVote' showArrow={false} />
+            <BlueHeader navigation={navigation} title="blockVote" showArrow={false} />
             <SafeAreaView
                 style={[
                     styles.centered_container,
@@ -28,10 +30,12 @@ export default function TrendingItemsTemplate({ navigation, proposals, onPressHe
                 <MainContainer>
                     <View style={proposalStyles.header_wrapper}>
                         <Text style={proposalStyles.yellow_subtitle}>{headerText.title}</Text>
-                        <Text style={proposalStyles.title} onPress={onPressHeader}>{headerText.subTitle}</Text>
+                        <Text style={proposalStyles.title} onPress={onPressHeader}>
+                            {headerText.subTitle}
+                        </Text>
                     </View>
                     <View style={proposalStyles.trending_items_container}>
-                        <TrendingItems proposals={proposals} onPress={handlePress} navigation={navigation} />
+                        <TrendingItems proposals={proposals} onPress={onPressItem} navigation={navigation} />
                     </View>
                 </MainContainer>
                 <MenuContainer>
@@ -42,15 +46,15 @@ export default function TrendingItemsTemplate({ navigation, proposals, onPressHe
     )
 }
 
-export interface HeaderText{
-    title: string,
+export interface HeaderText {
+    title: string
     subTitle: string
 }
 
-
-export interface Props{
-    navigation: Navigation,
-    proposals: proposalSummary[],
-    headerText: HeaderText, 
-    onPressHeader: ()=>void
+export interface Props {
+    navigation: Navigation
+    proposals: proposalSummary[]
+    headerText: HeaderText
+    onPressHeader: () => void
+    onPressItem: (id: string, type: ITEM_TYPE, navigation: Navigation) => void
 }

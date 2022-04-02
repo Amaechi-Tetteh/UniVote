@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { styles } from "../../shared/styles/styles"
-import { View, Text, SafeAreaView, TouchableOpacity } from "react-native"
+import { View, Text, SafeAreaView } from "react-native"
 import { loginItem } from "../../shared/types"
 import { styles as loginStyles } from "../signUp/styles"
 import { isEmail, isString, validateInputs } from "../../shared/components/inputComponent/validationFunctions"
@@ -15,13 +15,10 @@ import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 
 export default function LoginScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
-
     const [formIsValid, setValidStatus] = useState([true, true])
-
     const loginState = useSelector((state: RootState) => state.login)
-
+  
     const setPassword = (password: string) => {
-        console.log(password)
         dispatch(setPasswordAction(password))
     }
     const setEmail = (email: string) => {

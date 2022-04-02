@@ -34,7 +34,8 @@ export interface ProposalDetails {
     numberOfVotes: number
     comments?: comment[]
     type: ITEM_TYPE
-    choices?: ReferendumChoices[]
+    choices?: ReferendumChoices[],
+    image: string
 }
 
 export interface NewProposal {
