@@ -45,7 +45,9 @@ export enum NAVIGATION_ROUTES {
   ACCOUNT_DETAILS = "Account Details",
   SETTINGS = "Settings",
   PROPOSAL_DETAILS = "Proposal Details",
-  REFERENDUM_DETAILS = "Referendum Details"
+  REFERENDUM_DETAILS = "Referendum Details",
+  COMMENTS = "Comments",
+  PERKS = "Perks",
 
 }
 

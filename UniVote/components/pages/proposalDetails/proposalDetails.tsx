@@ -3,7 +3,7 @@ import { View, Text, SafeAreaView, ScrollView, Image } from "react-native"
 import { styles as proposalDetailStyles } from "./style"
 import { styles } from "../../shared/styles/styles"
 import BlueHeader from "../../shared/components/blueHeader/blueHeader"
-import Menu from "../../shared/components/menu/menu"
+import Menu, { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { NavigationProps } from "../../shared/types"
@@ -11,6 +11,7 @@ import { MenuContainer, MainContainer } from "../../shared/components/containers
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { voteOnProposalAction } from "../../../actions/actions.proposalDetails"
+import { TouchableOpacity } from "react-native-gesture-handler"
 
 export default function ProposalDetailsScreen({ navigation }: NavigationProps): JSX.Element {
 
@@ -20,6 +21,7 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
     
     const onVote = () => dispatch(voteOnProposalAction())
 
+     const onPressComments = () => navigation.navigate(NAVIGATION_ROUTES.COMMENTS)
 
     return (
         <View style={styles.centered_container}>
@@ -66,7 +68,9 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                         />
 
                         <Text style={proposalDetailStyles.text}>Comments</Text>
+                        <TouchableOpacity  onPress = {onPressComments}>
                         <ScrollView
+                       
                             contentContainerStyle={{
                                 flex: 1,
                                 flexDirection: "row",
@@ -76,6 +80,7 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                         >
                             {renderComments(proposalDetails.comments!) }
                         </ScrollView>
+                        </TouchableOpacity>
                     </View>
                 </MainContainer>
                 <MenuContainer>
