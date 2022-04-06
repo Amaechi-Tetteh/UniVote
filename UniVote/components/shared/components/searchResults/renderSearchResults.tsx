@@ -1,16 +1,17 @@
-import { ResultItem } from "./searchResults"
+import { ResultItem } from "../../../pages/searchResults/searchResults"
 import React from "react"
 import { View, Text, TouchableOpacity, FlatList, ListRenderItem, Image } from "react-native"
 import { styles } from "./styles"
+import { length_factor } from "../../styles/styles"
 
 const renderSeparator = () => {
     return <View style={styles.seperator}></View>
 }
 
 export const renderSearchItems = (results: ResultItem[], onSelectItem: (proposalId: string) => void): JSX.Element => {
-    const renderItem: ListRenderItem<ResultItem> = ({ item }) => {
+    const renderItem: ListRenderItem<ResultItem> = ({ item, index }) => {
         return (
-            <View style={styles.result_item_wrapper}>
+               <View style={[styles.square, index%2==0 ? { marginRight: 8.5 * length_factor } : { marginLeft: 8.5 *length_factor}]}>
                
                 <TouchableOpacity style={styles.results_button} onPress={() => onSelectItem(item.proposalId)}>
                     <Image source={{ uri: item.image }} style={styles.image} />
@@ -27,8 +28,8 @@ export const renderSearchItems = (results: ResultItem[], onSelectItem: (proposal
 
     return (
         <FlatList
-            style={{ width: "100%", height: "100%", alignContent: "space-between", display: "flex" , }}
-            contentContainerStyle={{justifyContent:'space-between', alignItems:'flex-start', }}
+          style={{ height: "100%", alignContent:'flex-start', display:'flex' }}
+          
             data={results}
             renderItem={renderItem}
             keyExtractor={item => item.proposalId}

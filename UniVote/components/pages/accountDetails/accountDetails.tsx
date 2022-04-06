@@ -13,8 +13,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { capitaliseFirstLetter } from "../../shared/functions/functions.capitaliseFirstLetter"
 
-const euthereum: number = '0.005'
-const value: number = '£13.19'
+const euthereum: string = '0.005'
+const value: string = '£13.19'
 
 
 export default function AccountDetailsScreen({ navigation }: any): JSX.Element {
