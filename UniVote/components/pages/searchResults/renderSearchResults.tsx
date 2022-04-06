@@ -11,7 +11,7 @@ export const renderSearchItems = (results: ResultItem[], onSelectItem: (proposal
     const renderItem: ListRenderItem<ResultItem> = ({ item }) => {
         return (
             <View style={styles.result_item_wrapper}>
-                <View style={[styles.centered_container, styles.padding_seperator]} />
+               
                 <TouchableOpacity style={styles.results_button} onPress={() => onSelectItem(item.proposalId)}>
                     <Image source={{ uri: item.image }} style={styles.image} />
                     <View style={styles.title_container}>
@@ -20,14 +20,15 @@ export const renderSearchItems = (results: ResultItem[], onSelectItem: (proposal
                         </Text>
                     </View>
                 </TouchableOpacity>
-                <View style={[styles.centered_container, styles.padding_seperator]} />
+               
             </View>
         )
     }
 
     return (
         <FlatList
-            style={{ width: "100%", height: "100%", alignContent: "flex-start", display: "flex" }}
+            style={{ width: "100%", height: "100%", alignContent: "space-between", display: "flex" , }}
+            contentContainerStyle={{justifyContent:'space-between', alignItems:'flex-start', }}
             data={results}
             renderItem={renderItem}
             keyExtractor={item => item.proposalId}

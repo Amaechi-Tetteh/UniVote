@@ -39,10 +39,11 @@ export const styles = StyleSheet.create({
         fontFamily: "SemiBoldFont"
     },
 
-    hash_text: {
-        paddingTop: 17 * length_factor,
+    details: {
+       lineHeight:19*length_factor,
         fontSize: 16 * length_factor,
-        color: "rgb(66, 66, 66)"
+        color: "rgb(66, 66, 66)",
+         fontFamily: "RegularFont"
     },
 
   
@@ -56,5 +57,13 @@ export const styles = StyleSheet.create({
 
     right_hand_corner:{
         justifyContent:'flex-end'
+    },
+
+
+    button_row:{
+        width:'100%',
+        flexDirection:'row',
+        display:'flex',
+        justifyContent:'space-around'
     }
 })

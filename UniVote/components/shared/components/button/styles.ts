@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     flexDirection:'row',
+    width:'100%'
   
 
   },
@@ -24,6 +25,9 @@ export const styles = StyleSheet.create({
     fontSize: 14 * length_factor,
     letterSpacing: 1*length_factor
   },
+  yellow_text:{
+    color:'rgb(192, 164, 27)'
+  },
 
   boldText:{
     fontWeight:'bold', 
@@ -35,7 +39,6 @@ export const styles = StyleSheet.create({
     marginRight: 8 * length_factor
   },
   button_wrapper:{
-    width:'100%',
     display:'flex',
     flexDirection:'row',
     justifyContent:'center'

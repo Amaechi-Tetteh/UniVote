@@ -13,9 +13,14 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { capitaliseFirstLetter } from "../../shared/functions/functions.capitaliseFirstLetter"
 
+const euthereum: number = '0.005'
+const value: number = '£13.19'
+
+
 export default function AccountDetailsScreen({ navigation }: any): JSX.Element {
     const userDetails = useSelector((state: RootState) => state.login)
     const handlePerks = () => console.log("hello")
+    const handleMyProposals = () => console.log("hello2")
     const default_image: string =
         "https://proton-resources-production.imgix.net/c672f2a7711de5d7a98baf48284b527a54899170f2bcf0928ca79da580585da9.png?orient=&auto=compress"
 
@@ -47,16 +52,34 @@ export default function AccountDetailsScreen({ navigation }: any): JSX.Element {
                             <MaterialIcons name="star-border" style={accountDetailStyles.star} />
                         </View>
                     </View>
-                    <Text style={accountDetailStyles.name_text}>{capitaliseFirstLetter(userDetails.fullName ? userDetails.fullName : 'Unknown User')}</Text>
-                    <Text style={accountDetailStyles.hash_text}>{userDetails.hashcode ? userDetails.hashcode : 'no hash code found'}</Text>
-                    <Button
-                        flexBasis={160}
-                        text="PERKS"
-                        onPress={handlePerks}
-                        color={BUTTON_COLORS.BLUE}
-                        paddingTop={21}
-                        textTheme={TEXT_THEMES.ALL_CAPS}
-                    />
+                    <Text style={accountDetailStyles.name_text}>
+                        {capitaliseFirstLetter(userDetails.fullName ? userDetails.fullName : "Unknown User")}
+                    </Text>
+                    <Text style={accountDetailStyles.details}>
+                        {userDetails.hashcode ? userDetails.hashcode : "no hash code found"}
+                    </Text>
+                     <Text style={accountDetailStyles.details}>
+                       Eth Balance: {euthereum}/{value}
+                    </Text>
+                    <View style={accountDetailStyles.button_row}>
+                        <Button
+                            flexBasis={160}
+                            text="PERKS"
+                            onPress={handlePerks}
+                            color={BUTTON_COLORS.BLUE}
+                            paddingTop={21}
+                            textTheme={TEXT_THEMES.ALL_CAPS}
+                        />
+
+                        <Button
+                            flexBasis={160}
+                            text="PROPOSALS"
+                            onPress={handleMyProposals}
+                            color={BUTTON_COLORS.DARK_YELLOW}
+                            paddingTop={21}
+                            textTheme={TEXT_THEMES.ALL_CAPS}
+                        />
+                    </View>
                 </MainContainer>
 
                 <MenuContainer>

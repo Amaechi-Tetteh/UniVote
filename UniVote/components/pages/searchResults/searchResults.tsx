@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { setProposalDetailsAction } from "../../../actions/actions.proposalDetails"
 import { ITEM_TYPE, ProposalDetails } from "../../../reducers/types"
+import { MainContainer, MenuContainer } from "../../shared/components/containers/containers"
 export default function SearchResultsScreen({ navigation }: any): JSX.Element {
     const results = useSelector((state: RootState) => state.search.searchResults)
     const dispatch = useDispatch()
@@ -29,9 +30,12 @@ export default function SearchResultsScreen({ navigation }: any): JSX.Element {
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >
-                <View style={resultsStyles.flat_list_wrapper}>{renderSearchItems(results, onSelectItem)}</View>
-
-                <Menu navigation={navigation} />
+                <MainContainer>
+                    <View style={resultsStyles.flat_list_wrapper}>{renderSearchItems(exampleResults, onSelectItem)}</View>
+                </MainContainer>
+                <MenuContainer>
+                    <Menu navigation={navigation} />
+                </MenuContainer>
             </SafeAreaView>
         </View>
     )
@@ -60,3 +64,21 @@ const proposalDetailsExample: ProposalDetails = {
     ],
     image: "data:image/webp;base64," + image_example
 }
+
+const exampleResults: ResultItem[] = [
+    {
+        proposalId: "sdddsds",
+        title: "test title for app with a really long long title, so long long",
+        image: "data:image/webp;base64," + image_example
+    },
+    {
+        proposalId: "sdddssddsdsds",
+        title: "test title for app2",
+        image: "data:image/webp;base64," + image_example
+    },
+    {
+        proposalId: "sdddssddsdsdssds",
+        title: "test title for app3",
+        image: "data:image/webp;base64," + image_example
+    }
+]

@@ -48,6 +48,7 @@ export enum NAVIGATION_ROUTES {
   REFERENDUM_DETAILS = "Referendum Details",
   COMMENTS = "Comments",
   PERKS = "Perks",
+  LANDING = 'Landing'
 
 }
 
