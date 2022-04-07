@@ -43,7 +43,9 @@ export interface NewProposal {
     details: string
     type: PROPOSAL_TYPE
     group: string
-    image: string
+    image: string,
+    seeVoters: string,
+    allowComments: string
 }
 
 export interface NewReferendum{

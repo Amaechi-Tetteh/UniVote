@@ -23,6 +23,8 @@ import PrivateTrendingItemsScreen from "./components/pages/trending/privateTendi
 import ReferendumlDetailsScreen from "./components/pages/referendumDetails/referendumDetails"
 import CommentsScreen from "./components/pages/comments/comments"
 import LandingScreen from "./components/pages/landingPage/landingPage"
+import "react-native-gesture-handler"
+import MyProposalsScreen from "./components/pages/myProposals/myProposals"
 
 const store = createStore(rootReducer, composeWithDevTools())
 
@@ -47,7 +49,6 @@ export default function App() {
         )
     }
 
- 
     return (
         <Provider store={store}>
             <NativeBaseProvider>
@@ -57,33 +58,31 @@ export default function App() {
                             headerShown: false
                         }}
                     >
-
-                         <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_RESULTS} component={SearchResultsScreen} />
-                           <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_DETAILS} component={AccountDetailsScreen} />
-                           <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
-                       <Stack.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
-                         <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.CREATE_PROPOSAL} component={CreateProposalScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_RESULTS} component={SearchResultsScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_DETAILS} component={AccountDetailsScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
                         <Stack.Screen
                             name={NAVIGATION_ROUTES.REFERENDUM_DETAILS}
                             component={ReferendumlDetailsScreen}
                         />
-                           <Stack.Screen name={NAVIGATION_ROUTES.COMMENTS} component={CommentsScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.COMMENTS} component={CommentsScreen} />
                         <Stack.Screen
                             name={NAVIGATION_ROUTES.PRIVATE_TRENDING_PROPOSALS}
                             component={PrivateTrendingItemsScreen}
                         />
-                     
                         <Stack.Screen name={NAVIGATION_ROUTES.PROPOSAL_DETAILS} component={ProposalDetailsScreen} />
                         <Stack.Screen
                             name={NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM}
                             component={CreateItemScreen}
                         />
                         <Stack.Screen name={NAVIGATION_ROUTES.CREATE_REFERENDUM} component={CreateReferendumScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.CREATE_PROPOSAL} component={CreateProposalScreen} />
-                        
-                       
+
+                        <Stack.Screen name={NAVIGATION_ROUTES.MY_PROPOSALS} component={MyProposalsScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
             </NativeBaseProvider>

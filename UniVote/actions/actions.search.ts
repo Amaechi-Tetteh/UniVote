@@ -1,4 +1,4 @@
-import { ResultItem } from "../components/pages/searchResults/searchResults"
+import { ResultItem } from "../components/shared/components/searchResults/searchResultsTemplate"
 
 export enum ACTIONS {
     RESET_SEARCH = "RESET SEARCH",

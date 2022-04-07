@@ -17,5 +17,5 @@ export const styles = StyleSheet.create({
 
     main_content_container: {
         flex: 14
-    }
+    },
 })

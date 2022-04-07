@@ -9,7 +9,9 @@ const initialState: NewProposalState = {
     details: "",
     type: PROPOSAL_TYPE.PUBLIC,
     group: "",
-    image: ""
+    image: "",
+    allowComments: "Yes",
+    seeVoters: "No"
 }
 
 export function setNameReducer(state: NewProposalState, payload: string): NewProposalState {
@@ -32,6 +34,14 @@ export function setTypeReducer(state: NewProposalState, payload: PROPOSAL_TYPE):
     return { ...state, type: payload }
 }
 
+export function allowCommentsReducer(state: NewProposalState, payload: string): NewProposalState {
+    return { ...state, allowComments: payload }
+}
+
+export function seeVotersReducer(state: NewProposalState, payload: string): NewProposalState {
+    return { ...state, seeVoters: payload }
+}
+
 export function reducer(state = initialState, action: any) {
     switch (action.type) {
         case ACTIONS.RESET_NEW_PROPOSAL:
@@ -46,6 +56,10 @@ export function reducer(state = initialState, action: any) {
             return setTypeReducer(state, action.payload)
         case ACTIONS.UPLOAD_PROPOSAL_IMAGE:
             return setImageReducer(state, action.payload)
+        case ACTIONS.ALLOW_COMMENTS:
+            return allowCommentsReducer(state, action.payload)
+        case ACTIONS.SEE_VOTERS:
+            return seeVotersReducer(state, action.payload)
         default:
             return state
     }

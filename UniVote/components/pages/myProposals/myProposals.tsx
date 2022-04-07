@@ -1,5 +1,5 @@
-import { image_example } from "./image"
-import React from "react"
+import { image_example } from "../searchResults/image"
+import React, { useEffect } from "react"
 import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
@@ -7,9 +7,17 @@ import { setProposalDetailsAction } from "../../../actions/actions.proposalDetai
 import { ITEM_TYPE, ProposalDetails } from "../../../reducers/types"
 import { ResultItem } from "../../shared/components/searchResults/searchResultsTemplate"
 import SearchResultsTemplate from "../../shared/components/searchResults/searchResultsTemplate"
-export default function SearchResultsScreen({ navigation }: any): JSX.Element {
-    const results = useSelector((state: RootState) => state.search.searchResults)
+import { setMyProposalsAction } from "../../../actions/actions.myProposals"
+
+export default function MyProposalsScreen({ navigation }: any): JSX.Element {
+    const results = useSelector((state: RootState) => state.myProposals)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        // Update the document title using the browser API
+        dispatch(setMyProposalsAction(exampleResults))
+    }, [])
+
     const onSelectItem = (proposalId: string) => {
         ///contact backend
         dispatch(setProposalDetailsAction(proposalDetailsExample))
@@ -21,7 +29,7 @@ export default function SearchResultsScreen({ navigation }: any): JSX.Element {
             onSelectItem={onSelectItem}
             results={results}
             navigation={navigation}
-            header="Search Proposal"
+            header="My Proposals"
         />
     )
 }

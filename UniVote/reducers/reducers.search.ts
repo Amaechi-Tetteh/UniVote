@@ -1,4 +1,4 @@
-import { ResultItem } from "../components/pages/searchResults/searchResults"
+import { ResultItem } from "../components/shared/components/searchResults/searchResultsTemplate"
 
 import { ACTIONS } from "../actions/actions.search"
 

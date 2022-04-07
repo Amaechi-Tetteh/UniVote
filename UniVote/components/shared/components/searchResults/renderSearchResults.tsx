@@ -1,4 +1,4 @@
-import { ResultItem } from "../../../pages/searchResults/searchResults"
+import { ResultItem } from "./searchResultsTemplate"
 import React from "react"
 import { View, Text, TouchableOpacity, FlatList, ListRenderItem, Image } from "react-native"
 import { styles } from "./styles"

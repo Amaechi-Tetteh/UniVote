@@ -4,7 +4,7 @@ import { styles } from "../../shared/styles/styles"
 import BlueHeader from "../../shared/components/blueHeader/blueHeader"
 import { MainContainer, MenuContainer } from "../../shared/components/containers/containers"
 import { styles as accountDetailStyles } from "./styles"
-import Menu from "../../shared/components/menu/menu"
+import Menu, { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { MaterialIcons } from "@expo/vector-icons"
@@ -12,15 +12,15 @@ import { TEXT_THEMES } from "../../shared/components/button/button"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { capitaliseFirstLetter } from "../../shared/functions/functions.capitaliseFirstLetter"
-
+import { NavigationProps } from "../../shared/types"
 const euthereum: string = '0.005'
 const value: string = '£13.19'
 
 
-export default function AccountDetailsScreen({ navigation }: any): JSX.Element {
+export default function AccountDetailsScreen({ navigation }: NavigationProps): JSX.Element {
     const userDetails = useSelector((state: RootState) => state.login)
     const handlePerks = () => console.log("hello")
-    const handleMyProposals = () => console.log("hello2")
+    const handleMyProposals = () => navigation.navigate(NAVIGATION_ROUTES.MY_PROPOSALS)
     const default_image: string =
         "https://proton-resources-production.imgix.net/c672f2a7711de5d7a98baf48284b527a54899170f2bcf0928ca79da580585da9.png?orient=&auto=compress"
 
