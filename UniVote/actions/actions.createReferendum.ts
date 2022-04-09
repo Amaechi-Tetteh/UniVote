@@ -7,8 +7,31 @@ export enum ACTIONS {
     SET_REFERENDUM_TYPE = "[CREATE REFERENDUM] SET TYPE",
     SET_REFERENDUM_GROUP = "[CREATE REFERENDUM] SET GROUP",
     ADD_CHOICE = "[CREATE REFERENDUM] ADD CHOICE",
-    REMOVE_CHOICE = "[CREATE REFERENDUM] REMOVE CHOICE"
+    REMOVE_CHOICE = "[CREATE REFERENDUM] REMOVE CHOICE",
+    SEE_VOTERS = "[CREATE REFERENDUM] SEE VOTERS",
+    ALLOW_COMMENTS = "[CREATE REFERENDUM] ALLOW COMMENTS",
+    SET_IMAGE = "[CREATE REFERENDUM] SET IMAGE"
+}
 
+export const setReferendumImageAction = (image: string) => {
+    return {
+        type: ACTIONS.SET_IMAGE,
+        payload: image
+    }
+}
+
+export const allowReferendumCommentsAction = (allowComments: string) => {
+    return {
+        type: ACTIONS.ALLOW_COMMENTS,
+        payload: allowComments
+    }
+}
+
+export const seeReferendumVotersAction = (seeVoters: string) => {
+    return {
+        type: ACTIONS.SEE_VOTERS,
+        payload: seeVoters
+    }
 }
 
 export const setReferendumGroupAction = (group: string) => {
@@ -39,7 +62,7 @@ export const setNewReferendumNameAction = (referendumName: string) => {
     }
 }
 
-export const resetNewReferemdumAction = () => {
+export const resetNewReferendumAction = () => {
     return {
         type: ACTIONS.RESET_NEW_REFERENDUM
     }
@@ -58,5 +81,3 @@ export const addReferendumChoiceAction = (choice: string) => {
         payload: choice
     }
 }
-
-

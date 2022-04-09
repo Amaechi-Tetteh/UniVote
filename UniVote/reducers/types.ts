@@ -53,5 +53,8 @@ export interface NewReferendum{
     details:string,
     type: REFERENDUM_TYPE,
     group: string,
-    choices: string[]
+    choices: string[],
+    seeVoters: string,
+    allowComments: string,
+    image: string
 }

@@ -9,7 +9,10 @@ const initialState: NewReferendumState = {
     details: "",
     type: REFERENDUM_TYPE.PUBLIC,
     group: "",
-    choices: []
+    choices: [],
+    seeVoters: "",
+    allowComments: "",
+    image: ""
 }
 
 export function setNameReducer(state: NewReferendumState, payload: string): NewReferendumState {
@@ -36,6 +39,18 @@ export function setTypeReducer(state: NewReferendumState, payload: REFERENDUM_TY
     return { ...state, type: payload }
 }
 
+export function allowCommentsReducer(state: NewReferendumState, payload: string): NewReferendumState {
+    return { ...state, allowComments: payload }
+}
+
+export function seeVotersReducer(state: NewReferendumState, payload: string): NewReferendumState {
+    return { ...state, seeVoters: payload }
+}
+
+export function setImageReducer(state: NewReferendumState, payload: string): NewReferendumState {
+    return { ...state, image: payload }
+}
+
 export function reducer(state = initialState, action: any) {
     switch (action.type) {
         case ACTIONS.RESET_NEW_REFERENDUM:
@@ -52,6 +67,13 @@ export function reducer(state = initialState, action: any) {
             return setTypeReducer(state, action.payload)
         case ACTIONS.REMOVE_CHOICE:
             return removeChoiceReducer(state, action.payload)
+        case ACTIONS.SEE_VOTERS:
+            return seeVotersReducer(state, action.payload)
+        case ACTIONS.ALLOW_COMMENTS:
+            return allowCommentsReducer(state, action.payload)
+        case ACTIONS.SET_IMAGE:
+            return setImageReducer(state, action.payload)
+
         default:
             return state
     }

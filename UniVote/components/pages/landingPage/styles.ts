@@ -7,5 +7,9 @@ export const styles = StyleSheet.create({
         color: "rgb(20, 20, 245)",
         fontFamily: 'BoldFont',
         fontSize: 42 * length_factor
+    },
+    image:{
+        width:'100%',
+        height: 200 * length_factor
     }
 })

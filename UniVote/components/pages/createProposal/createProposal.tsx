@@ -7,9 +7,6 @@ import { isString, validateInputs } from "../../shared/components/inputComponent
 import { renderForm } from "../../shared/components/inputComponent/renderForm"
 import Menu, { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import { styles as formStyles } from "../signUp/styles"
-import { styles as addProposalStyles } from "./styles"
-import * as ImagePicker from "expo-image-picker"
-import { MaterialIcons } from "@expo/vector-icons"
 import { length_factor } from "../../shared/styles/styles"
 import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
@@ -29,25 +26,15 @@ import {
 } from "../../../actions/actions.createProposal"
 import { PROPOSAL_TYPE } from "../../../reducers/types"
 import { NavigationProps } from "../../shared/types"
+import UploadImage from "../../shared/components/imageUpload/imageUpload"
+import { ITEM_TYPE } from "../../../reducers/types"
 export default function CreateProposalScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
     const createProposalState = useSelector((state: RootState) => state.newProposal)
 
     const [formIsValid, setValidStatus] = useState([true, true])
- 
 
-    const handleUpload = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.All,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1
-        })
-
-        if (!result.cancelled) {
-            dispatch(setNewProposalImageAction(result.uri))
-        }
-    }
+    const onUpload = (imageUri: string) => dispatch(setNewProposalImageAction(imageUri))
 
     const formItems: loginItem[] = [
         {
@@ -115,7 +102,7 @@ export default function CreateProposalScreen({ navigation }: NavigationProps): J
     }
     const onCreate = () => {
         let isValidArray: boolean[] = validateInputs([createProposalState.name, createProposalState.details], formItems)
-        if (isValidArray.every(Boolean)) navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL)
+        if (isValidArray.every(Boolean)) navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {type: ITEM_TYPE.PROPOSAL.toLowerCase()})
         else setValidStatus(isValidArray)
     }
 
@@ -130,38 +117,24 @@ export default function CreateProposalScreen({ navigation }: NavigationProps): J
                 ]}
             >
                 <MainScrollContainer>
-                   
-                        <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
-                            {renderForm(formItems, formIsValid)}
+                    <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
+                        {renderForm(formItems, formIsValid)}
 
-                            <DropDownButton dropdown={proposalTypeDropDown} />
-                            <DropDownButton dropdown={proposalGroupDropDown} />
-                            <DropDownButton dropdown={seeVotersDropDown} />
-                            <DropDownButton dropdown={allowCommentsDropDown} />
+                        <DropDownButton dropdown={proposalTypeDropDown} />
+                        <DropDownButton dropdown={proposalGroupDropDown} />
+                        <DropDownButton dropdown={seeVotersDropDown} />
+                        <DropDownButton dropdown={allowCommentsDropDown} />
 
-                            <Text style={addProposalStyles.upload_text}>Upload Image</Text>
-                            <View style={addProposalStyles.image_container}>
-                                {createProposalState.image ? (
-                                    <Image
-                                        source={{ uri: createProposalState.image }}
-                                        style={addProposalStyles.upload_image}
-                                    />
-                                ) : (
-                                    <TouchableOpacity onPress={handleUpload} style={addProposalStyles.upload_button}>
-                                        <MaterialIcons name="image" size={36 * length_factor} color="#bebebe" />
-                                    </TouchableOpacity>
-                                )}
-                            </View>
-                        </View>
-                        <Button
-                            text="CREATE"
-                            color={BUTTON_COLORS.BLUE}
-                            onPress={onCreate}
-                            showPlusIcon={true}
-                            width={160}
-                            paddingTop={14}
-                        />
-    
+                        <UploadImage imageUri={createProposalState.image} onUpload={onUpload} />
+                    </View>
+                    <Button
+                        text="CREATE"
+                        color={BUTTON_COLORS.BLUE}
+                        onPress={onCreate}
+                        showPlusIcon={true}
+                        width={160}
+                        paddingTop={14}
+                    />
                 </MainScrollContainer>
                 <MenuContainer>
                     <Menu navigation={navigation} />
