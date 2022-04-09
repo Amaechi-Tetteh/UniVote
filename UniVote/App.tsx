@@ -59,6 +59,10 @@ export default function App() {
                             headerShown: false
                         }}
                     >
+                            <Stack.Screen
+                            name={NAVIGATION_ROUTES.REFERENDUM_DETAILS}
+                            component={ReferendumlDetailsScreen}
+                        />
                           <Stack.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
                           <Stack.Screen name={NAVIGATION_ROUTES.CREATE_REFERENDUM} component={CreateReferendumScreen} />
                           <Stack.Screen name={NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL} component={ThankYouScreen} />
@@ -72,10 +76,7 @@ export default function App() {
                         <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
-                        <Stack.Screen
-                            name={NAVIGATION_ROUTES.REFERENDUM_DETAILS}
-                            component={ReferendumlDetailsScreen}
-                        />
+                    
                         <Stack.Screen name={NAVIGATION_ROUTES.COMMENTS} component={CommentsScreen} />
                         <Stack.Screen
                             name={NAVIGATION_ROUTES.PRIVATE_TRENDING_PROPOSALS}

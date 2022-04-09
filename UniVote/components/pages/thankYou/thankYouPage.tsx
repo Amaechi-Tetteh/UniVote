@@ -1,12 +1,11 @@
 import React from "react"
-import { View, Text, SafeAreaView, Image, TouchableOpacity } from "react-native"
+import { View, Text, SafeAreaView, Image } from "react-native"
 import { MainContainer, MenuContainer } from "../../shared/components/containers/containers"
 import { styles } from "../../shared/styles/styles"
 import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import Button from "../../shared/components/button/button"
 import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { TEXT_THEMES } from "../../shared/components/button/button"
-import { RootState } from "../../../reducers"
 import { styles as pageStyles } from "./styles"
 import { Navigation } from "../../shared/types"
 
@@ -19,7 +18,6 @@ export default function ThankYouScreen({ route, navigation }: Props): JSX.Elemen
     const onPress = () => navigation.navigate(NAVIGATION_ROUTES.TRENDING_PROPOSALS)
     const { type } = route.params
     const raphael = require("../../../assets/raphael.png")
-console.log(route)
     return (
         <SafeAreaView style={[styles.centered_container, { width: "100%" }]}>
             <MainContainer>

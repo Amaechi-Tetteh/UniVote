@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { View, Text, SafeAreaView, Image, TouchableOpacity } from "react-native"
+import { View, Text, SafeAreaView} from "react-native"
 import { styles } from "../../shared/styles/styles"
 import BlueHeader from "../../shared/components/blueHeader/blueHeader"
 import { loginItem } from "../../shared/types"
@@ -118,13 +118,12 @@ export default function CreateProposalScreen({ navigation }: NavigationProps): J
             >
                 <MainScrollContainer>
                     <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
+                        
                         {renderForm(formItems, formIsValid)}
-
                         <DropDownButton dropdown={proposalTypeDropDown} />
                         <DropDownButton dropdown={proposalGroupDropDown} />
                         <DropDownButton dropdown={seeVotersDropDown} />
                         <DropDownButton dropdown={allowCommentsDropDown} />
-
                         <UploadImage imageUri={createProposalState.image} onUpload={onUpload} />
                     </View>
                     <Button

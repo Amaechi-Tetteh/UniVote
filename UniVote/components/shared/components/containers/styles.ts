@@ -18,4 +18,11 @@ export const styles = StyleSheet.create({
     main_content_container: {
         flex: 14
     },
+
+    center: {
+        display: "flex",
+        alignContent: "center",
+        alignItems: "center",
+        justifyContent: "center"
+    }
 })

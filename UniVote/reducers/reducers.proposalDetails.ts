@@ -46,7 +46,7 @@ export function selectReferendumChoiceReducer(
             ? [
                   ...state.choices.slice(0, payload.index),
                   { ...state.choices[payload.index], selected: payload.selected },
-                  ...state.choices.slice(payload.index, state.choices.length)
+                  ...state.choices.slice(payload.index + 1, state.choices.length)
               ]
             : []
     }

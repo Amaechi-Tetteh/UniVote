@@ -14,6 +14,10 @@ export function MainContainer({ children }: LayoutProps): JSX.Element {
     return <View style={[styles.main_content_container, styles.container]}>{children}</View>
 }
 
+export function CenteredContainer({ children }: LayoutProps): JSX.Element {
+    return <View style={styles.center}>{children}</View>
+}
+
 export function MainScrollContainer({ children }: LayoutProps): JSX.Element {
     return (
         <MainContainer>

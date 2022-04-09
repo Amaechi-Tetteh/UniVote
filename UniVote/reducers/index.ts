@@ -6,6 +6,7 @@ import { reducer as proposalDetailsReducer} from './reducers.proposalDetails'
 import { reducer as newProposalReducer} from './reducers.createProposal'
 import {reducer as myProposalsReducer} from './reducers.myProposals'
 import {reducer as newReferendumReducer} from './reducers.createReferendum'
+import {reducer as myPerksReducer} from './reducers.myPerks'
 
 const rootReducer = combineReducers({
     search: searchReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     proposalDetails: proposalDetailsReducer,
     newProposal: newProposalReducer,
     myProposals: myProposalsReducer,
-    newReferendum: newReferendumReducer
+    newReferendum: newReferendumReducer,
+    myPerks: myPerksReducer
 })
 
 export default rootReducer

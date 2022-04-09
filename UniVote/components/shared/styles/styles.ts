@@ -31,4 +31,13 @@ export const styles = StyleSheet.create({
     paddingLeft: 16 * length_factor,
     paddingRight: 16 * length_factor,
   },
+
+  text:{
+    fontFamily:'RegularFont',
+
+    fontSize: 16 * length_factor,
+    lineHeight: 19 * length_factor,
+    color: 'rgb(66, 66, 66)',
+    textAlign:'left'
+  }
 });

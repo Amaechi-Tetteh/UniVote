@@ -99,7 +99,6 @@ interface comment {
 }
 
 const renderComments = (comments: comment[]): JSX.Element[] => {
-    console.log(comments)
 
     return comments.map((item, i) => {
         return (
