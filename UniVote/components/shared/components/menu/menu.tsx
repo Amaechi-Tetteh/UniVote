@@ -48,6 +48,8 @@ export enum NAVIGATION_ROUTES {
   REFERENDUM_DETAILS = "Referendum Details",
   COMMENTS = "Comments",
   MY_PERKS = "My Perks",
+  NFT_DETAILS = 'NFT DEtails',
+  NFT_TRANSFER = 'NFT Transfer',
   LANDING = 'Landing',
   MY_PROPOSALS = 'My Proposals',
   THANKYOU_FOR_CREATING_PROPOSAL = "Thankyou for Creating a Proposal"

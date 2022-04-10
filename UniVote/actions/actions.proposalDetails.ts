@@ -11,10 +11,10 @@ export enum ACTIONS {
     SELECT_REFERENDUM_CHOICE = "SELECT REFERENDUM CHOICE"
 }
 
-export const setProposalIdAction = (proposalId: string) => {
+export const setidAction = (id: string) => {
     return {
         type: ACTIONS.SET_PROPOSAL_ID,
-        payload: proposalId
+        payload: id
     }
 }
 

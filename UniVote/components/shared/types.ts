@@ -38,7 +38,7 @@ export enum PROPOSAL_TYPE{
 
 export interface proposalSummary{
 
-proposalId: string,
+id: string,
 title: string,
 numberOfVotes: number,
 type: ITEM_TYPE

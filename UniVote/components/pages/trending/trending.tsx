@@ -45,43 +45,43 @@ export default function TrendingItemsScreen({ navigation }: NavigationProps): JS
 const proposalExamples: proposalSummary[] = [
     {
         title: "Proposal 1",
-        proposalId: "11111",
+        id: "11111",
         numberOfVotes: 20,
         type: ITEM_TYPE.PROPOSAL
     },
     {
         title: "Proposal 1",
-        proposalId: "11111e",
+        id: "11111e",
         numberOfVotes: 20,
         type: ITEM_TYPE.PROPOSAL
     },
     {
         title: "Proposal 1",
-        proposalId: "11111ew",
+        id: "11111ew",
         numberOfVotes: 20,
         type: ITEM_TYPE.REFERENDUM
     },
     {
         title: "Proposal 1",
-        proposalId: "11111eh",
+        id: "11111eh",
         numberOfVotes: 20,
         type: ITEM_TYPE.PROPOSAL
     },
     {
         title: "Proposal 1",
-        proposalId: "11111ejk",
+        id: "11111ejk",
         numberOfVotes: 20,
         type: ITEM_TYPE.PROPOSAL
     },
     {
         title: "Proposal 1",
-        proposalId: "11111ekk",
+        id: "11111ekk",
         numberOfVotes: 20,
         type: ITEM_TYPE.PROPOSAL
     },
     {
         title: "Proposal 1",
-        proposalId: "11111efg",
+        id: "11111efg",
         numberOfVotes: 20,
         type: ITEM_TYPE.PROPOSAL
     }
@@ -91,7 +91,7 @@ const proposalDetailsExample: ProposalDetails = {
     numberOfVotes: 16,
     title: "Fix pothole on Library Road",
     type: ITEM_TYPE.PROPOSAL,
-    proposalId: "11111",
+    id: "11111",
     description:
         "Potholes really need to be fixed very soon. Otherwise all the cars will be destroyed and the council will be sued",
     comments: [

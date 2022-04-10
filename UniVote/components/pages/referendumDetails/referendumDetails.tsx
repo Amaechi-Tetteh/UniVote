@@ -40,7 +40,7 @@ export default function ReferendumlDetailsScreen({ navigation }: NavigationProps
         ],
         numberOfVotes: 0,
         image: "data:image/webp;base64," + image_example,
-        proposalId: "dsdsdsdsds"
+        id: "dsdsdsdsds"
     }
 
     useEffect(() => {

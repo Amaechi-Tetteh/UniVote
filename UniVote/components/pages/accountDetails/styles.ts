@@ -59,11 +59,4 @@ export const styles = StyleSheet.create({
         justifyContent:'flex-end'
     },
 
-
-    button_row:{
-        width:'100%',
-        flexDirection:'row',
-        display:'flex',
-        justifyContent:'space-around'
-    }
 })

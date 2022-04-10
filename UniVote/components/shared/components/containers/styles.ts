@@ -25,4 +25,8 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center"
     }
+    ,
+    row_seperator:{
+        width:'100%'
+    }
 })

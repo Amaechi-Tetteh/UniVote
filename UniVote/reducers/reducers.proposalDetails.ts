@@ -7,7 +7,7 @@ import { ACTIONS } from "../actions/actions.proposalDetails"
 export interface ProposalDetailsState extends ProposalDetails {}
 
 const initialState: ProposalDetailsState = {
-    proposalId: "",
+    id: "",
     title: "",
     numberOfVotes: 0,
     description: "",
@@ -21,8 +21,8 @@ export function setProposalReducer( payload: ProposalDetails): ProposalDetailsSt
     return payload
 }
 
-export function setProposalIdReducer(state: ProposalDetailsState, payload: string): ProposalDetailsState {
-    return { ...state, proposalId: payload }
+export function setidReducer(state: ProposalDetailsState, payload: string): ProposalDetailsState {
+    return { ...state, id: payload }
 }
 
 export function voteOnProposalReducer(state: ProposalDetailsState): ProposalDetailsState {
@@ -61,7 +61,7 @@ export function reducer(state = initialState, action: any) {
         case ACTIONS.VOTE_ON_PROPOSAL:
             return voteOnProposalReducer(state)
         case ACTIONS.SET_PROPOSAL_ID:
-            return setProposalIdReducer(state, action.payload)
+            return setidReducer(state, action.payload)
         case ACTIONS.ADD_COMMENT:
             return addProposalCommentReducer(state, action.payload)
         case ACTIONS.SELECT_REFERENDUM_CHOICE:

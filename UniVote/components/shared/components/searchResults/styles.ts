@@ -2,32 +2,28 @@ import { StyleSheet } from "react-native"
 import { length_factor } from "../../styles/styles"
 
 export const styles = StyleSheet.create({
-
-square:{
-   
+    square: {
         flexGrow: 0,
         flexShrink: 1,
-       flexBasis:'50%',
-       height:155*length_factor
-  
-},
+        flexBasis: "50%",
+        height: 155 * length_factor
+    },
 
- row: {
+    row: {
         flex: 1,
-        justifyContent: 'space-between',
-      },
-
+        justifyContent: "space-between"
+    },
 
     flat_list_wrapper: {
         width: "100%",
-        height: 400 * length_factor,
-        paddingTop: 10 * length_factor
+        height: "100%",
+        paddingTop: 10 * length_factor,
+        paddingBottom: 20 * length_factor
     },
 
     result_item_wrapper: {
-    
-        width:150*length_factor,
-        flex:1
+        width: 150 * length_factor,
+        flex: 1
     },
 
     padding_seperator: {
@@ -49,8 +45,7 @@ square:{
         fontSize: length_factor * 16,
         color: "rgb(66, 66, 66)",
         textAlign: "left",
-        lineHeight: 19 * length_factor,
-        minHeight: 40 * length_factor
+        lineHeight: 19 * length_factor
     },
 
     title_container: {
@@ -78,6 +73,5 @@ square:{
         borderColor: "rgb(189, 189, 189)",
         borderWidth: 1 * length_factor,
         borderRadius: 6.5 * length_factor
-    },
-
+    }
 })

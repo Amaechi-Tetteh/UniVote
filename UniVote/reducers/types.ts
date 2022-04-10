@@ -30,7 +30,7 @@ export interface SelectedReferendumChoice {
 export interface ProposalDetails {
     title: string
     description: string
-    proposalId: string
+    id: string
     numberOfVotes: number
     comments?: comment[]
     type: ITEM_TYPE

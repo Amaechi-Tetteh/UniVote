@@ -24,7 +24,7 @@ export default function TrendingItems ({
 
   const renderItem: ListRenderItem<proposalSummary> = ({ item }) => {
   return (
-    <TouchableOpacity style={styles.proposal_item} onPress={()=>onPress(item.proposalId, item.type, navigation)}>
+    <TouchableOpacity style={styles.proposal_item} onPress={()=>onPress(item.id, item.type, navigation)}>
       <View style={styles.title_container}>
         <Text style={styles.title}>{item.title}</Text>
       </View>
@@ -44,7 +44,7 @@ export default function TrendingItems ({
       style={{ flex: 1, width: "100%", height: "100%" }}
       data={proposals}
       renderItem={renderItem}
-      keyExtractor={(item) => item.proposalId}
+      keyExtractor={(item) => item.id}
       numColumns={1}
       ItemSeparatorComponent={renderSeparator}
     />

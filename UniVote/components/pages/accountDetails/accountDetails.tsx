@@ -19,7 +19,7 @@ const value: string = '£13.19'
 
 export default function AccountDetailsScreen({ navigation }: NavigationProps): JSX.Element {
     const userDetails = useSelector((state: RootState) => state.login)
-    const handlePerks = () => console.log("hello")
+    const handlePerks = () => navigation.navigate(NAVIGATION_ROUTES.MY_PERKS)
     const handleMyProposals = () => navigation.navigate(NAVIGATION_ROUTES.MY_PROPOSALS)
     const default_image: string =
         "https://proton-resources-production.imgix.net/c672f2a7711de5d7a98baf48284b527a54899170f2bcf0928ca79da580585da9.png?orient=&auto=compress"
@@ -61,7 +61,7 @@ export default function AccountDetailsScreen({ navigation }: NavigationProps): J
                      <Text style={accountDetailStyles.details}>
                        Eth Balance: {euthereum}/{value}
                     </Text>
-                    <View style={accountDetailStyles.button_row}>
+                    <View style={styles.button_row}>
                         <Button
                             flexBasis={160}
                             text="PERKS"

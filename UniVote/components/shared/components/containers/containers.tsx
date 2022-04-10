@@ -1,7 +1,7 @@
 import React from "react"
 import { View, ScrollView } from "react-native"
 import { styles } from "./styles"
-
+import { length_factor } from "../../styles/styles"
 export interface LayoutProps {
     children: React.ReactNode
 }
@@ -18,6 +18,11 @@ export function CenteredContainer({ children }: LayoutProps): JSX.Element {
     return <View style={styles.center}>{children}</View>
 }
 
+export function RowSeperator({height}: SeperatorProps): JSX.Element {
+    return <View style={[styles.center, {height: height * length_factor}]} />
+}
+
+
 export function MainScrollContainer({ children }: LayoutProps): JSX.Element {
     return (
         <MainContainer>
@@ -26,4 +31,9 @@ export function MainScrollContainer({ children }: LayoutProps): JSX.Element {
             </ScrollView>
         </MainContainer>
     )
+}
+
+
+interface SeperatorProps{
+    height: number
 }

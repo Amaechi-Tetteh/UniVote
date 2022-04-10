@@ -80,17 +80,17 @@ export default function SearchProposalScreen({ navigation }: NavigationProps): J
 
 const exampleResults: ResultItem[] = [
     {
-        proposalId: "sdddsds",
+        id: "sdddsds",
         title: "test title for app with a really long long title, so long long",
         image: "data:image/webp;base64," + image_example
     },
     {
-        proposalId: "sdddssddsdsds",
+        id: "sdddssddsdsds",
         title: "test title for app2",
         image: "data:image/webp;base64," + image_example
     },
     {
-        proposalId: "sdddssddsdsdssds",
+        id: "sdddssddsdsdssds",
         title: "test title for app3",
         image: "data:image/webp;base64," + image_example
     }

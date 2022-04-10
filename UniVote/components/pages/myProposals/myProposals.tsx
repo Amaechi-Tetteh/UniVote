@@ -18,7 +18,7 @@ export default function MyProposalsScreen({ navigation }: any): JSX.Element {
         dispatch(setMyProposalsAction(exampleResults))
     }, [])
 
-    const onSelectItem = (proposalId: string) => {
+    const onSelectItem = (id: string) => {
         ///contact backend
         dispatch(setProposalDetailsAction(proposalDetailsExample))
         navigation.navigate(NAVIGATION_ROUTES.PROPOSAL_DETAILS)
@@ -29,6 +29,9 @@ export default function MyProposalsScreen({ navigation }: any): JSX.Element {
             onSelectItem={onSelectItem}
             results={results}
             navigation={navigation}
+            itemHeight={155}
+            imageHeight={100}
+            titleFontSize={16}
             header="My Proposals"
         />
     )
@@ -38,7 +41,7 @@ const proposalDetailsExample: ProposalDetails = {
     numberOfVotes: 16,
     title: "Fix pothole on Library Road",
     type: ITEM_TYPE.PROPOSAL,
-    proposalId: "11111",
+    id: "11111",
     description:
         "Potholes really need to be fixed very soon. Otherwise all the cars will be destroyed and the council will be sued",
     comments: [
@@ -54,17 +57,17 @@ const proposalDetailsExample: ProposalDetails = {
 
 const exampleResults: ResultItem[] = [
     {
-        proposalId: "sdddsds",
+        id: "sdddsds",
         title: "test title for app with a really long long title, so long long",
         image: "data:image/webp;base64," + image_example
     },
     {
-        proposalId: "sdddssddsdsds",
+        id: "sdddssddsdsds",
         title: "test title for app2",
         image: "data:image/webp;base64," + image_example
     },
     {
-        proposalId: "sdddssddsdsdssds",
+        id: "sdddssddsdsdssds",
         title: "test title for app3",
         image: "data:image/webp;base64," + image_example
     }
