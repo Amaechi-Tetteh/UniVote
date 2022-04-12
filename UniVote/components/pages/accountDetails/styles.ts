@@ -30,23 +30,7 @@ export const styles = StyleSheet.create({
         height:50*length_factor,
         width:50*length_factor,
         color: "rgb(102, 102, 102)"
-    },
-
-    name_text: {
-        color: "rgb(66, 66, 66)",
-        fontSize: 20 * length_factor,
-        lineHeight: 24 * length_factor,
-        fontFamily: "SemiBoldFont"
-    },
-
-    details: {
-       lineHeight:19*length_factor,
-        fontSize: 16 * length_factor,
-        color: "rgb(66, 66, 66)",
-         fontFamily: "RegularFont"
-    },
-
-  
+    },  
     star_wrapper: {
         width: 80 * length_factor,
         height: "100%",

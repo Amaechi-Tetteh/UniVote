@@ -39,8 +39,9 @@ export const styles = StyleSheet.create({
         color: "rgb(66, 66, 66)",
         textAlign: "left"
     },
-    large_text:{
-        fontSize: 20*length_factor,
+    semibold_text: { fontFamily: "SemiBoldFont" },
+    large_text: {
+        fontSize: 20 * length_factor,
         lineHeight: 24 * length_factor
     },
     button_row: {
@@ -60,16 +61,15 @@ export const styles = StyleSheet.create({
         borderColor: "rgb(189, 189, 189)",
         borderWidth: 1 * length_factor
     },
-    input:{
-    width:'100%',
-    borderRadius: 4.5 * length_factor,
-    height: 40.8*length_factor,
-    marginTop:10 * length_factor,
-    borderWidth: 1 * length_factor,
-    paddingRight: 10 * length_factor,
-    paddingLeft: 10 * length_factor,
-    borderColor: 'rgb(221,221,221)',
-    lineHeight: 20*length_factor,
-    
-},
+    input: {
+        width: "100%",
+        borderRadius: 4.5 * length_factor,
+        height: 40.8 * length_factor,
+        marginTop: 10 * length_factor,
+        borderWidth: 1 * length_factor,
+        paddingRight: 10 * length_factor,
+        paddingLeft: 10 * length_factor,
+        borderColor: "rgb(221,221,221)",
+        lineHeight: 20 * length_factor
+    }
 })

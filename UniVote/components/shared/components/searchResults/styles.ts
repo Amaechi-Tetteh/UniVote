@@ -40,14 +40,6 @@ export const styles = StyleSheet.create({
         width: "100%",
         height: 100
     },
-
-    result_title: {
-        fontSize: length_factor * 16,
-        color: "rgb(66, 66, 66)",
-        textAlign: "left",
-        lineHeight: 19 * length_factor
-    },
-
     title_container: {
         width: "100%",
         padding: 8 * length_factor,

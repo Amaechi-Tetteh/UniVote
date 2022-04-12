@@ -33,7 +33,7 @@ export const renderSearchItems = (
                     <View style={styles.title_container}>
                         <Text
                             style={[
-                                styles.result_title,
+                                commonStyles.text,
                                 titleFontSize ? { fontSize: titleFontSize * length_factor } : null
                             ]}
                             numberOfLines={2}

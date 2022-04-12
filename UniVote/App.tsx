@@ -29,6 +29,8 @@ import ThankYouScreen from "./components/pages/thankYou/thankYouPage"
 import MyPerksScreen from "./components/pages/myPerks/myPerks"
 import NFTDetailsScreen from "./components/pages/NFT_Rewards/NFT_rewards"
 import NFTTransferScreen from "./components/pages/NFT_Transfer/transfer"
+import AccountSettingsScreen from "./components/pages/settings/accountSettings"
+import MetaMaskScreen from "./components/pages/metaMask/metaMask"
 const store = createStore(rootReducer, composeWithDevTools())
 
 const Stack = createStackNavigator()
@@ -61,7 +63,9 @@ export default function App() {
                             headerShown: false
                         }}
                     >
-                         <Stack.Screen name={NAVIGATION_ROUTES.NFT_TRANSFER} component={NFTTransferScreen} />
+                          <Stack.Screen name={NAVIGATION_ROUTES.META_MASK} component={MetaMaskScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_SETTINGS} component={AccountSettingsScreen} />
+                        <Stack.Screen name={NAVIGATION_ROUTES.NFT_TRANSFER} component={NFTTransferScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.NFT_DETAILS} component={NFTDetailsScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.MY_PERKS} component={MyPerksScreen} />
                         <Stack.Screen

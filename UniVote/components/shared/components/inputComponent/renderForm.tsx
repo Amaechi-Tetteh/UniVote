@@ -1,5 +1,6 @@
 import { loginItem } from "../../types";
 import {styles} from "./formStyles"
+import {styles as commonStyles} from '../../styles/styles'
 import {
     View,
     Text,
@@ -13,7 +14,7 @@ export const renderForm = (
     return formItems.map((item, i) => {
       return (
         <View style={styles.form_item} key={item.label}>
-          <Text style={styles.form_label_text}>{item.label}</Text>
+          <Text style={commonStyles.text}>{item.label}</Text>
           <TextInput
             style={[
               styles.input,

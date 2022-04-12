@@ -2,7 +2,8 @@
 
 export enum ACTIONS {
     RESET = "[NFT TRANSFER] RESET",
-    SET_RECEIVER_HASH = "[MY PROPOSALS] SET RECEIVER HASH"
+    SET_RECEIVER_HASH = "[NFT TRANSFER] SET RECEIVER HASH",
+    SET_TRANSFER_FEE = "[NFT TRANSFER] SET TRANSFER FEE",
 }
 
 export const resetNFTtransferAction = () => {
@@ -17,3 +18,12 @@ export const setReceiverHashAction = (hash: string) => {
         payload: hash
     }
 }
+
+export const setTransferFeeAction = (fee: number) => {
+    return {
+        type: ACTIONS.SET_TRANSFER_FEE,
+        payload: fee
+    }
+}
+
+

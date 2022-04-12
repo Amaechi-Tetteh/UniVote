@@ -19,6 +19,7 @@ export default function NFTTransferScreen({ navigation }: NavigationProps): JSX.
     const perkDetails = useSelector((state: RootState) => state.perkDetails)
     const userHash = useSelector((state: RootState) => state.login.hashcode)
     const receiverHash = useSelector((state: RootState) => state.transfer.receiverHash)
+    const transferFee = useSelector((state:RootState)=> state.transfer.transferFee)
     const isFocused = useIsFocused()
     const onTransfer = () => navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL,{type:'transfer'})
   
@@ -71,7 +72,7 @@ export default function NFTTransferScreen({ navigation }: NavigationProps): JSX.
                                 />
                             </View>
                             <Text style={[styles.text, { paddingTop: 10 * length_factor }]}>Transfer fee:</Text>
-                            <Text style={styles.text}>£1</Text>
+                            <Text style={styles.text}>£{transferFee}</Text>
 
                             <Button
                                 text="TRANSFER"

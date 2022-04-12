@@ -52,8 +52,9 @@ export enum NAVIGATION_ROUTES {
   NFT_TRANSFER = 'NFT Transfer',
   LANDING = 'Landing',
   MY_PROPOSALS = 'My Proposals',
-  THANKYOU_FOR_CREATING_PROPOSAL = "Thankyou for Creating a Proposal"
-
+  THANKYOU_FOR_CREATING_PROPOSAL = "Thankyou for Creating a Proposal",
+  ACCOUNT_SETTINGS = "Account Settings",
+  META_MASK = "Meta Mask"
 }
 
 const menuItems: menuItem[] = [

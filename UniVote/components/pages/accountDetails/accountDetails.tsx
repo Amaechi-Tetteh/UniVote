@@ -52,13 +52,13 @@ export default function AccountDetailsScreen({ navigation }: NavigationProps): J
                             <MaterialIcons name="star-border" style={accountDetailStyles.star} />
                         </View>
                     </View>
-                    <Text style={accountDetailStyles.name_text}>
+                    <Text style={[styles.text,styles.large_text, styles.semibold_text]}>
                         {capitaliseFirstLetter(userDetails.fullName ? userDetails.fullName : "Unknown User")}
                     </Text>
-                    <Text style={accountDetailStyles.details}>
+                    <Text style={styles.text}>
                         {userDetails.hashcode ? userDetails.hashcode : "no hash code found"}
                     </Text>
-                     <Text style={accountDetailStyles.details}>
+                     <Text style={styles.text}>
                        Eth Balance: {euthereum}/{value}
                     </Text>
                     <View style={styles.button_row}>
