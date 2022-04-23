@@ -26,7 +26,7 @@ export interface DropDownItem {
 export interface Navigation extends NavigationProp<ParamListBase>{}
 
 export interface NavigationProps{
-    navigation: Navigation
+    navigation: any
 }
 
 export enum PROPOSAL_TYPE{

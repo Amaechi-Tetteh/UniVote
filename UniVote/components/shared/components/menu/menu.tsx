@@ -6,7 +6,7 @@ import {length_factor} from '../../../shared/styles/styles'
 import { NavigationProps } from "../../types";
 
 export default function Menu( {navigation}:NavigationProps ): JSX.Element {
-  const onNavigate = (target: NAVIGATION_ROUTES) => navigation.navigate(target);
+  const onNavigate = (target: NAVIGATION_ROUTES) => {target === NAVIGATION_ROUTES.SETTINGS ? navigation.openDrawer() : navigation.navigate(target)}
 
   const renderMenuItems = (menuItems: menuItem[]) => {
     return(
@@ -54,7 +54,8 @@ export enum NAVIGATION_ROUTES {
   MY_PROPOSALS = 'My Proposals',
   THANKYOU_FOR_CREATING_PROPOSAL = "Thankyou for Creating a Proposal",
   ACCOUNT_SETTINGS = "Account Settings",
-  META_MASK = "Meta Mask"
+  META_MASK = "Meta Mask",
+  DRAWER = "Drawer"
 }
 
 const menuItems: menuItem[] = [
