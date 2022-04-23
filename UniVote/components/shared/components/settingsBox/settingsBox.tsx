@@ -18,8 +18,8 @@ export default function SettingsBox({ title, details, icon, paddingTop, paddingB
         <React.Fragment>
             <RowSeperator height={paddingTop ? paddingTop * length_factor : 0} />
             <View style={[styles.border_radius2, pageStyles.details_wrapper]}>
-                <View>
-                    <Text style={styles.text}>{title}</Text>
+                <View style={{flexDirection:'row', width:'100%', display:'flex', alignItems:'center'}}>
+                    <Text style={[styles.text,{width:'100%'}]}>{title}</Text>
                     {icon ? <MaterialIcons name={icon} style={pageStyles.icon} size={24 * length_factor} /> : null}
                 </View>
                 {details ? <Text style={[styles.text, pageStyles.details_text]}>{details}</Text> : null}

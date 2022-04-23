@@ -1,3 +1,4 @@
+import "react-native-gesture-handler"
 import React, { useState } from "react"
 import AppLoading from "expo-app-loading"
 import * as Font from "expo-font"
@@ -23,7 +24,6 @@ import PrivateTrendingItemsScreen from "./components/pages/trending/privateTendi
 import ReferendumlDetailsScreen from "./components/pages/referendumDetails/referendumDetails"
 import CommentsScreen from "./components/pages/comments/comments"
 import LandingScreen from "./components/pages/landingPage/landingPage"
-import "react-native-gesture-handler"
 import MyProposalsScreen from "./components/pages/myProposals/myProposals"
 import ThankYouScreen from "./components/pages/thankYou/thankYouPage"
 import MyPerksScreen from "./components/pages/myPerks/myPerks"
