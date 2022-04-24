@@ -59,7 +59,9 @@ export default function App() {
                     <Drawer.Navigator
                         drawerContent={props => <DrawerContent {...props} />}
                         screenOptions={{ headerShown: false, drawerStyle: { width: "85%", height: "80%" } }}
+                        defaultStatus='closed'
                     >
+                          <Drawer.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
                           <Drawer.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
                            <Drawer.Screen
                             name={NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM}
@@ -72,7 +74,7 @@ export default function App() {
                             name={NAVIGATION_ROUTES.REFERENDUM_DETAILS}
                             component={ReferendumlDetailsScreen}
                         />
-                        <Drawer.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
+                      
                         <Drawer.Screen name={NAVIGATION_ROUTES.CREATE_REFERENDUM} component={CreateReferendumScreen} />
                         <Drawer.Screen
                             name={NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL}
