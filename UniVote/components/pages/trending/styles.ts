@@ -56,13 +56,19 @@ export const styles = StyleSheet.create({
 
   trending_items_container: {
     width:'100%',
-    height: 400 * length_factor,
+    height: 500 * length_factor,
+    paddingBottom: 20*length_factor,
     paddingTop:20*length_factor
   },
 
   header_wrapper:{
     width:'100%',
-    marginTop:10 * length_factor
+    marginTop:10 * length_factor,
+    borderColor:'rgb(189, 189, 189)',
+    borderWidth: 1 * length_factor,
+    borderStyle: 'dashed',
+    paddingBottom: 2 * length_factor,
+    paddingLeft: 2 * length_factor
   },
   flat_list_wrapper:{
     width:'100%',

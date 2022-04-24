@@ -7,11 +7,11 @@ export interface NewProposalState extends NewProposal {}
 const initialState: NewProposalState = {
     name: "",
     details: "",
-    type: PROPOSAL_TYPE.PUBLIC,
+    type: "",
     group: "",
     image: "",
-    allowComments: "Yes",
-    seeVoters: "No"
+    allowComments: "",
+    seeVoters: ""
 }
 
 export function setNameReducer(state: NewProposalState, payload: string): NewProposalState {

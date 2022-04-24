@@ -7,7 +7,7 @@ export interface NewReferendumState extends NewReferendum {}
 const initialState: NewReferendumState = {
     name: "",
     details: "",
-    type: REFERENDUM_TYPE.PUBLIC,
+    type: "",
     group: "",
     choices: [],
     seeVoters: "",

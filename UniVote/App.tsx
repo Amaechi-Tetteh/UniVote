@@ -7,7 +7,6 @@ import { composeWithDevTools } from "redux-devtools-extension"
 import rootReducer from "./reducers/index"
 import { createStore } from "redux"
 import { NavigationContainer } from "@react-navigation/native"
-import { createStackNavigator } from "@react-navigation/stack"
 import SignUpScreen from "./components/pages/signUp/signUp"
 import LoginScreen from "./components/pages/login/login"
 import TrendingItemsScreen from "./components/pages/trending/trending"
@@ -36,7 +35,6 @@ import DrawerContent from "./components/shared/components/drawerContent/drawerCo
 const store = createStore(rootReducer, composeWithDevTools())
 const Drawer = createDrawerNavigator()
 
-
 const loadFonts = () => {
     return Font.loadAsync({
         SemiBoldFont: require("./fonts/sf-pro-text-semi-bold.ttf"),
@@ -47,7 +45,6 @@ const loadFonts = () => {
         OswlandBoldFont: require("./fonts/Oswald-Bold.ttf")
     })
 }
-
 export default function App() {
     const [fontLoaded, setFontLoaded] = useState(false)
     if (!fontLoaded) {
@@ -55,15 +52,19 @@ export default function App() {
             <AppLoading startAsync={loadFonts} onFinish={() => setFontLoaded(true)} onError={err => console.log(err)} />
         )
     }
-
     return (
         <Provider store={store}>
             <NativeBaseProvider>
                 <NavigationContainer>
-                    <Drawer.Navigator 
-                   
-                    drawerContent={(props) => <DrawerContent {...props} />}
-                    screenOptions={{ headerShown: false ,  drawerStyle: { width: '85%', height:'80%'}} }>
+                    <Drawer.Navigator
+                        drawerContent={props => <DrawerContent {...props} />}
+                        screenOptions={{ headerShown: false, drawerStyle: { width: "85%", height: "80%" } }}
+                    >
+                          <Drawer.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
+                           <Drawer.Screen
+                            name={NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM}
+                            component={CreateItemScreen}
+                        />
                         <Drawer.Screen name={NAVIGATION_ROUTES.NFT_TRANSFER} component={NFTTransferScreen} />
                         <Drawer.Screen name={NAVIGATION_ROUTES.NFT_DETAILS} component={NFTDetailsScreen} />
                         <Drawer.Screen name={NAVIGATION_ROUTES.MY_PERKS} component={MyPerksScreen} />
@@ -77,13 +78,12 @@ export default function App() {
                             name={NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL}
                             component={ThankYouScreen}
                         />
-
                         <Drawer.Screen name={NAVIGATION_ROUTES.CREATE_PROPOSAL} component={CreateProposalScreen} />
                         <Drawer.Screen name={NAVIGATION_ROUTES.SEARCH_RESULTS} component={SearchResultsScreen} />
                         <Drawer.Screen name={NAVIGATION_ROUTES.ACCOUNT_DETAILS} component={AccountDetailsScreen} />
                         <Drawer.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
 
-                        <Drawer.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
+                      
                         <Drawer.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
                         <Drawer.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
 
@@ -93,12 +93,8 @@ export default function App() {
                             component={PrivateTrendingItemsScreen}
                         />
                         <Drawer.Screen name={NAVIGATION_ROUTES.PROPOSAL_DETAILS} component={ProposalDetailsScreen} />
-                        <Drawer.Screen
-                            name={NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM}
-                            component={CreateItemScreen}
-                        />
+                    
                         <Drawer.Screen name={NAVIGATION_ROUTES.MY_PROPOSALS} component={MyProposalsScreen} />
-
                         <Drawer.Screen name={NAVIGATION_ROUTES.DRAWER} component={AccountDetailsScreen} />
                         <Drawer.Screen name={NAVIGATION_ROUTES.ACCOUNT_SETTINGS} component={AccountSettingsScreen} />
                         <Drawer.Screen name={NAVIGATION_ROUTES.META_MASK} component={MetaMaskScreen} />

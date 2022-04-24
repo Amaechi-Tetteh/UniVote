@@ -16,14 +16,14 @@ interface Props {
 
 export default function ThankYouScreen({ route, navigation }: Props): JSX.Element {
     const onPress = () => navigation.navigate(NAVIGATION_ROUTES.TRENDING_PROPOSALS)
-    const { type } = route.params
+    const { message } = route.params
     const raphael = require("../../../assets/raphael.png")
     return (
         <SafeAreaView style={[styles.centered_container, { width: "100%" }]}>
             <MainContainer>
                 <Text style={pageStyles.title}>Thank You!</Text>
 
-                <Text style={pageStyles.subtitle}>Your {type} has been registered</Text>
+                <Text style={pageStyles.subtitle}>{message}</Text>
                 <Image style={pageStyles.image} source={raphael} />
             </MainContainer>
             <MenuContainer>

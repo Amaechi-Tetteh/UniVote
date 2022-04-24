@@ -41,7 +41,7 @@ export interface ProposalDetails {
 export interface NewProposal {
     name: string
     details: string
-    type: PROPOSAL_TYPE
+    type: PROPOSAL_TYPE| string
     group: string
     image: string,
     seeVoters: string,
@@ -51,7 +51,7 @@ export interface NewProposal {
 export interface NewReferendum{
     name: string,
     details:string,
-    type: REFERENDUM_TYPE,
+    type: REFERENDUM_TYPE| string,
     group: string,
     choices: string[],
     seeVoters: string,

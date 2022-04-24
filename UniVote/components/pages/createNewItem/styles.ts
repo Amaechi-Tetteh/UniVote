@@ -8,21 +8,26 @@ export const styles = StyleSheet.create({
         display:'flex',
         flexDirection:'row',
         justifyContent:'flex-start',
-        alignContent:'center',
+        alignItems:'center',
         borderRadius: 4.5 * length_factor,
         borderWidth: 1*length_factor,
-        borderColor: 'rgb(189, 189, 189)',
+        borderColor: 'black',
         marginTop: 16 * length_factor,
-        marginBottom: 16 * length_factor
     },
 
     button_text:{
-paddingBottom: length_factor * 24,
+paddingBottom: length_factor * 22,
 paddingTop: length_factor * 18,
-fontSize:25*length_factor,
-color:'rgb(66, 66, 66)',
+fontSize:20*length_factor,
+color:'white',
 marginLeft:16*length_factor
 
+    },
+    icon:{
+        fontSize:24*length_factor,
+        color:'white',
+        position:'absolute',
+        right: 24 * length_factor
     }
     
 

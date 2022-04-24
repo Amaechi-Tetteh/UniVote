@@ -8,6 +8,7 @@ import { length_factor } from "../../shared/styles/styles"
 import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import { styles as createItemStyles } from "./styles"
 import { MenuContainer, MainContainer } from "../../shared/components/containers/containers"
+import { MaterialIcons } from "@expo/vector-icons"
 export default function CreateItemScreen({ navigation }: any): JSX.Element {
     const onPress = (route: NAVIGATION_ROUTES): void => navigation.navigate(route)
 
@@ -18,15 +19,26 @@ export default function CreateItemScreen({ navigation }: any): JSX.Element {
     }
 
     const choices: CreationChoices[] = [
-        { label: "Proposal", navigateTo: NAVIGATION_ROUTES.CREATE_PROPOSAL, onPress: onPress },
-        { label: "Referendum", navigateTo: NAVIGATION_ROUTES.CREATE_REFERENDUM, onPress: onPress }
+        { label: "Create Proposal", navigateTo: NAVIGATION_ROUTES.CREATE_PROPOSAL, onPress: onPress },
+        { label: "Create Referendum", navigateTo: NAVIGATION_ROUTES.CREATE_REFERENDUM, onPress: onPress }
     ]
 
     const renderChoices = (choices: CreationChoices[]): JSX.Element[] => {
         return choices.map((choice, i) => {
             return (
-                <TouchableOpacity onPress={() => onPress(choice.navigateTo)} style={createItemStyles.button} key={i}>
+                <TouchableOpacity
+                    onPress={() => onPress(choice.navigateTo)}
+                    style={[
+                        createItemStyles.button,
+                        {
+                            backgroundColor:
+                                choice.label === "Create Proposal" ? "rgb(20, 20, 245)" : "rgb(140, 118, 0)"
+                        }
+                    ]}
+                    key={i}
+                >
                     <Text style={createItemStyles.button_text}>{choice.label}</Text>
+                      <MaterialIcons name='add-box' style={createItemStyles.icon} />
                 </TouchableOpacity>
             )
         })
