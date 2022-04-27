@@ -5,9 +5,11 @@ import './Tickets.sol';
 contract Factory {
 
   Tickets[] public deployedTickets;
-  
-  function createTicket() public {
-    Tickets newTicket = new Tickets(msg.sender);
+  uint public titleId;
+
+  function createProposal(uint studentID, string memory description, uint goal) public {
+    titleId = studentID;
+    Tickets newTicket = new Tickets(msg.sender, studentID, description, goal);
     deployedTickets.push(newTicket);
   }
 
@@ -15,5 +17,8 @@ contract Factory {
     return deployedTickets;
   }
 
-#
+  function viewId() public view returns (uint){
+    return titleId;
+  }
+
 }
