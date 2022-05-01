@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { voteOnProposalAction } from "../../../actions/actions.proposalDetails"
 import { TouchableOpacity } from "react-native-gesture-handler"
+import { Scroller } from "../../shared/components/scroller/scroller"
 
 export default function ProposalDetailsScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
@@ -40,26 +41,13 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                             {proposalDetails.numberOfVotes} Current Number of Votes
                         </Text>
 
-                        <ScrollView
-                            contentContainerStyle={{
-                                flex: 1,
-                                flexDirection: "row",
-                                flexWrap: "wrap"
-                            }}
-                            style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.title_container]}
-                        >
+                        <Scroller height={50}>
                             <Text style={proposalDetailStyles.text}>{proposalDetails.title}</Text>
-                        </ScrollView>
-                        <ScrollView
-                            contentContainerStyle={{
-                                flex: 1,
-                                flexDirection: "row",
-                                flexWrap: "wrap"
-                            }}
-                            style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.title_container]}
-                        >
+                        </Scroller>
+
+                        <Scroller height={50}>
                             <Text style={proposalDetailStyles.text}>{proposalDetails.description}</Text>
-                        </ScrollView>
+                        </Scroller>
                         <CenteredContainer>
                             <Button
                                 text="VOTE"
@@ -71,20 +59,8 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                             />
                         </CenteredContainer>
                         <Text style={proposalDetailStyles.text}>Comments</Text>
-                        <TouchableOpacity onPress={onPressComments}>
-                            <ScrollView
-                                contentContainerStyle={{
-                                    flex: 1,
-                                    flexDirection: "row",
-                                    flexWrap: "wrap"
-                                }}
-                                style={[
-                                    proposalDetailStyles.scroll_view_container,
-                                    proposalDetailStyles.comment_container
-                                ]}
-                            >
-                                {renderComments(proposalDetails.comments!)}
-                            </ScrollView>
+                       <TouchableOpacity onPress={onPressComments}>
+                            <Scroller height={120}>{renderComments(proposalDetails.comments!)}</Scroller>
                         </TouchableOpacity>
                     </View>
                 </MainContainer>

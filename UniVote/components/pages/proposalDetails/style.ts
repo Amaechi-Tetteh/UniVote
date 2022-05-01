@@ -25,26 +25,5 @@ export const styles = StyleSheet.create({
       
     },
   
-    scroll_view_container:{
-        marginTop: 10*length_factor,
-        width:'100%',
-        borderWidth: 1*length_factor,
-        borderRadius:length_factor* 6.5,
-        borderColor:'rgb(189, 189, 189)',
-        flexDirection:'row',
-        alignContent:'flex-start',
-       padding: 5*length_factor,
-       
-
-    },
-
-    comment_container:{
-        height:120*length_factor
-    },
-
-    title_container:{
-        height: 50 * length_factor
-    }
-
 
 });

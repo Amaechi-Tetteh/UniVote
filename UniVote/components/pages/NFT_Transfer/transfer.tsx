@@ -68,7 +68,7 @@ export default function NFTTransferScreen({ navigation }: NavigationProps): JSX.
                                     placeholderTextColor="rgb(180, 180 ,180)"
                                     value={receiverHash}
                                     onChangeText={value => handleReceiverHash(value)}
-                                    keyboardType="numeric"
+                                    keyboardType="default"
                                 />
                             </View>
                             <Text style={[styles.text, { paddingTop: 10 * length_factor }]}>Transfer fee:</Text>

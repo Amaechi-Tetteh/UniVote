@@ -69,7 +69,7 @@ export default function App() {
                         // screenOptions={{ headerShown: false, drawerStyle: { width: "85%", height: "80%" } }}
                         // defaultStatus='closed'
                     >
-                             <Stack.Screen name={NAVIGATION_ROUTES.NFT_TRANSFER} component={NFTTransferScreen} />
+                          
                           <Stack.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
                           <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
                            <Stack.Screen
@@ -110,6 +110,7 @@ export default function App() {
                        
                         <Stack.Screen name={NAVIGATION_ROUTES.META_MASK} component={MetaMaskScreen} />
                           <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_SETTINGS} component={AccountSettingsScreen} />
+                             <Stack.Screen name={NAVIGATION_ROUTES.NFT_TRANSFER} component={NFTTransferScreen} />
                     </Stack.Navigator>
                     
                 </NavigationContainer>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { View, Text, SafeAreaView, ScrollView, Image, TextInput } from "react-native"
-import { styles } from "../../shared/styles/styles"
+import { length_factor, styles } from "../../shared/styles/styles"
 import BlueHeader from "../../shared/components/blueHeader/blueHeader"
 import Menu from "../../shared/components/menu/menu"
 import { NavigationProps } from "../../shared/types"
@@ -11,7 +11,7 @@ import { addProposalCommentAction } from "../../../actions/actions.proposalDetai
 import { styles as pageStyles } from "./styles"
 import { MaterialIcons } from "@expo/vector-icons"
 import { styles as formStyles } from "../../shared/components/inputComponent/formStyles"
-
+import { Scroller } from "../../shared/components/scroller/scroller"
 
 export default function CommentsScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
@@ -42,18 +42,11 @@ export default function CommentsScreen({ navigation }: NavigationProps): JSX.Ele
                             <View style={{ width: "100%" }}>
                                 <Text style={pageStyles.header}>Comments</Text>
                             </View>
-                            <ScrollView
-                                contentContainerStyle={{
-                                    flex: 1,
-                                    flexDirection: "row",
-                                    flexWrap: "wrap",
-                                    alignContent: "flex-start",
-                                    display: "flex"
-                                }}
-                                style={[pageStyles.scroll_view_container, pageStyles.comment_container]}
-                            >
+                            <View style={{paddingTop:36*length_factor, paddingBottom: 10*length_factor}} >
+                            <Scroller height = {250} showBorder={false}>
                                 {renderComments(proposalDetails.comments!)}
-                            </ScrollView>
+                            </Scroller>
+                            </View>
                             <View style={pageStyles.add_comment_container}>
                                 <TextInput
                                     style={[formStyles.input, formStyles.input_text, {borderColor:'rgb(189, 189, 189)', marginTop:0, width:'90%'}]}
@@ -61,7 +54,7 @@ export default function CommentsScreen({ navigation }: NavigationProps): JSX.Ele
                                     placeholderTextColor="rgb(180, 180 ,180)"
                                     value={userComment}
                                     onChangeText={setUserComment}
-                                    keyboardType="numeric"
+                                    keyboardType="default"
                                 />
                                 <MaterialIcons
                                     name="send"
