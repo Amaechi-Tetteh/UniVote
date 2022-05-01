@@ -45,7 +45,7 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                             <Text style={proposalDetailStyles.text}>{proposalDetails.title}</Text>
                         </Scroller>
 
-                        <Scroller height={50}>
+                        <Scroller height={80}>
                             <Text style={proposalDetailStyles.text}>{proposalDetails.description}</Text>
                         </Scroller>
                         <CenteredContainer>

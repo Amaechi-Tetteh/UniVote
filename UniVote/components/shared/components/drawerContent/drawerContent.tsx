@@ -70,7 +70,6 @@ interface DrawerItemProps {
 }
 
 function CustomDrawerItem({ onPress, icon, imageUri, label }: DrawerItemProps): JSX.Element {
-    console.log(imageUri)
     return (
         <TouchableOpacity style={styles.drawerRow} onPress={onPress}>
             {icon ? (
