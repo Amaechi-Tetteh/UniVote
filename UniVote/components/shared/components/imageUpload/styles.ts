@@ -23,7 +23,8 @@ export const styles = StyleSheet.create({
     display:'flex',
     flexDirection:'column',
     justifyContent:'center',
-    alignContent:'center'
+    alignContent:'center',
+    alignItems:'center'
 
   },
 });

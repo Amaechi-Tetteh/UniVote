@@ -39,7 +39,7 @@ export const styles = StyleSheet.create({
     },
 
     comment_container:{
-        height:72*length_factor
+        height:120*length_factor
     },
 
     title_container:{

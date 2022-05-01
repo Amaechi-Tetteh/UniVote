@@ -31,7 +31,7 @@ export default function CommentsScreen({ navigation }: NavigationProps): JSX.Ele
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader title={"Proposal Details"} navigation={navigation} showArrow={true} />
+            <BlueHeader title={"Comments"} navigation={navigation} showArrow={true} />
             <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
                 <MainContainer>
                     <View style={pageStyles.image_container}>
@@ -56,7 +56,7 @@ export default function CommentsScreen({ navigation }: NavigationProps): JSX.Ele
                             </ScrollView>
                             <View style={pageStyles.add_comment_container}>
                                 <TextInput
-                                    style={[formStyles.input, formStyles.input_text, {borderColor:'rgb(189, 189, 189)', marginTop:0}]}
+                                    style={[formStyles.input, formStyles.input_text, {borderColor:'rgb(189, 189, 189)', marginTop:0, width:'90%'}]}
                                     placeholder="Enter Text"
                                     placeholderTextColor="rgb(180, 180 ,180)"
                                     value={userComment}

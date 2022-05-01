@@ -53,7 +53,7 @@ export default function ReferendumlDetailsScreen({ navigation }: NavigationProps
 
     const onVote = () => {
         dispatch(voteOnProposalAction())
-        navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, { type: "vote" })
+        navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, { message: 'Your vote has been recorded' })
     }
 
     return (

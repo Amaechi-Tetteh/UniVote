@@ -1,4 +1,4 @@
-import "react-native-gesture-handler"
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import React, { useState } from "react"
 import AppLoading from "expo-app-loading"
 import * as Font from "expo-font"
@@ -33,6 +33,7 @@ import MetaMaskScreen from "./components/pages/metaMask/metaMask"
 import { createDrawerNavigator } from "@react-navigation/drawer"
 import { createStackNavigator } from "@react-navigation/stack";
 import DrawerContent from "./components/shared/components/drawerContent/drawerContent"
+import { StatusBar } from "react-native";
 const store = createStore(rootReducer, composeWithDevTools())
 const Drawer = createDrawerNavigator()
 const Stack = createStackNavigator();
@@ -57,7 +58,9 @@ export default function App() {
     return (
         <Provider store={store}>
             <NativeBaseProvider>
+                    <GestureHandlerRootView style={{ flex: 1 }}>
                 <NavigationContainer>
+                    <StatusBar hidden={true}/>
                     <Stack.Navigator
                      screenOptions={{
           headerShown: false,
@@ -66,13 +69,14 @@ export default function App() {
                         // screenOptions={{ headerShown: false, drawerStyle: { width: "85%", height: "80%" } }}
                         // defaultStatus='closed'
                     >
+                             <Stack.Screen name={NAVIGATION_ROUTES.NFT_TRANSFER} component={NFTTransferScreen} />
                           <Stack.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
                           <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
                            <Stack.Screen
                             name={NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM}
                             component={CreateItemScreen}
                         />
-                        <Stack.Screen name={NAVIGATION_ROUTES.NFT_TRANSFER} component={NFTTransferScreen} />
+                  
                         <Stack.Screen name={NAVIGATION_ROUTES.NFT_DETAILS} component={NFTDetailsScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.MY_PERKS} component={MyPerksScreen} />
                         <Stack.Screen
@@ -103,10 +107,13 @@ export default function App() {
                     
                         <Stack.Screen name={NAVIGATION_ROUTES.MY_PROPOSALS} component={MyProposalsScreen} />
                         <Stack.Screen name={NAVIGATION_ROUTES.DRAWER} component={AccountDetailsScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_SETTINGS} component={AccountSettingsScreen} />
+                       
                         <Stack.Screen name={NAVIGATION_ROUTES.META_MASK} component={MetaMaskScreen} />
+                          <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_SETTINGS} component={AccountSettingsScreen} />
                     </Stack.Navigator>
+                    
                 </NavigationContainer>
+                </GestureHandlerRootView>
             </NativeBaseProvider>
         </Provider>
     )

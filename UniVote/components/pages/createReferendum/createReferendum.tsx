@@ -111,7 +111,7 @@ export default function CreateReferendumScreen({ navigation }: NavigationProps):
             [createReferendumState.name, createReferendumState.details],
             referendumFormItems
         )
-        if (isValidArray.every(Boolean)) navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {type: ITEM_TYPE.REFERENDUM.toLowerCase()})
+        if (isValidArray.every(Boolean)) navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {message:'Your Referendum has been registered'})
         else setValidStatus(isValidArray)
     }
 

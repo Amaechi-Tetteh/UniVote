@@ -18,9 +18,9 @@ export default function NFTDetailsScreen({ navigation }: NavigationProps): JSX.E
     const dispatch = useDispatch()
     const perkDetails = useSelector((state: RootState) => state.perkDetails)
     const isFocused = useIsFocused()
-    const onTransfer = () => console.log("boo")
+    const onTransfer = () => navigation.navigate(NAVIGATION_ROUTES.NFT_TRANSFER)
     const onRedeem = () =>
-        navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, { type: "NFT redemption" })
+        navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, { message:'Your NFT has been redeemed, you should receive an email shortly.'})
 
     useEffect(() => {
         dispatch(setPerkDetailsAction(exampeReward))

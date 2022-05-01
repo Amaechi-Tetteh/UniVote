@@ -34,7 +34,7 @@ export const setNewProposalDetailsAction = (proposalDetails: string) => {
 
 export const setNewProposalTypeAction = (proposalType: PROPOSAL_TYPE) => {
     return {
-        type: ACTIONS.SET_PROPOSAL_DETAILS,
+        type: ACTIONS.SET_PROPOSAL_TYPE,
         payload: proposalType
     }
 }

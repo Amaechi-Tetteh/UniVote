@@ -1,6 +1,6 @@
 import {MaterialIcons } from "@expo/vector-icons";
 import React  from "react";
-import { View, TouchableOpacity } from "react-native";
+import { View, TouchableOpacity, Text } from "react-native";
 import { styles } from "./styles";
 import {length_factor} from '../../../shared/styles/styles'
 import { NavigationProps } from "../../types";
@@ -14,7 +14,7 @@ export default function Menu( {navigation}:NavigationProps ): JSX.Element {
     { menuItems.map((item, i) => {
       return (
         <TouchableOpacity onPress={() => onNavigate(item.target)} key={i}>
-          <MaterialIcons name={item.iconName} style={styles.menu_item} size={item.size*length_factor}  />
+         <MaterialIcons name={item.iconName} style={styles.menu_item} size={item.size*length_factor}  />
         </TouchableOpacity>
       );
     })}
@@ -22,7 +22,8 @@ export default function Menu( {navigation}:NavigationProps ): JSX.Element {
     )
   };
 
-  return <View style={styles.menu_container}>{renderMenuItems(menuItems)}</View>;
+  return <View style={styles.menu_container}>
+    {renderMenuItems(menuItems)}</View>;
 }
 
 

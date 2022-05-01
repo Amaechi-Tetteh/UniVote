@@ -36,7 +36,7 @@ export const seeReferendumVotersAction = (seeVoters: string) => {
 
 export const setReferendumGroupAction = (group: string) => {
     return {
-        type: ACTIONS.SET_REFERENDUM_TYPE,
+        type: ACTIONS.SET_REFERENDUM_GROUP,
         payload: group
     }
 }

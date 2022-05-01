@@ -102,7 +102,7 @@ export default function CreateProposalScreen({ navigation }: NavigationProps): J
     }
     const onCreate = () => {
         let isValidArray: boolean[] = validateInputs([createProposalState.name, createProposalState.details], formItems)
-        if (isValidArray.every(Boolean)) navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {type: ITEM_TYPE.PROPOSAL.toLowerCase()})
+        if (isValidArray.every(Boolean)) navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {message:'Your Proposal has been registered'})
         else setValidStatus(isValidArray)
     }
 

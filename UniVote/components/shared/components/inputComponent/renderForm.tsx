@@ -27,7 +27,7 @@ export const renderForm = (
             placeholderTextColor='rgb(180, 180 ,180)'
             value ={item.value}
             onChangeText={item.onChange}
-            keyboardType="numeric"
+            keyboardType="default"
             secureTextEntry={item.secure? true: false} 
           />
         </View>

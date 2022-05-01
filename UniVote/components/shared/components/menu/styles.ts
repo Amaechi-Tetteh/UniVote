@@ -10,7 +10,6 @@ export const styles = StyleSheet.create({
 
     menu_item: {
         color: "rgb(102, 102, 102)",
-        flex: 1
     },
 
     menu_wrapper: {

@@ -67,6 +67,7 @@ export const styles = StyleSheet.create({
     borderColor:'rgb(189, 189, 189)',
     borderWidth: 1 * length_factor,
     borderStyle: 'dashed',
+    borderRadius: 1,
     paddingBottom: 2 * length_factor,
     paddingLeft: 2 * length_factor
   },

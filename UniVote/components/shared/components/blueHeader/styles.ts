@@ -12,11 +12,14 @@ export const styles = StyleSheet.create({
 
     fontFamily: "OswlandBoldFont",
     color:"white",
-    fontSize: 20 * length_factor
+    fontSize: 20 * length_factor,
+    textAlign: 'center'
   },
 
   back_arrow:{
       position:'absolute',
-      left:16 * length_factor
+      left:16 * length_factor,
+      zIndex: 3, // works on ios
+      elevation: 3, // works on android
   }
 });

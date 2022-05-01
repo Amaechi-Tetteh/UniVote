@@ -4,7 +4,6 @@ import { length_factor } from "../../../shared/styles/styles"
 export const styles = StyleSheet.create({
 
     details_wrapper:{
-
         width:'100%',
         height: 75 * length_factor,
         paddingTop: 12 *length_factor,
@@ -16,5 +15,7 @@ export const styles = StyleSheet.create({
     },
     icon:{
        color:'rgb(102, 102, 102)',
+       position:'absolute',
+       right: 10 * length_factor
     }
 })

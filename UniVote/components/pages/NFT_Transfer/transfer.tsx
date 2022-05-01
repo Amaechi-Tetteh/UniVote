@@ -21,7 +21,7 @@ export default function NFTTransferScreen({ navigation }: NavigationProps): JSX.
     const receiverHash = useSelector((state: RootState) => state.transfer.receiverHash)
     const transferFee = useSelector((state:RootState)=> state.transfer.transferFee)
     const isFocused = useIsFocused()
-    const onTransfer = () => navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL,{type:'transfer'})
+    const onTransfer = () => navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL,{message: 'Your transfer has been successful'})
   
     useEffect(() => {
         dispatch(setPerkDetailsAction(exampeReward))
