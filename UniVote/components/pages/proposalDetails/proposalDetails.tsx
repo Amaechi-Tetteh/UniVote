@@ -29,10 +29,12 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
     const onPressComments = () => navigation.navigate(NAVIGATION_ROUTES.COMMENTS)
 
     return (
-        <View style={styles.centered_container}>
-            <BlueHeader title={"Proposal Details"} navigation={navigation} showArrow={true} />
-            <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
-                <MainContainer>
+        <View style={[styles.centered_container]}>
+               <SafeAreaView style={{ flex:0, backgroundColor: 'blue' }} />
+            <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start", flex:1}]}>
+            <BlueHeader title={"Proposal Details"} navigation={navigation} showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}/>
+            
+                <MainContainer screenPadding={false}>
                     <View style={proposalDetailStyles.image_container}>
                         <Image source={{ uri: proposalDetails.image }} style={{ width: "100%", height: "100%" }} />
                     </View>
@@ -59,9 +61,12 @@ export default function ProposalDetailsScreen({ navigation }: NavigationProps): 
                             />
                         </CenteredContainer>
                         <Text style={proposalDetailStyles.text}>Comments</Text>
-                       <TouchableOpacity onPress={onPressComments}>
-                            <Scroller height={120}>{renderComments(proposalDetails.comments!)}</Scroller>
-                        </TouchableOpacity>
+                       
+                            <Scroller height={120}>
+                                <TouchableOpacity onPress={onPressComments}>{renderComments(proposalDetails.comments!)}
+                                </TouchableOpacity>
+                                </Scroller>
+                     
                     </View>
                 </MainContainer>
                 <MenuContainer>

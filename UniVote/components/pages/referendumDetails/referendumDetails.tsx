@@ -58,9 +58,9 @@ export default function ReferendumlDetailsScreen({ navigation }: NavigationProps
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader title={"Referendum Details"} navigation={navigation} showArrow={true} />
+            <BlueHeader title={"Referendum Details"} navigation={navigation} showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}/>
             <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
-                <MainContainer>
+                <MainContainer screenPadding={false}>
                     <View style={proposalDetailStyles.image_container}>
                         <Image source={{ uri: referendumDetails.image }} style={{ width: "100%", height: "100%" }} />
                     </View>

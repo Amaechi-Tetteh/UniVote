@@ -7,6 +7,7 @@ import { renderSearchItems } from "../../../shared/components/searchResults/rend
 import { styles as resultsStyles } from "./styles"
 import { MainContainer, MenuContainer } from "../../../shared/components/containers/containers"
 import { Navigation } from "../../types"
+import { NAVIGATION_ROUTES } from "../../../shared/components/menu/menu"
 
 export default function SearchResultsTemplate({
     navigation,
@@ -15,15 +16,15 @@ export default function SearchResultsTemplate({
     onSelectItem,
     itemHeight = 155,
     imageHeight = 100,
-    titleFontSize = 16
+    titleFontSize = 16,
+    route
 }: Props): JSX.Element {
     return (
         <View style={styles.centered_container}>
-            <BlueHeader title={header} navigation={navigation} showArrow={true} />
+            <BlueHeader title={header} navigation={navigation} showArrow={true} route={route}/>
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >
@@ -54,5 +55,6 @@ interface Props {
     itemHeight: number
     imageHeight: number
     titleFontSize: number
-    onSelectItem: (id: string) => void
+    onSelectItem: (id: string) => void,
+    route: NAVIGATION_ROUTES 
 }

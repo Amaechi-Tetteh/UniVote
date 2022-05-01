@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
 
     screen_padding: {
         paddingLeft: 16 * length_factor,
-        paddingRight: 16 * length_factor
+        paddingRight: 16 * length_factor,
     },
 
     text: {

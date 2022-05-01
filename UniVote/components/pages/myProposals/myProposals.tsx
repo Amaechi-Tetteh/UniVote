@@ -33,6 +33,7 @@ export default function MyProposalsScreen({ navigation }: any): JSX.Element {
             imageHeight={100}
             titleFontSize={16}
             header="My Proposals"
+            route={NAVIGATION_ROUTES.ACCOUNT_DETAILS}
         />
     )
 }

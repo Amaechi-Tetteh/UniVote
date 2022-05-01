@@ -30,6 +30,7 @@ export default function MyPerksScreen({ navigation }: NavigationProps): JSX.Elem
             imageHeight={178}
             titleFontSize={20}
             header="Perks"
+            route={NAVIGATION_ROUTES.ACCOUNT_DETAILS}
         />
     )
 }

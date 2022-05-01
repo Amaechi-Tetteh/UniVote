@@ -20,13 +20,7 @@ export default function TrendingItemsTemplate({
     return (
         <View style={styles.centered_container}>
             <BlueHeader navigation={navigation} title="chainVote" showArrow={false} />
-            <SafeAreaView
-                style={[
-                    styles.centered_container,
-                    styles.screen_padding,
-                    { width: "100%", justifyContent: "flex-start" }
-                ]}
-            >
+            <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
                 <MainContainer>
                     <View style={proposalStyles.header_wrapper}>
                         <Text style={proposalStyles.yellow_subtitle}>{headerText.title}</Text>

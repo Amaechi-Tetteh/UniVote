@@ -25,6 +25,7 @@ export default function SearchResultsScreen({ navigation }: any): JSX.Element {
             imageHeight = {100}
             titleFontSize={16}
             header="Search Proposal"
+            route={NAVIGATION_ROUTES.SEARCH_PROPOSAL}
         />
     )
 }

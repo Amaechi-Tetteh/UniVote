@@ -26,12 +26,11 @@ export default function AccountDetailsScreen({ navigation }: NavigationProps): J
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="Account Details" showArrow={true} />
+            <BlueHeader navigation={navigation} title="Account Details" showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS} />
             <SafeAreaView
                 style={[
                     styles.centered_container,
                     { width: "100%", justifyContent: "flex-start" },
-                    styles.screen_padding
                 ]}
             >
                 <MainContainer>

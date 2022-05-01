@@ -20,11 +20,10 @@ export default function MetaMaskScreen({ navigation }: NavigationProps): JSX.Ele
   
     return (
         <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="Metamask" showArrow={true} />
+            <BlueHeader navigation={navigation} title="Metamask" showArrow={true} route={NAVIGATION_ROUTES.ACCOUNT_DETAILS}/>
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >

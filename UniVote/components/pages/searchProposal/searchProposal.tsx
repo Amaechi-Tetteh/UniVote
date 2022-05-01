@@ -16,7 +16,7 @@ import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { setSearchTermAction, setSearchResultsAction } from "../../../actions/actions.search"
-import { ResultItem } from "../searchResults/searchResults"
+import { ResultItem } from "../../shared/components/searchResults/searchResultsTemplate"
 import { image_example } from "../searchResults/image"
 
 export default function SearchProposalScreen({ navigation }: NavigationProps): JSX.Element {
@@ -49,11 +49,10 @@ export default function SearchProposalScreen({ navigation }: NavigationProps): J
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader title="Search Proposal" navigation={navigation} showArrow={true} />
+            <BlueHeader title="Search Proposal" navigation={navigation} showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}/>
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >

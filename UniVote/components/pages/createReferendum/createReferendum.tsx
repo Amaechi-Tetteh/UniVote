@@ -121,11 +121,10 @@ export default function CreateReferendumScreen({ navigation }: NavigationProps):
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="Create Referendum" showArrow={true} />
+            <BlueHeader navigation={navigation} title="Create Referendum" showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}/>
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >

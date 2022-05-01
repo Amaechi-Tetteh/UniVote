@@ -31,11 +31,10 @@ export default function NFTTransferScreen({ navigation }: NavigationProps): JSX.
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader title={"NFT Transfer"} navigation={navigation} showArrow={true} />
+            <BlueHeader title={"NFT Transfer"} navigation={navigation} showArrow={true} route={NAVIGATION_ROUTES.NFT_DETAILS}/>
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start", paddingTop: 15 * length_factor }
                 ]}
             >

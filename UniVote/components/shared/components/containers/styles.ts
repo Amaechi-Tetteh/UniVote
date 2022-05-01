@@ -12,7 +12,7 @@ export const styles = StyleSheet.create({
     },
 
     menu_container: {
-        flex: 4
+        flex: 3
     },
 
     main_content_container: {
@@ -28,5 +28,9 @@ export const styles = StyleSheet.create({
     ,
     row_seperator:{
         width:'100%'
-    }
+    },
+      screen_padding: {
+        paddingLeft: 16 * length_factor,
+        paddingRight: 16 * length_factor,
+    },
 })

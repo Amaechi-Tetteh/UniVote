@@ -108,11 +108,10 @@ export default function CreateProposalScreen({ navigation }: NavigationProps): J
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="Create Proposal" showArrow={true} />
+            <BlueHeader navigation={navigation} title="Create Proposal" showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS} />
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >

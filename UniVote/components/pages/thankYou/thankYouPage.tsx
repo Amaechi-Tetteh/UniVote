@@ -20,7 +20,7 @@ export default function ThankYouScreen({ route, navigation }: Props): JSX.Elemen
     const raphael = require("../../../assets/raphael.png")
     return (
         <SafeAreaView style={[styles.centered_container, { width: "100%" }]}>
-            <MainContainer>
+            <MainContainer screenPadding={false}>
                 <Text style={pageStyles.title}>Thank You!</Text>
 
                 <Text style={pageStyles.subtitle}>{message}</Text>

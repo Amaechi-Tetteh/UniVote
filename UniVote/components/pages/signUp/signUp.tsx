@@ -12,7 +12,7 @@ import { NavigationProps } from "../../shared/types"
 import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { setEmailAction, setPasswordAction, setLoggedInAction, setFullNameAction } from "../../../actions/actions.login"
-
+import { MainContainer } from "../../shared/components/containers/containers"
 export default function SignUpScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
     const [formIsValid, setValidStatus] = useState([true, true, true])
@@ -70,10 +70,10 @@ export default function SignUpScreen({ navigation }: NavigationProps): JSX.Eleme
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >
+                <MainContainer>
                 <View style={loginStyles.header}>
                     <Text style={styles.header_text}>Signup</Text>
                 </View>
@@ -88,6 +88,7 @@ export default function SignUpScreen({ navigation }: NavigationProps): JSX.Eleme
                     onPress={onLogin}
                     paddingTop={20}
                 />
+                </MainContainer>
             </SafeAreaView>
         </View>
     )

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { View, Text, SafeAreaView, ScrollView, Image, TextInput } from "react-native"
 import { length_factor, styles } from "../../shared/styles/styles"
 import BlueHeader from "../../shared/components/blueHeader/blueHeader"
-import Menu from "../../shared/components/menu/menu"
+import Menu, { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import { NavigationProps } from "../../shared/types"
 import { MenuContainer, MainContainer } from "../../shared/components/containers/containers"
 import { useDispatch, useSelector } from "react-redux"
@@ -31,9 +31,9 @@ export default function CommentsScreen({ navigation }: NavigationProps): JSX.Ele
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader title={"Comments"} navigation={navigation} showArrow={true} />
+            <BlueHeader title={"Comments"} navigation={navigation} showArrow={true} route={NAVIGATION_ROUTES.PROPOSAL_DETAILS}/>
             <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
-                <MainContainer>
+                <MainContainer screenPadding={false}>
                     <View style={pageStyles.image_container}>
                         <Image source={{ uri: proposalDetails.image }} style={{ width: "100%", height: "100%" }} />
                     </View>

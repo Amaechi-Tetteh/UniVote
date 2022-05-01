@@ -12,12 +12,13 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { setEmailAction, setPasswordAction, setLoggedInAction } from "../../../actions/actions.login"
 import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
+import { MainContainer } from "../../shared/components/containers/containers"
 
 export default function LoginScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
     const [formIsValid, setValidStatus] = useState([true, true])
     const loginState = useSelector((state: RootState) => state.login)
-  
+
     const setPassword = (password: string) => {
         dispatch(setPasswordAction(password))
     }
@@ -57,29 +58,25 @@ export default function LoginScreen({ navigation }: NavigationProps): JSX.Elemen
 
     return (
         <View style={styles.centered_container}>
-            <SafeAreaView
-                style={[
-                    styles.centered_container,
-                    styles.screen_padding,
-                    { width: "100%", justifyContent: "flex-start" }
-                ]}
-            >
-                <View style={loginStyles.header}>
-                    <Text style={styles.header_text}>Login</Text>
-                </View>
-                <View style={loginStyles.form_wrapper}>{renderForm(formItems, formIsValid)}</View>
+            <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
+                <MainContainer>
+                    <View style={loginStyles.header}>
+                        <Text style={styles.header_text}>Login</Text>
+                    </View>
+                    <View style={loginStyles.form_wrapper}>{renderForm(formItems, formIsValid)}</View>
 
-                <Button text="LOGIN" width="100%" color={BUTTON_COLORS.BLUE} onPress={onLogin} paddingTop={35} />
+                    <Button text="LOGIN" width="100%" color={BUTTON_COLORS.BLUE} onPress={onLogin} paddingTop={35} />
 
-                <Button
-                    text="FORGOT PASSWORD?"
-                    width="100%"
-                    color={BUTTON_COLORS.CLEAR}
-                    onPress={onForgotPassword}
-                    paddingTop={35}
-                />
+                    <Button
+                        text="FORGOT PASSWORD?"
+                        width="100%"
+                        color={BUTTON_COLORS.CLEAR}
+                        onPress={onForgotPassword}
+                        paddingTop={35}
+                    />
 
-                <Button text="SIGNUP" width="100%" color={BUTTON_COLORS.CLEAR} onPress={onSignUp} paddingTop={20} />
+                    <Button text="SIGNUP" width="100%" color={BUTTON_COLORS.CLEAR} onPress={onSignUp} paddingTop={20} />
+                </MainContainer>
             </SafeAreaView>
         </View>
     )

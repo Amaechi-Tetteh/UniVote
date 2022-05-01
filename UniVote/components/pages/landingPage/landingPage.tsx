@@ -18,7 +18,7 @@ export default function LandingScreen({ navigation }: NavigationProps): JSX.Elem
 
     return (
         <View style={styles.centered_container}>
-            <SafeAreaView style={[styles.centered_container, styles.screen_padding, { width: "100%", justifyContent: "flex-start" }]}>
+            <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
                 <MainContainer>
                     <View style={loginStyles.header}>
                         <Text style={pageStyles.logo_text}>chainVote</Text>

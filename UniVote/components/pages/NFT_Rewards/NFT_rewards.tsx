@@ -28,11 +28,10 @@ export default function NFTDetailsScreen({ navigation }: NavigationProps): JSX.E
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader title={"NFT Rewards"} navigation={navigation} showArrow={true} />
+            <BlueHeader title={"NFT Rewards"} navigation={navigation} showArrow={true} route={NAVIGATION_ROUTES.MY_PERKS}/>
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >

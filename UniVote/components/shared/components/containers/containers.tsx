@@ -6,12 +6,15 @@ export interface LayoutProps {
     children: React.ReactNode
 }
 
+interface MainContainerProps extends LayoutProps{
+    screenPadding?:boolean
+}
 export function MenuContainer({ children }: LayoutProps): JSX.Element {
-    return <View style={[styles.menu_container, styles.container]}>{children}</View>
+    return <View style={[styles.menu_container, styles.container, styles.screen_padding]}>{children}</View>
 }
 
-export function MainContainer({ children }: LayoutProps): JSX.Element {
-    return <View style={[styles.main_content_container, styles.container]}>{children}</View>
+export function MainContainer({ children, screenPadding = true }: MainContainerProps ): JSX.Element {
+    return <View style={[styles.main_content_container, styles.container, screenPadding? styles.screen_padding:null]}>{children}</View>
 }
 
 export function CenteredContainer({ children }: LayoutProps): JSX.Element {

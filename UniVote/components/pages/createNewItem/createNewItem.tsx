@@ -46,11 +46,10 @@ export default function CreateItemScreen({ navigation }: any): JSX.Element {
 
     return (
         <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="Create Proposal/Referendum" showArrow={true} />
+            <BlueHeader navigation={navigation} title="Create Proposal/Referendum" showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}/>
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >

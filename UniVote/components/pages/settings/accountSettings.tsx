@@ -14,11 +14,10 @@ export default function AccountSettingsScreen({ navigation }: NavigationProps): 
     const passwordLength = useSelector((state: RootState) => state.login.password.length)
     return (
         <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="Account Settings" showArrow={true} />
+            <BlueHeader navigation={navigation} title="Account Settings" showArrow={true} route={NAVIGATION_ROUTES.ACCOUNT_DETAILS}/>
             <SafeAreaView
                 style={[
                     styles.centered_container,
-                    styles.screen_padding,
                     { width: "100%", justifyContent: "flex-start" }
                 ]}
             >
