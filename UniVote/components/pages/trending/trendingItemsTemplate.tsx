@@ -19,7 +19,7 @@ export default function TrendingItemsTemplate({
 }: Props): JSX.Element {
     return (
         <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="blockVote" showArrow={false} />
+            <BlueHeader navigation={navigation} title="chainVote" showArrow={false} />
             <SafeAreaView
                 style={[
                     styles.centered_container,

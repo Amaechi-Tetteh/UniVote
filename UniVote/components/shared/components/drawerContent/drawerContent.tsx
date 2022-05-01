@@ -5,7 +5,7 @@ import { length_factor } from "../../styles/styles"
 import { MaterialIcons } from "@expo/vector-icons"
 import { styles as commonStyles } from "../../styles/styles"
 import { NAVIGATION_ROUTES } from "../menu/menu"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import { setLoggedInAction } from "../../../../actions/actions.login"
 import { metaMaskIcon } from "./metaMaskIcon"
 
@@ -70,6 +70,7 @@ interface DrawerItemProps {
 }
 
 function CustomDrawerItem({ onPress, icon, imageUri, label }: DrawerItemProps): JSX.Element {
+    console.log(imageUri)
     return (
         <TouchableOpacity style={styles.drawerRow} onPress={onPress}>
             {icon ? (
@@ -77,17 +78,22 @@ function CustomDrawerItem({ onPress, icon, imageUri, label }: DrawerItemProps): 
             ) : (
                 <Image source={{ uri: imageUri }} style={{ height: 24 * length_factor, width: 24 * length_factor }} />
             )}
-            <DrawerItem
-                labelStyle={[commonStyles.text, { fontSize: 18 * length_factor }]}
-                label={label}
-                onPress={onPress}
-            />
+            <Text style={[commonStyles.text, { fontSize: 18 * length_factor, paddingLeft: 20 * length_factor }]}>
+                {label}
+            </Text>
         </TouchableOpacity>
     )
 }
 
 const styles = StyleSheet.create({
-    drawerRow: { width: "100%", alignItems: "center", flexDirection: "row", paddingLeft: 15 * length_factor },
+    drawerRow: {
+        width: "100%",
+        alignItems: "center",
+        flexDirection: "row",
+        paddingLeft: 15 * length_factor,
+        paddingBottom: 12 * length_factor,
+        paddingTop: 12 * length_factor
+    },
     row: {
         width: "100%",
         alignItems: "center",
@@ -121,6 +127,6 @@ const styles = StyleSheet.create({
         height: 1 * length_factor,
         borderBottomColor: "rgb(228, 228, 228)",
         borderBottomWidth: 1 * length_factor,
-        paddingBottom: 10 * length_factor,
-        }
+        paddingBottom: 10 * length_factor
+    }
 })

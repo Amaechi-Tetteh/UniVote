@@ -38,7 +38,7 @@ export default function NFTDetailsScreen({ navigation }: NavigationProps): JSX.E
             >
                 <MainContainer>
                     <View style={{ width: 203 * length_factor, height: 223 * length_factor }}>
-                        <Image source={{ uri: perkDetails.image }} style={{ width: "100%", height: "100%" }} />
+                     {perkDetails.image ?   <Image source={{ uri: perkDetails.image }} style={{ width: "100%", height: "100%" }} />:null}
                     </View>
                     <View style={[styles.border_radius1, pageStyles.details_wrapper]}>
                         <Text style={styles.text}>{perkDetails.title}</Text>
