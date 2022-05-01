@@ -66,11 +66,13 @@ export default function App() {
                             screenOptions={{ headerShown: false, drawerStyle: { width: "85%", height: "80%" } }}
                             defaultStatus="closed"
                         >
-                            <Drawer.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
-                            <Drawer.Screen
+                              <Drawer.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
+                               <Drawer.Screen
                                 name={NAVIGATION_ROUTES.TRENDING_PROPOSALS}
                                 component={TrendingItemsScreen}
                             />
+                          
+                         
                             <Drawer.Screen
                                 name={NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM}
                                 component={CreateItemScreen}

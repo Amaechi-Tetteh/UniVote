@@ -1,4 +1,4 @@
-import React, {useEffect } from "react"
+import React, { useEffect } from "react"
 import { View, Text, SafeAreaView, ScrollView, Image } from "react-native"
 import { styles as proposalDetailStyles } from "./style"
 import { length_factor, styles } from "../../shared/styles/styles"
@@ -21,6 +21,7 @@ import { image_example } from "../searchResults/image"
 import { ACTIONS } from "../../../actions/actions.proposalDetails"
 import { SelectedReferendumChoice } from "../../../reducers/types"
 import { useIsFocused } from "@react-navigation/native"
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
 export default function ReferendumlDetailsScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
     const isFocused = useIsFocused()
@@ -53,68 +54,71 @@ export default function ReferendumlDetailsScreen({ navigation }: NavigationProps
 
     const onVote = () => {
         dispatch(voteOnProposalAction())
-        navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, { message: 'Your vote has been recorded' })
+        navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {
+            message: "Your vote has been recorded"
+        })
     }
 
     return (
-        <View style={styles.centered_container}>
-            <BlueHeader title={"Referendum Details"} navigation={navigation} showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}/>
-            <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
-                <MainContainer screenPadding={false}>
-                    <View style={proposalDetailStyles.image_container}>
-                        <Image source={{ uri: referendumDetails.image }} style={{ width: "100%", height: "100%" }} />
-                    </View>
-                    <View style={[styles.screen_padding, proposalDetailStyles.content_container]}>
-                        <Text style={proposalDetailStyles.text}>
-                            {referendumDetails.numberOfVotes} Current Number of Votes
-                        </Text>
+        <CustomSafeView showTopColor={true}>
+            <BlueHeader
+                title={"Referendum Details"}
+                navigation={navigation}
+                showArrow={true}
+                route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}
+            />
+            <MainContainer screenPadding={false}>
+                <View style={proposalDetailStyles.image_container}>
+                    <Image source={{ uri: referendumDetails.image }} style={{ width: "100%", height: "100%" }} />
+                </View>
+                <View style={[styles.screen_padding, proposalDetailStyles.content_container]}>
+                    <Text style={proposalDetailStyles.text}>
+                        {referendumDetails.numberOfVotes} Current Number of Votes
+                    </Text>
 
-                        <ScrollView
-                            contentContainerStyle={{
-                                flex: 1,
-                                flexDirection: "row",
-                                flexWrap: "wrap"
-                            }}
-                            style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.title_container]}
-                        >
-                            <Text style={proposalDetailStyles.text}>{referendumDetails.title}</Text>
-                        </ScrollView>
-                        <ScrollView
-                            contentContainerStyle={{
-                                flex: 1,
-                                flexDirection: "row",
-                                flexWrap: "wrap"
-                            }}
-                            style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.title_container]}
-                        >
-                            <Text style={proposalDetailStyles.text}>{referendumDetails.description}</Text>
-                        </ScrollView>
-                        <Text
-                            style={[styles.text, { paddingTop: 15 * length_factor, paddingBottom: 15 * length_factor }]}
-                        >
-                            Candidates/Choices
-                        </Text>
-                        <View style={{ width: "100%", height: 150 * length_factor }}>
-                            <CheckBoxList choices={referendumDetails.choices!} onChange={handleSelected} />
-                        </View>
-                        <CenteredContainer>
-                            <Button
-                                text="VOTE"
-                                width={124}
-                                color={BUTTON_COLORS.BLUE}
-                                onPress={onVote}
-                                showPlusIcon={true}
-                                paddingTop={15}
-                            />
-                        </CenteredContainer>
+                    <ScrollView
+                        contentContainerStyle={{
+                            flex: 1,
+                            flexDirection: "row",
+                            flexWrap: "wrap"
+                        }}
+                        style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.title_container]}
+                    >
+                        <Text style={proposalDetailStyles.text}>{referendumDetails.title}</Text>
+                    </ScrollView>
+                    <ScrollView
+                        contentContainerStyle={{
+                            flex: 1,
+                            flexDirection: "row",
+                            flexWrap: "wrap"
+                        }}
+                        style={[proposalDetailStyles.scroll_view_container, proposalDetailStyles.title_container]}
+                    >
+                        <Text style={proposalDetailStyles.text}>{referendumDetails.description}</Text>
+                    </ScrollView>
+                    <Text style={[styles.text, { paddingTop: 15 * length_factor, paddingBottom: 15 * length_factor }]}>
+                        Candidates/Choices
+                    </Text>
+                    <View style={{ width: "100%", height: 150 * length_factor }}>
+                        <CheckBoxList choices={referendumDetails.choices!} onChange={handleSelected} />
                     </View>
-                </MainContainer>
-                <MenuContainer>
-                    <View style={[styles.screen_padding, { width: "100%", height: "100%" }]}>
-                        <Menu navigation={navigation} />
-                    </View>
-                </MenuContainer>
-            </SafeAreaView>
-        </View>
+                    <CenteredContainer>
+                        <Button
+                            text="VOTE"
+                            width={124}
+                            color={BUTTON_COLORS.BLUE}
+                            onPress={onVote}
+                            showPlusIcon={true}
+                            paddingTop={15}
+                        />
+                    </CenteredContainer>
+                </View>
+            </MainContainer>
+            <MenuContainer>
+                <View style={[styles.screen_padding, { width: "100%", height: "100%" }]}>
+                    <Menu navigation={navigation} />
+                </View>
+            </MenuContainer>
+        </CustomSafeView>
     )
 }

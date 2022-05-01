@@ -9,6 +9,7 @@ import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import { styles as createItemStyles } from "./styles"
 import { MenuContainer, MainContainer } from "../../shared/components/containers/containers"
 import { MaterialIcons } from "@expo/vector-icons"
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
 export default function CreateItemScreen({ navigation }: any): JSX.Element {
     const onPress = (route: NAVIGATION_ROUTES): void => navigation.navigate(route)
 
@@ -38,30 +39,28 @@ export default function CreateItemScreen({ navigation }: any): JSX.Element {
                     key={i}
                 >
                     <Text style={createItemStyles.button_text}>{choice.label}</Text>
-                      <MaterialIcons name='add-box' style={createItemStyles.icon} />
+                    <MaterialIcons name="add-box" style={createItemStyles.icon} />
                 </TouchableOpacity>
             )
         })
     }
 
     return (
-        <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="Create Proposal/Referendum" showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}/>
-            <SafeAreaView
-                style={[
-                    styles.centered_container,
-                    { width: "100%", justifyContent: "flex-start" }
-                ]}
-            >
-                <MainContainer>
-                    <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
-                        {renderChoices(choices)}
-                    </View>
-                </MainContainer>
-                <MenuContainer>
-                    <Menu navigation={navigation} />
-                </MenuContainer>
-            </SafeAreaView>
-        </View>
+        <CustomSafeView showTopColor={true}>
+            <BlueHeader
+                navigation={navigation}
+                title="Create Proposal/Referendum"
+                showArrow={true}
+                route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}
+            />
+            <MainContainer>
+                <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
+                    {renderChoices(choices)}
+                </View>
+            </MainContainer>
+            <MenuContainer>
+                <Menu navigation={navigation} />
+            </MenuContainer>
+        </CustomSafeView>
     )
 }

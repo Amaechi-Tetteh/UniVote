@@ -8,6 +8,7 @@ import { BUTTON_COLORS } from "../../shared/components/button/button"
 import { TEXT_THEMES } from "../../shared/components/button/button"
 import { styles as pageStyles } from "./styles"
 import { Navigation } from "../../shared/types"
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
 
 interface Props {
     navigation: Navigation
@@ -19,7 +20,7 @@ export default function ThankYouScreen({ route, navigation }: Props): JSX.Elemen
     const { message } = route.params
     const raphael = require("../../../assets/raphael.png")
     return (
-        <SafeAreaView style={[styles.centered_container, { width: "100%" }]}>
+        <CustomSafeView showTopColor={false}>
             <MainContainer screenPadding={false}>
                 <Text style={pageStyles.title}>Thank You!</Text>
 
@@ -37,6 +38,6 @@ export default function ThankYouScreen({ route, navigation }: Props): JSX.Elemen
                     />
                 </View>
             </MenuContainer>
-        </SafeAreaView>
+        </CustomSafeView>
     )
 }

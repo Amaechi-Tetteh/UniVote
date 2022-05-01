@@ -13,6 +13,8 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { setEmailAction, setPasswordAction, setLoggedInAction, setFullNameAction } from "../../../actions/actions.login"
 import { MainContainer } from "../../shared/components/containers/containers"
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
+
 export default function SignUpScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
     const [formIsValid, setValidStatus] = useState([true, true, true])
@@ -56,7 +58,10 @@ export default function SignUpScreen({ navigation }: NavigationProps): JSX.Eleme
     ]
 
     const onSignUp = () => {
-        let isValidArray: boolean[] = validateInputs([loginState.email, loginState.password, loginState.fullName], formItems)
+        let isValidArray: boolean[] = validateInputs(
+            [loginState.email, loginState.password, loginState.fullName],
+            formItems
+        )
         if (isValidArray.every(Boolean)) {
             dispatch(setLoggedInAction(true))
             navigation.navigate(NAVIGATION_ROUTES.TRENDING_PROPOSALS)
@@ -66,14 +71,8 @@ export default function SignUpScreen({ navigation }: NavigationProps): JSX.Eleme
     const onLogin = () => navigation.navigate(NAVIGATION_ROUTES.LOGIN)
 
     return (
-        <View style={styles.centered_container}>
-            <SafeAreaView
-                style={[
-                    styles.centered_container,
-                    { width: "100%", justifyContent: "flex-start" }
-                ]}
-            >
-                <MainContainer>
+        <CustomSafeView showTopColor={false}>
+            <MainContainer>
                 <View style={loginStyles.header}>
                     <Text style={styles.header_text}>Signup</Text>
                 </View>
@@ -88,8 +87,7 @@ export default function SignUpScreen({ navigation }: NavigationProps): JSX.Eleme
                     onPress={onLogin}
                     paddingTop={20}
                 />
-                </MainContainer>
-            </SafeAreaView>
-        </View>
+            </MainContainer>
+        </CustomSafeView>
     )
 }

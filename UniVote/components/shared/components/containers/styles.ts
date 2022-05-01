@@ -8,7 +8,8 @@ export const styles = StyleSheet.create({
         alignContent: "center",
         alignItems: "center",
         width: "100%",
-        height: "100%"
+        height: "100%",
+        backgroundColor:'white'
     },
 
     menu_container: {

@@ -18,7 +18,7 @@ import { RootState } from "../../../reducers"
 import { setSearchTermAction, setSearchResultsAction } from "../../../actions/actions.search"
 import { ResultItem } from "../../shared/components/searchResults/searchResultsTemplate"
 import { image_example } from "../searchResults/image"
-
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
 export default function SearchProposalScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
     const [formIsValid, setValidStatus] = useState([true])
@@ -48,32 +48,31 @@ export default function SearchProposalScreen({ navigation }: NavigationProps): J
     }
 
     return (
-        <View style={styles.centered_container}>
-            <BlueHeader title="Search Proposal" navigation={navigation} showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}/>
-            <SafeAreaView
-                style={[
-                    styles.centered_container,
-                    { width: "100%", justifyContent: "flex-start" }
-                ]}
-            >
-                <MainContainer>
-                    <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
-                        {renderForm(formItems, formIsValid)}
-                    </View>
+        <CustomSafeView showTopColor={true}>
+            <BlueHeader
+                title="Search Proposal"
+                navigation={navigation}
+                showArrow={true}
+                route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}
+            />
 
-                    <Button
-                        text="Search Proposal"
-                        width="100%"
-                        color={BUTTON_COLORS.YELLOW}
-                        onPress={onSearch}
-                        paddingTop={35}
-                    />
-                </MainContainer>
-                <MenuContainer>
-                    <Menu navigation={navigation} />
-                </MenuContainer>
-            </SafeAreaView>
-        </View>
+            <MainContainer>
+                <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
+                    {renderForm(formItems, formIsValid)}
+                </View>
+
+                <Button
+                    text="Search Proposal"
+                    width="100%"
+                    color={BUTTON_COLORS.YELLOW}
+                    onPress={onSearch}
+                    paddingTop={35}
+                />
+            </MainContainer>
+            <MenuContainer>
+                <Menu navigation={navigation} />
+            </MenuContainer>
+        </CustomSafeView>
     )
 }
 

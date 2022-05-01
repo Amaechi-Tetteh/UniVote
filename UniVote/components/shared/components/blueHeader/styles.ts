@@ -13,7 +13,7 @@ export const styles = StyleSheet.create({
     fontFamily: "OswlandBoldFont",
     color:"white",
     fontSize: 20 * length_factor,
-    textAlign: 'center'
+    textAlign: 'center',
   },
 
   back_arrow:{

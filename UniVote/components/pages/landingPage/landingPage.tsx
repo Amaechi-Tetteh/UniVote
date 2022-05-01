@@ -8,6 +8,7 @@ import { NavigationProps } from "../../shared/types"
 import { NAVIGATION_ROUTES } from "../../shared/components/menu/menu"
 import { styles as pageStyles } from "./styles"
 import { MainContainer } from "../../shared/components/containers/containers"
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
 
 export default function LandingScreen({ navigation }: NavigationProps): JSX.Element {
     const onExistingAccount = () => navigation.navigate(NAVIGATION_ROUTES.LOGIN)
@@ -17,25 +18,23 @@ export default function LandingScreen({ navigation }: NavigationProps): JSX.Elem
     const onSignUp = () => navigation.navigate(NAVIGATION_ROUTES.SIGN_UP)
 
     return (
-        <View style={styles.centered_container}>
-            <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
-                <MainContainer>
-                    <View style={loginStyles.header}>
-                        <Text style={pageStyles.logo_text}>chainVote</Text>
-                    </View>
-                    <Image source={landingImage} style={pageStyles.image} />
-                    <Button text="SIGNUP" width="100%" color={BUTTON_COLORS.BLUE} onPress={onSignUp} paddingTop={35} />
+        <CustomSafeView showTopColor={false}>
+            <MainContainer>
+                <View style={loginStyles.header}>
+                    <Text style={pageStyles.logo_text}>chainVote</Text>
+                </View>
+                <Image source={landingImage} style={pageStyles.image} />
+                <Button text="SIGNUP" width="100%" color={BUTTON_COLORS.BLUE} onPress={onSignUp} paddingTop={35} />
 
-                    <Button
-                        text="ALREADY HAVE AN ACCOUNT"
-                        width="100%"
-                        color={BUTTON_COLORS.CLEAR}
-                        onPress={onExistingAccount}
-                        paddingTop={20}
-                        textTheme={TEXT_THEMES.YELLOW_TEXT}
-                    />
-                </MainContainer>
-            </SafeAreaView>
-        </View>
+                <Button
+                    text="ALREADY HAVE AN ACCOUNT"
+                    width="100%"
+                    color={BUTTON_COLORS.CLEAR}
+                    onPress={onExistingAccount}
+                    paddingTop={20}
+                    textTheme={TEXT_THEMES.YELLOW_TEXT}
+                />
+            </MainContainer>
+        </CustomSafeView>
     )
 }

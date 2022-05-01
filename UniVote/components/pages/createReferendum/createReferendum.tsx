@@ -31,6 +31,7 @@ import UploadImage from "../../shared/components/imageUpload/imageUpload"
 import { REFERENDUM_TYPE } from "../../../reducers/types"
 import { NavigationProps } from "../../shared/types"
 import { ITEM_TYPE } from "../../../reducers/types"
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
 
 export default function CreateReferendumScreen({ navigation }: NavigationProps): JSX.Element {
     const [formIsValid, setValidStatus] = useState([true, true])
@@ -111,7 +112,10 @@ export default function CreateReferendumScreen({ navigation }: NavigationProps):
             [createReferendumState.name, createReferendumState.details],
             referendumFormItems
         )
-        if (isValidArray.every(Boolean)) navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {message:'Your Referendum has been registered'})
+        if (isValidArray.every(Boolean))
+            navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {
+                message: "Your Referendum has been registered"
+            })
         else setValidStatus(isValidArray)
     }
 
@@ -120,38 +124,37 @@ export default function CreateReferendumScreen({ navigation }: NavigationProps):
     }, [])
 
     return (
-        <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="Create Referendum" showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}/>
-            <SafeAreaView
-                style={[
-                    styles.centered_container,
-                    { width: "100%", justifyContent: "flex-start" }
-                ]}
-            >
-                <MainScrollContainer>
-                    <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
-                        {renderForm(referendumFormItems, formIsValid)}
+        <CustomSafeView showTopColor={true}>
+            <BlueHeader
+                navigation={navigation}
+                title="Create Referendum"
+                showArrow={true}
+                route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}
+            />
 
-                        <DropDownButton dropdown={referendumTypeDropDown} />
-                        <DropDownButton dropdown={referendumGroupDropDown} />
-                        <DropDownButton dropdown={seeVotersDropDown} />
-                        <DropDownButton dropdown={allowCommentsDropDown} />
-                        <UploadImage onUpload={onUpload} imageUri={createReferendumState.image} />
-                    </View>
+            <MainScrollContainer>
+                <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
+                    {renderForm(referendumFormItems, formIsValid)}
 
-                    <Button
-                        text="CREATE"
-                        color={BUTTON_COLORS.BLUE}
-                        onPress={onCreate}
-                        showPlusIcon={true}
-                        width={160}
-                        paddingTop={14}
-                    />
-                </MainScrollContainer>
-                <MenuContainer>
-                    <Menu navigation={navigation} />
-                </MenuContainer>
-            </SafeAreaView>
-        </View>
+                    <DropDownButton dropdown={referendumTypeDropDown} />
+                    <DropDownButton dropdown={referendumGroupDropDown} />
+                    <DropDownButton dropdown={seeVotersDropDown} />
+                    <DropDownButton dropdown={allowCommentsDropDown} />
+                    <UploadImage onUpload={onUpload} imageUri={createReferendumState.image} />
+                </View>
+
+                <Button
+                    text="CREATE"
+                    color={BUTTON_COLORS.BLUE}
+                    onPress={onCreate}
+                    showPlusIcon={true}
+                    width={160}
+                    paddingTop={14}
+                />
+            </MainScrollContainer>
+            <MenuContainer>
+                <Menu navigation={navigation} />
+            </MenuContainer>
+        </CustomSafeView>
     )
 }

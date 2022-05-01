@@ -12,7 +12,7 @@ import { styles as pageStyles } from "./styles"
 import { MaterialIcons } from "@expo/vector-icons"
 import { styles as formStyles } from "../../shared/components/inputComponent/formStyles"
 import { Scroller } from "../../shared/components/scroller/scroller"
-
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
 export default function CommentsScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
     const [userComment, setUserComment] = useState("")
@@ -30,49 +30,56 @@ export default function CommentsScreen({ navigation }: NavigationProps): JSX.Ele
     }
 
     return (
-        <View style={styles.centered_container}>
-            <BlueHeader title={"Comments"} navigation={navigation} showArrow={true} route={NAVIGATION_ROUTES.PROPOSAL_DETAILS}/>
-            <SafeAreaView style={[styles.centered_container, { width: "100%", justifyContent: "flex-start" }]}>
-                <MainContainer screenPadding={false}>
-                    <View style={pageStyles.image_container}>
-                        <Image source={{ uri: proposalDetails.image }} style={{ width: "100%", height: "100%" }} />
-                    </View>
-                    <View style={pageStyles.commentsWrapper}>
-                        <View style={pageStyles.commentsInnerWrapper}>
-                            <View style={{ width: "100%" }}>
-                                <Text style={pageStyles.header}>Comments</Text>
-                            </View>
-                            <View style={{paddingTop:36*length_factor, paddingBottom: 10*length_factor}} >
-                            <Scroller height = {250} showBorder={false}>
+        <CustomSafeView showTopColor={true}>
+            <BlueHeader
+                title={"Comments"}
+                navigation={navigation}
+                showArrow={true}
+                route={NAVIGATION_ROUTES.PROPOSAL_DETAILS}
+            />
+            <MainContainer screenPadding={false}>
+                <View style={pageStyles.image_container}>
+                    <Image source={{ uri: proposalDetails.image }} style={{ width: "100%", height: "100%" }} />
+                </View>
+                <View style={pageStyles.commentsWrapper}>
+                    <View style={pageStyles.commentsInnerWrapper}>
+                        <View style={{ width: "100%" }}>
+                            <Text style={pageStyles.header}>Comments</Text>
+                        </View>
+                        <View style={{ paddingTop: 36 * length_factor, paddingBottom: 10 * length_factor }}>
+                            <Scroller height={250} showBorder={false}>
                                 {renderComments(proposalDetails.comments!)}
                             </Scroller>
-                            </View>
-                            <View style={pageStyles.add_comment_container}>
-                                <TextInput
-                                    style={[formStyles.input, formStyles.input_text, {borderColor:'rgb(189, 189, 189)', marginTop:0, width:'90%'}]}
-                                    placeholder="Enter Text"
-                                    placeholderTextColor="rgb(180, 180 ,180)"
-                                    value={userComment}
-                                    onChangeText={setUserComment}
-                                    keyboardType="default"
-                                />
-                                <MaterialIcons
-                                    name="send"
-                                    size={30}
-                                   style={pageStyles.submitIcon}
-                                    onPress={() => onAddComment(userComment, user)}
-                                />
-                            </View>
+                        </View>
+                        <View style={pageStyles.add_comment_container}>
+                            <TextInput
+                                style={[
+                                    formStyles.input,
+                                    formStyles.input_text,
+                                    { borderColor: "rgb(189, 189, 189)", marginTop: 0, width: "90%" }
+                                ]}
+                                placeholder="Enter Text"
+                                placeholderTextColor="rgb(180, 180 ,180)"
+                                value={userComment}
+                                onChangeText={setUserComment}
+                                keyboardType="default"
+                            />
+                            <MaterialIcons
+                                name="send"
+                                size={30}
+                                style={pageStyles.submitIcon}
+                                onPress={() => onAddComment(userComment, user)}
+                            />
                         </View>
                     </View>
-                </MainContainer>
-                <MenuContainer>
-                    <View style={[styles.screen_padding, { width: "100%", height: "100%", alignItems:'center' }]}>
-                        <Menu navigation={navigation} />
-                    </View>
-                </MenuContainer>
-            </SafeAreaView>
-        </View>
+                </View>
+            </MainContainer>
+            <MenuContainer>
+                <View style={[styles.screen_padding, { width: "100%", height: "100%", alignItems: "center" }]}>
+                    <Menu navigation={navigation} />
+                </View>
+            </MenuContainer>
+        </CustomSafeView>
     )
 }
 

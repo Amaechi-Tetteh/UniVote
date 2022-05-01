@@ -13,6 +13,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { RootState } from "../../../reducers"
 import { capitaliseFirstLetter } from "../../shared/functions/functions.capitaliseFirstLetter"
 import { NavigationProps } from "../../shared/types"
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
 const euthereum: string = '0.005'
 const value: string = '£13.19'
 
@@ -25,14 +26,8 @@ export default function AccountDetailsScreen({ navigation }: NavigationProps): J
         "https://proton-resources-production.imgix.net/c672f2a7711de5d7a98baf48284b527a54899170f2bcf0928ca79da580585da9.png?orient=&auto=compress"
 
     return (
-        <View style={styles.centered_container}>
+        <CustomSafeView showTopColor={true}>
             <BlueHeader navigation={navigation} title="Account Details" showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS} />
-            <SafeAreaView
-                style={[
-                    styles.centered_container,
-                    { width: "100%", justifyContent: "flex-start" },
-                ]}
-            >
                 <MainContainer>
                     <View style={accountDetailStyles.image_container}>
                         <Image
@@ -84,7 +79,6 @@ export default function AccountDetailsScreen({ navigation }: NavigationProps): J
                 <MenuContainer>
                     <Menu navigation={navigation} />
                 </MenuContainer>
-            </SafeAreaView>
-        </View>
+         </CustomSafeView>
     )
 }

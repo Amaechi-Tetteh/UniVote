@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { View, Text, SafeAreaView} from "react-native"
+import { View, Text, SafeAreaView } from "react-native"
 import { styles } from "../../shared/styles/styles"
 import BlueHeader from "../../shared/components/blueHeader/blueHeader"
 import { loginItem } from "../../shared/types"
@@ -28,6 +28,7 @@ import { PROPOSAL_TYPE } from "../../../reducers/types"
 import { NavigationProps } from "../../shared/types"
 import UploadImage from "../../shared/components/imageUpload/imageUpload"
 import { ITEM_TYPE } from "../../../reducers/types"
+import { CustomSafeView } from "../../shared/components/safeView/safeView"
 export default function CreateProposalScreen({ navigation }: NavigationProps): JSX.Element {
     const dispatch = useDispatch()
     const createProposalState = useSelector((state: RootState) => state.newProposal)
@@ -102,42 +103,42 @@ export default function CreateProposalScreen({ navigation }: NavigationProps): J
     }
     const onCreate = () => {
         let isValidArray: boolean[] = validateInputs([createProposalState.name, createProposalState.details], formItems)
-        if (isValidArray.every(Boolean)) navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {message:'Your Proposal has been registered'})
+        if (isValidArray.every(Boolean))
+            navigation.navigate(NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL, {
+                message: "Your Proposal has been registered"
+            })
         else setValidStatus(isValidArray)
     }
 
     return (
-        <View style={styles.centered_container}>
-            <BlueHeader navigation={navigation} title="Create Proposal" showArrow={true} route={NAVIGATION_ROUTES.TRENDING_PROPOSALS} />
-            <SafeAreaView
-                style={[
-                    styles.centered_container,
-                    { width: "100%", justifyContent: "flex-start" }
-                ]}
-            >
-                <MainScrollContainer>
-                    <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
-                        
-                        {renderForm(formItems, formIsValid)}
-                        <DropDownButton dropdown={proposalTypeDropDown} />
-                        <DropDownButton dropdown={proposalGroupDropDown} />
-                        <DropDownButton dropdown={seeVotersDropDown} />
-                        <DropDownButton dropdown={allowCommentsDropDown} />
-                        <UploadImage imageUri={createProposalState.image} onUpload={onUpload} />
-                    </View>
-                    <Button
-                        text="CREATE"
-                        color={BUTTON_COLORS.BLUE}
-                        onPress={onCreate}
-                        showPlusIcon={true}
-                        width={160}
-                        paddingTop={14}
-                    />
-                </MainScrollContainer>
-                <MenuContainer>
-                    <Menu navigation={navigation} />
-                </MenuContainer>
-            </SafeAreaView>
-        </View>
+        <CustomSafeView showTopColor={true}>
+            <BlueHeader
+                navigation={navigation}
+                title="Create Proposal"
+                showArrow={true}
+                route={NAVIGATION_ROUTES.TRENDING_PROPOSALS}
+            />
+            <MainScrollContainer>
+                <View style={[formStyles.form_wrapper, { paddingTop: 28 * length_factor }]}>
+                    {renderForm(formItems, formIsValid)}
+                    <DropDownButton dropdown={proposalTypeDropDown} />
+                    <DropDownButton dropdown={proposalGroupDropDown} />
+                    <DropDownButton dropdown={seeVotersDropDown} />
+                    <DropDownButton dropdown={allowCommentsDropDown} />
+                    <UploadImage imageUri={createProposalState.image} onUpload={onUpload} />
+                </View>
+                <Button
+                    text="CREATE"
+                    color={BUTTON_COLORS.BLUE}
+                    onPress={onCreate}
+                    showPlusIcon={true}
+                    width={160}
+                    paddingTop={14}
+                />
+            </MainScrollContainer>
+            <MenuContainer>
+                <Menu navigation={navigation} />
+            </MenuContainer>
+        </CustomSafeView>
     )
 }
