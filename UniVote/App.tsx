@@ -1,4 +1,4 @@
-import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { GestureHandlerRootView } from "react-native-gesture-handler"
 import React, { useState } from "react"
 import AppLoading from "expo-app-loading"
 import * as Font from "expo-font"
@@ -31,12 +31,12 @@ import NFTTransferScreen from "./components/pages/NFT_Transfer/transfer"
 import AccountSettingsScreen from "./components/pages/settings/accountSettings"
 import MetaMaskScreen from "./components/pages/metaMask/metaMask"
 import { createDrawerNavigator } from "@react-navigation/drawer"
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator } from "@react-navigation/stack"
 import DrawerContent from "./components/shared/components/drawerContent/drawerContent"
-import { StatusBar } from "react-native";
+import { StatusBar } from "react-native"
 const store = createStore(rootReducer, composeWithDevTools())
 const Drawer = createDrawerNavigator()
-const Stack = createStackNavigator();
+const Stack = createStackNavigator()
 
 const loadFonts = () => {
     return Font.loadAsync({
@@ -58,62 +58,68 @@ export default function App() {
     return (
         <Provider store={store}>
             <NativeBaseProvider>
-                    <GestureHandlerRootView style={{ flex: 1 }}>
-                <NavigationContainer>
-                    <StatusBar hidden={true}/>
-                    <Stack.Navigator
-                     screenOptions={{
-          headerShown: false,
-        }}
-                        // drawerContent={props => <DrawerContent {...props} />}
-                        // screenOptions={{ headerShown: false, drawerStyle: { width: "85%", height: "80%" } }}
-                        // defaultStatus='closed'
-                    >
-                          
-                          <Stack.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
-                          <Stack.Screen name={NAVIGATION_ROUTES.TRENDING_PROPOSALS} component={TrendingItemsScreen} />
-                           <Stack.Screen
-                            name={NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM}
-                            component={CreateItemScreen}
-                        />
-                  
-                        <Stack.Screen name={NAVIGATION_ROUTES.NFT_DETAILS} component={NFTDetailsScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.MY_PERKS} component={MyPerksScreen} />
-                        <Stack.Screen
-                            name={NAVIGATION_ROUTES.REFERENDUM_DETAILS}
-                            component={ReferendumlDetailsScreen}
-                        />
-                      
-                        <Stack.Screen name={NAVIGATION_ROUTES.CREATE_REFERENDUM} component={CreateReferendumScreen} />
-                        <Stack.Screen
-                            name={NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL}
-                            component={ThankYouScreen}
-                        />
-                        <Stack.Screen name={NAVIGATION_ROUTES.CREATE_PROPOSAL} component={CreateProposalScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_RESULTS} component={SearchResultsScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_DETAILS} component={AccountDetailsScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
+                <GestureHandlerRootView style={{ flex: 1 }}>
+                    <NavigationContainer>
+                        <StatusBar hidden={true} />
+                        <Drawer.Navigator
+                            drawerContent={props => <DrawerContent {...props} />}
+                            screenOptions={{ headerShown: false, drawerStyle: { width: "85%", height: "80%" } }}
+                            defaultStatus="closed"
+                        >
+                            <Drawer.Screen name={NAVIGATION_ROUTES.LANDING} component={LandingScreen} />
+                            <Drawer.Screen
+                                name={NAVIGATION_ROUTES.TRENDING_PROPOSALS}
+                                component={TrendingItemsScreen}
+                            />
+                            <Drawer.Screen
+                                name={NAVIGATION_ROUTES.CREATE_PROPOSAL_OR_REFERENDUM}
+                                component={CreateItemScreen}
+                            />
 
-                      
-                        <Stack.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
+                            <Drawer.Screen name={NAVIGATION_ROUTES.NFT_DETAILS} component={NFTDetailsScreen} />
+                            <Drawer.Screen name={NAVIGATION_ROUTES.MY_PERKS} component={MyPerksScreen} />
+                            <Drawer.Screen
+                                name={NAVIGATION_ROUTES.REFERENDUM_DETAILS}
+                                component={ReferendumlDetailsScreen}
+                            />
 
-                        <Stack.Screen name={NAVIGATION_ROUTES.COMMENTS} component={CommentsScreen} />
-                        <Stack.Screen
-                            name={NAVIGATION_ROUTES.PRIVATE_TRENDING_PROPOSALS}
-                            component={PrivateTrendingItemsScreen}
-                        />
-                        <Stack.Screen name={NAVIGATION_ROUTES.PROPOSAL_DETAILS} component={ProposalDetailsScreen} />
-                    
-                        <Stack.Screen name={NAVIGATION_ROUTES.MY_PROPOSALS} component={MyProposalsScreen} />
-                        <Stack.Screen name={NAVIGATION_ROUTES.DRAWER} component={AccountDetailsScreen} />
-                       
-                        <Stack.Screen name={NAVIGATION_ROUTES.META_MASK} component={MetaMaskScreen} />
-                          <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_SETTINGS} component={AccountSettingsScreen} />
-                             <Stack.Screen name={NAVIGATION_ROUTES.NFT_TRANSFER} component={NFTTransferScreen} />
-                    </Stack.Navigator>
-                    
-                </NavigationContainer>
+                            <Drawer.Screen
+                                name={NAVIGATION_ROUTES.CREATE_REFERENDUM}
+                                component={CreateReferendumScreen}
+                            />
+                            <Drawer.Screen
+                                name={NAVIGATION_ROUTES.THANKYOU_FOR_CREATING_PROPOSAL}
+                                component={ThankYouScreen}
+                            />
+                            <Stack.Screen name={NAVIGATION_ROUTES.CREATE_PROPOSAL} component={CreateProposalScreen} />
+                            <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_RESULTS} component={SearchResultsScreen} />
+                            <Stack.Screen name={NAVIGATION_ROUTES.ACCOUNT_DETAILS} component={AccountDetailsScreen} />
+                            <Stack.Screen name={NAVIGATION_ROUTES.SEARCH_PROPOSAL} component={SearchProposalScreen} />
+
+                            <Drawer.Screen name={NAVIGATION_ROUTES.LOGIN} component={LoginScreen} />
+                            <Drawer.Screen name={NAVIGATION_ROUTES.SIGN_UP} component={SignUpScreen} />
+
+                            <Drawer.Screen name={NAVIGATION_ROUTES.COMMENTS} component={CommentsScreen} />
+                            <Drawer.Screen
+                                name={NAVIGATION_ROUTES.PRIVATE_TRENDING_PROPOSALS}
+                                component={PrivateTrendingItemsScreen}
+                            />
+                            <Drawer.Screen
+                                name={NAVIGATION_ROUTES.PROPOSAL_DETAILS}
+                                component={ProposalDetailsScreen}
+                            />
+
+                            <Drawer.Screen name={NAVIGATION_ROUTES.MY_PROPOSALS} component={MyProposalsScreen} />
+                            <Drawer.Screen name={NAVIGATION_ROUTES.DRAWER} component={AccountDetailsScreen} />
+
+                            <Drawer.Screen name={NAVIGATION_ROUTES.META_MASK} component={MetaMaskScreen} />
+                            <Drawer.Screen
+                                name={NAVIGATION_ROUTES.ACCOUNT_SETTINGS}
+                                component={AccountSettingsScreen}
+                            />
+                            <Drawer.Screen name={NAVIGATION_ROUTES.NFT_TRANSFER} component={NFTTransferScreen} />
+                        </Drawer.Navigator>
+                    </NavigationContainer>
                 </GestureHandlerRootView>
             </NativeBaseProvider>
         </Provider>
