@@ -8,11 +8,12 @@ import { NAVIGATION_ROUTES } from "../menu/menu"
 import { useDispatch } from "react-redux"
 import { setLoggedInAction } from "../../../../actions/actions.login"
 import { metaMaskIcon } from "./metaMaskIcon"
-
+import { CustomSafeView } from "../safeView/safeView"
 export default function DrawerContent(props: any) {
     const dispatch = useDispatch()
 
     return (
+       < CustomSafeView showTopColor={true}>
         <DrawerContentScrollView contentContainerStyle={{ paddingTop: 0 }} {...props}>
             <View style={styles.header}>
                 <View style={styles.row}>
@@ -59,6 +60,7 @@ export default function DrawerContent(props: any) {
                 />
             </View>
         </DrawerContentScrollView>
+        </CustomSafeView>
     )
 }
 
