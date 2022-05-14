@@ -1,11 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
-
-contract Tickets is ERC20 {
+contract Tickets {
   
-  constructor(address creator, uint studentId, string memory desc, uint goal) ERC20("Tickets", "TCS"){
+  constructor(address creator, uint studentId, string memory desc, uint goal) {
     manager = creator;
     studentID = studentId;
     description = desc;
@@ -82,8 +80,12 @@ contract Tickets is ERC20 {
     );
   }
 
-  //View Voters
-  function viewVoters() public view returns ()
+  function isVoting() external view returns (bool){
+    if (!voters[msg.sender]) {
+      return false;
+    }
+    return false;
+  }
 
   // function getTickets() public view returns (uint){
   //   return numTickets;
