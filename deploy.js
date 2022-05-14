@@ -2,7 +2,7 @@ const HDWalletProvider = require("@truffle/hdwallet-provider");
 const Web3 = require("web3");
 const FactoryJSON = require("./build/contracts/Factory.json");
 
-const mnemonicPhrase = "region mushroom actor exist kid ready priority enroll there ugly toy inner";
+const mnemonicPhrase = "uncle whale note deputy number atom utility ready daring skill voice final estate claw slam crumble dry fox problem liberty sniff layer cook case";
 
 const provider = new HDWalletProvider(
     mnemonicPhrase,
