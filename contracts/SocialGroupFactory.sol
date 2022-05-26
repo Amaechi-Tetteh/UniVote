@@ -15,7 +15,7 @@ contract SocialGroupFactory {
     function createSocialGroup(
         string memory _name,
         string memory _symbol
-    ) public {
+    ) external {
         SocialGroupNFT newSocialGroup = new SocialGroupNFT(
             _name,
             _symbol,
@@ -25,7 +25,7 @@ contract SocialGroupFactory {
         socialToken.setContract(address(newSocialGroup));
     }
 
-    function viewSocialGroups() public view returns (SocialGroupNFT[] memory ){
+    function viewSocialGroups() external view returns (SocialGroupNFT[] memory ){
         return socialGroupNfts;
     }
 }
