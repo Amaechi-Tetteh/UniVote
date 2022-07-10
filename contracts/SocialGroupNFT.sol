@@ -15,10 +15,11 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
 
     Counters.Counter private _tokenIdCounter;
 
+    //Create Interface
     SocialToken socialToken;
 
     //Whitelist - address and max minting amount
-    mapping (address => uint256) private _whitelist;
+    mapping (address => bool) private _members;
 
     //Votes Per User
     mapping (address => uint256) public voteCount;
@@ -28,11 +29,9 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
 
     //Track Voters
     address[] public voters;
-    
-    bool isPublic;
 
     struct Referendum {
-        bytes32 title;
+        string title;
         string description;
         bool complete;
         uint16 yesVotes;
@@ -41,73 +40,73 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
         uint256 startTime;
         uint256 endTime;
         bool isPrivate;
+        address[] refVoters;
     }
 
     modifier isActive(uint id) {
         require(
-            referendums[id].complete = false, 
-            "SocialGroup: Referendum is expired!"
+            referendums[id].complete == false, 
+            "SocialGroup: Referendum is complete!"
         );
         require(
-            referendums[id].endTime > referendums[id].startTime,
+            referendums[id].endTime + referendums[id].startTime > block.timestamp,
             "SocialGroup: Referendum is expired!"
         );
-        referendums[id].complete = true;
         _;
     }
 
     constructor(
         string memory _name,
         string memory _symbol,
-        address _socialToken
+        address _socialToken,
+        address newOwner
     ) ERC721(_name, _symbol) {
         socialToken = SocialToken(_socialToken);
+        _transferOwnership(newOwner);
     }
 
-    function getVoters() external view returns (address[] memory){
-        return voters;
-    }
-
-    function getVoteCount(address user) external view returns(uint256) {
-        return voteCount[user];
-    }
-
-    function resetVoteCount(address user) external returns(bool){
-        voteCount[user] = 0;
-        return true;
-    }
+    /* Voting Functions */
 
     //Create Referendum
     function createReferendum(
-        bytes32 title,
+        string memory title,
         string memory description,
         bool isAnonymous,
-        uint256 endTime,
+        uint256 endTime, //days
         bool isPrivate
     ) public onlyOwner {
+        uint256 lastVote = (block.timestamp + endTime) * 86400;
         Referendum memory newReferendum = Referendum({
-           title: title,
-           description: description,
-           complete: false,
-           yesVotes: 0,
-           noVotes: 0,
-           isAnonymous: isAnonymous,
-           startTime: block.timestamp,
-           endTime: endTime, //seconds
-           isPrivate: isPrivate
+            title: title,
+            description: description,
+            complete: false,
+            yesVotes: 0,
+            noVotes: 0,
+            isAnonymous: isAnonymous,
+            startTime: block.timestamp,
+            endTime: lastVote,
+            isPrivate: isPrivate,
+            refVoters: new address[](0)
         });
-
+        
         referendums.push(newReferendum);
+
+        for(uint256 i = 0; i < voters.length; i++){
+            address current = voters[i];
+            socialToken.mint(current, 1);
+        }
     }
 
     function voteOnReferendum(
         uint id,
         bool voteStatus
     ) public isActive(id) whenNotPaused {
+        require(_members[msg.sender], "User is not part of this Social Group");
+
         Referendum storage referendum = referendums[id];
         
         if (referendum.isPrivate == true){
-            require(isHolder()); 
+            require(isHolder(), "You Must Mint Before You Can Vote On This Referendum"); 
         }
         
         if (voteStatus == true) {
@@ -117,39 +116,69 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
         }
 
         voters.push(_msgSender());
+        referendum.refVoters.push(msg.sender);
         socialToken.burn(_msgSender(), 1);
     }
 
-    function endReferendum(uint id) external onlyOwner isActive(id) returns (bool){
-        return true;
+    function endReferendum(uint id) external onlyOwner isActive(id) {
+        referendums[id].complete = true;
     }
 
-    function isHolder() internal view returns (bool) {
-        require(_msgSender().balance > 0, "SocialGroupNFT: caller is not authorised");
-        return true;
-    }
+    /*
+    * Mint NFT for Access to Private Proposals
+    */
 
-    //Air Drop NFT to recipient address
-    function air_drop(address[] calldata _recipient) external onlyOwner {
+    function mint() external {
+        require(balanceOf(msg.sender) < 1);
+
         uint256 tokenId = _tokenIdCounter.current();
-        for (uint256 i = 0; i < _recipient.length; i++){
-            _tokenIdCounter.increment();
-            _safeMint(_recipient[i], tokenId);
-            _whitelist[_recipient[i]];
-            socialToken.batchMint(_recipient, 1);
-        } 
+        _tokenIdCounter.increment();
+        _safeMint(_msgSender(), tokenId);
+        _members[_msgSender()] = true;
+        socialToken.mint(_msgSender(), 1);
     }
+    
+    /*
+    * Whitelist Gives Access To Public Proposals Created
+    */
 
-    //Single Address Whitelist 
-    function whitelist(address addresses, uint8 maxMint) external onlyOwner {
-        _whitelist[addresses] = maxMint;
+    function whitelist(address addresses) external onlyOwner {
+        _members[addresses] = true;
     }
   
     //Batch Address Whitelist
-    function whitelistBatch(address[] calldata addresses, uint8 maxMint) external onlyOwner {
+    function whitelistBatch(address[] calldata addresses) external onlyOwner {
         for (uint256 i = 0; i < addresses.length; i++){
-            _whitelist[addresses[i]] = maxMint;
+            _members[addresses[i]] = true;
         }
+    }
+
+    function resetVoteCount() external onlyOwner {
+        address[] memory votersList = getVoters();
+        for (uint256 i = 0; i < votersList.length; i++){
+            voteCount[votersList[i]] = 0;
+        }
+
+    }
+
+    /* View / Pure Functions */
+
+    function getVoters() public view returns (address[] memory){
+        return voters;
+    }
+
+    function getRefVoters(uint256 refId) external view returns (address[] memory){
+        require(referendums[refId].isAnonymous == false, "This Referendum Is Anonymous");
+        return referendums[refId].refVoters;
+    }
+
+    function getVoteCount(address user) external view returns(uint256) {
+        return voteCount[user];
+    }
+
+    function isHolder() internal view returns (bool) {
+        require(balanceOf(msg.sender) > 0, "SocialGroupNFT: caller is not authorised");
+        return true;
     }
 
     function viewVotes(uint id) external view returns (uint16[2] memory) {
@@ -157,8 +186,8 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
         return votes;
     } 
 
-    //Anonymity Preservation
-
+    /* State Functions */
+    
     function pause() public onlyOwner {
         _pause();
     }
@@ -166,6 +195,8 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
     function unpause() public onlyOwner {
         _unpause();
     }
+
+    /* Inherited Functions */
 
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
