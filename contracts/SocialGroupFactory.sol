@@ -1,20 +1,20 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 import "./SocialGroupNFT.sol";
-import "./SocialToken.sol";
+import "./interfaces/ISocialToken.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
 contract SocialGroupFactory {
     using Counters for Counters.Counter;
 
     Counters.Counter private _SocialGroupCounter;
-    SocialToken socialToken;
+    ISocialToken socialToken;
     SocialGroupNFT[] public socialGroupNfts;
 
     event SocialGroupCreated(address indexed owner, string indexed _name, uint256 indexed id);
 
     constructor(address _socialToken) {
-        socialToken = SocialToken(_socialToken);
+        socialToken = ISocialToken(_socialToken);
     }
 
     function createSocialGroup(

@@ -1,6 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
+import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
@@ -8,7 +9,7 @@ import "@openzeppelin/contracts/security/Pausable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
-import "./SocialToken.sol";
+import "./interfaces/ISocialToken.sol";
 
 contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable, Ownable, ERC721Burnable {
     using Counters for Counters.Counter;
@@ -16,7 +17,7 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
     Counters.Counter private _tokenIdCounter;
 
     //Create Interface
-    SocialToken socialToken;
+    ISocialToken socialToken;
 
     //Whitelist - address and max minting amount
     mapping (address => bool) private _members;
@@ -61,7 +62,7 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
         address _socialToken,
         address newOwner
     ) ERC721(_name, _symbol) {
-        socialToken = SocialToken(_socialToken);
+        socialToken = ISocialToken(_socialToken);
         _transferOwnership(newOwner);
     }
 
@@ -117,6 +118,7 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
 
         voters.push(_msgSender());
         referendum.refVoters.push(msg.sender);
+        voteCount[msg.sender]+=1;
         socialToken.burn(_msgSender(), 1);
     }
 
@@ -142,8 +144,9 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
     * Whitelist Gives Access To Public Proposals Created
     */
 
-    function whitelist(address addresses) external onlyOwner {
-        _members[addresses] = true;
+    function whitelist(address receiver) external onlyOwner {
+        _members[receiver] = true;
+        socialToken.mint(receiver, 1);
     }
   
     //Batch Address Whitelist
