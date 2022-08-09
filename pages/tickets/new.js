@@ -3,7 +3,7 @@ import {Form, Button, Input, Message} from 'semantic-ui-react';
 import SocialGroupFactory from '../../socialGroupFactory';
 import 'semantic-ui-css/semantic.min.css'
 import {Router} from '../../routes';
-import Layout from '../../components/Layout';
+import Layout from '../../components/layout';
 
 class TicketNew extends Component {
   state = {

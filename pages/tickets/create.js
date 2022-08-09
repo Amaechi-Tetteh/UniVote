@@ -3,7 +3,7 @@ import {Form, Button, Input, Message, Checkbox} from 'semantic-ui-react';
 import SocialGroupNft from '../../socialGroupNft';
 import 'semantic-ui-css/semantic.min.css'
 import {Router} from '../../routes';
-import Layout from '../../components/Layout';
+import Layout from '../../components/layout';
 import {Link} from '../../routes'
 
 class TicketNew extends Component {

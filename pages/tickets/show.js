@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {Card, Grid, Button, Table} from 'semantic-ui-react';
 import SocialGroupNft from '../../socialGroupNft';
-import VoteForm from '../../components/VoteForm';
-import Layout from '../../components/Layout';
-import RequestRow from '../../components/RequestRow';
+import VoteForm from '../../components/voteForm';
+import Layout from '../../components/layout';
+import RequestRow from '../../components/requestRow';
 import {Link} from '../../routes'
 import 'semantic-ui-css/semantic.min.css'
 import {Router} from '../../routes';
