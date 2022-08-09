@@ -3,7 +3,7 @@ import {Menu, Button} from 'semantic-ui-react';
 import {Link} from '../routes';
 
 
-export default () => {
+const Header = () => {
 
   return(
     <Menu style={{marginTop: '10px'}}>
@@ -31,3 +31,5 @@ export default () => {
     </Menu>
   );
 }
+
+export default Header
