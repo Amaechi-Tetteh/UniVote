@@ -4,7 +4,7 @@ import SocialToken from '../socialToken'
 import {Router} from '../routes';
 import { accounts } from '@cardinal/token-manager/dist/cjs/programs/tokenManager';
 
-class voteForm extends Component {
+class VoteForm extends Component {
   state = {
     value:'',
     errorMessage: '',
@@ -52,4 +52,4 @@ class voteForm extends Component {
   };
 }
 
-export default voteForm;
+export default VoteForm;
