@@ -1,7 +1,6 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.4;
 
-import "hardhat/console.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
@@ -27,6 +26,8 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
 
     //Track Created Referendums In This Group
     Referendum[] public referendums;
+
+    uint256 public activeReferendums;
 
     //Track Voters
     address[] public voters;
@@ -91,7 +92,8 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
         });
         
         referendums.push(newReferendum);
-
+        activeReferendums++;
+        
         for(uint256 i = 0; i < voters.length; i++){
             address current = voters[i];
             socialToken.mint(current, 1);
@@ -124,6 +126,7 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
 
     function endReferendum(uint id) external onlyOwner isActive(id) {
         referendums[id].complete = true;
+        activeReferendums--;
     }
 
     /*

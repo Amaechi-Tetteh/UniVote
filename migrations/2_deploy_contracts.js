@@ -3,10 +3,6 @@ const SocialToken = artifacts.require('SocialToken')
 const SocialGroupFactory = artifacts.require('SocialGroupFactory')
 
 module.exports = async function(deployer, network, accounts) {
-	//Deploy Factory
-	await deployer.deploy(Factory)
-	const factory = await Factory.deployed()
-
 	//Deploy Social Token
 	await deployer.deploy(SocialToken)
 	const socialToken = await SocialToken.deployed()

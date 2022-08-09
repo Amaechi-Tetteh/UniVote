@@ -22,6 +22,8 @@ const HDWalletProvider = require('@truffle/hdwallet-provider');
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const fs = require("fs")
+const SEED_PHRASE = fs.readFileSync(".secret").toString();
 
 module.exports = {
   /**
@@ -55,7 +57,7 @@ module.exports = {
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
     rinkeby: {
-    provider: () => new HDWalletProvider('region mushroom actor exist kid ready priority enroll there ugly toy inner', `https://rinkeby.infura.io/v3/81830543415c458db9a881f079fc37f7`),
+    provider: () => new HDWalletProvider(SEED_PHRASE, `https://rinkeby.infura.io/v3/81830543415c458db9a881f079fc37f7`),
     network_id: 4,       // Ropsten's id
     gas: 5500000,        // Ropsten has a lower block limit than mainnet
     confirmations: 2,    // # of confs to wait between deployments. (default: 0)

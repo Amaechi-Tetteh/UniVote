@@ -1,31 +1,35 @@
 import React, {Component} from 'react';
-import {Form, Input, Message, Button} from 'semantic-ui-react';
-import Tickets from '../tickets.js';
-import web3 from '../web3';
+import {Form, Statistic, Message, Button, Card} from 'semantic-ui-react';
+import SocialToken from '../socialToken'
 import {Router} from '../routes';
+import { accounts } from '@cardinal/token-manager/dist/cjs/programs/tokenManager';
 
 class voteForm extends Component {
   state = {
     value:'',
     errorMessage: '',
-    loading: false
+    loading: false,
+    balance: ''
   };
 
   onSubmit=async event =>{
     event.preventDefault();
 
-    const tickets = Tickets(this.props.address);
+    const socialToken = SocialToken
 
     this.setState({loading:true, errorMessage:''});
 
     try {
-      const accounts = await web3.eth.getAccounts();
-      await tickets.methods.vote().send({
-        from: accounts[0],
-      });
+      const accounts = await ethereum.request({ method: 'eth_accounts' });
+      const balance = await socialToken.methods.balanceOf(accounts[0]).call();
+      this.setState({balance})
       Router.replaceRoute(`/tickets/${this.props.address}`)
     }catch (err) {
-      this.setState({errorMessage: err.message});
+      if(accounts[0] == null){
+        this.setState({errorMessage: 'Please Login to Metamask and Refresh The Page!'})
+      }else{
+        this.setState({errorMessage:err.message});
+      }
     }
 
     this.setState({loading:false, value:''});
@@ -35,12 +39,14 @@ class voteForm extends Component {
     return (
       <Form onSubmit={this.onSubmit} error={!!this.state.errorMessage}>
         <Message error header="Oops!" content={this.state.errorMessage}/>
+        <Card>
+        <Statistic>
+          <Statistic.Value>{this.state.balance}</Statistic.Value>
+        </Statistic>
         <Button primary loading={this.state.loading}>
-          VOTE
+          View Your Governance Tokens
         </Button>
-        <Form.Field>
-          <label>You can only vote for a proposal once! Trying to vote again will result in a failed transaction.</label>
-        </Form.Field>
+        </Card>
       </Form>
     );
   };
