@@ -31,6 +31,7 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
 
     //Track Voters
     address[] public voters;
+    mapping(address => mapping( uint256 => bool)) public referendumsVoteStatus;
 
     struct Referendum {
         string title;
@@ -105,6 +106,7 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
         bool voteStatus
     ) public isActive(id) whenNotPaused {
         require(_members[msg.sender], "User is not part of this Social Group");
+        require(referendumsVoteStatus[msg.sender][id] == false);
 
         Referendum storage referendum = referendums[id];
         
@@ -118,10 +120,11 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
             referendum.noVotes+=1;
         }
 
-        voters.push(_msgSender());
+        referendumsVoteStatus[msg.sender][id] = true;
+        voters.push(msg.sender);
         referendum.refVoters.push(msg.sender);
         voteCount[msg.sender]+=1;
-        socialToken.burn(_msgSender(), 1);
+        socialToken.burn(msg.sender, 1);
     }
 
     function endReferendum(uint id) external onlyOwner isActive(id) {
@@ -138,9 +141,9 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
 
         uint256 tokenId = _tokenIdCounter.current();
         _tokenIdCounter.increment();
-        _safeMint(_msgSender(), tokenId);
-        _members[_msgSender()] = true;
-        socialToken.mint(_msgSender(), 1);
+        _safeMint(msg.sender, tokenId);
+        _members[msg.sender] = true;
+        socialToken.mint(msg.sender, 1);
     }
     
     /*

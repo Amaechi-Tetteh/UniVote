@@ -3,7 +3,7 @@ import SocialToken from './build/contracts/SocialToken.json';
 
 const instance = new web3.eth.Contract(
     JSON.parse(JSON.stringify(SocialToken.abi)),
-    '0xBFBa5E18ba93174A2387d9A855B61811B37D65AA'
+    '0x0DDAe50C3AF822CdFe5eD089891fe556b99CaDf1'
 );
 
 export default instance;

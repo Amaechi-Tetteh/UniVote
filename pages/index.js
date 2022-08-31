@@ -48,12 +48,12 @@ class Index extends Component {
     return(
       <Layout>
         <div>
-        <h3>Open Proposals</h3>
+        <h3>Social Groups</h3>
         
         <Input 
           style = {{width:400, paddingBottom:'20px', paddingRight:'10px'}}
           aligned='left'
-          placeholder="Search Propsal ID"
+          placeholder="Search Social Group ID"
           value={this.state.search}
           onChange={event =>
             this.setState({search: event.target.value})}

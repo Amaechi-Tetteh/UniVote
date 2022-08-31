@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Form, Statistic, Message, Button, Card} from 'semantic-ui-react';
 import SocialToken from '../socialToken'
 import {Router} from '../routes';
-import { accounts } from '@cardinal/token-manager/dist/cjs/programs/tokenManager';
 
 class VoteForm extends Component {
   state = {

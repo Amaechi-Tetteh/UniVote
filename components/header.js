@@ -10,14 +10,14 @@ const Header = () => {
 
       <Link route="/">
         <a className="item">
-          Uni Proposals
+          Chainvote
         </a>
       </Link>
 
       <Menu.Menu position="right">
         <Link route="/">
           <a className="item">
-            View Proposals
+            View Social Groups
           </a>
         </Link>
 

@@ -89,7 +89,7 @@ class TicketShow extends Component {
               <a>
                 <Button
                   floated ="right"
-                  content="Register New Social Group"
+                  content="New Referendum"
                   icon="add circle"
                   primary
                 />
