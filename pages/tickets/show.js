@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Card, Grid, Button, Table} from 'semantic-ui-react';
+import {Card, Grid, Button, Table, Message} from 'semantic-ui-react';
 import SocialGroupNft from '../../socialGroupNft';
 import VoteForm from '../../components/voteForm';
 import Layout from '../../components/layout';
@@ -128,6 +128,8 @@ class TicketShow extends Component {
           );
         }
       });
+    }else{
+      return<Message error header="Oops!" content="You Must Own An NFT For This Social Group To View Privvate Referendums"/> 
     }
   }
 
