@@ -7,11 +7,13 @@ import RequestRow from '../../components/requestRow';
 import {Link} from '../../routes'
 import 'semantic-ui-css/semantic.min.css'
 import {Router} from '../../routes';
+import socialGroupNft from '../../socialGroupNft';
 
 class TicketShow extends Component {
   state ={
     account:'',
-    socialGroupNft:''
+    socialGroupNft:'',
+    isHolder: false
   }
 
   static async getInitialProps(props) {
@@ -49,7 +51,6 @@ class TicketShow extends Component {
       owner,
       memberCount,
       referendumCount,
-      // tokens
     } = this.props;
 
     const items = [
@@ -100,15 +101,46 @@ class TicketShow extends Component {
 
   renderReferendums() {
     return this.props.referendums.map((referendum, index) =>{
-      return ( 
-        <RequestRow 
-          key={index}
-          id={index}
-          referendum={referendum}
-          address={this.props.address}
-        />
-      );
+      if(referendum.isPrivate == false){
+        return ( 
+          <RequestRow 
+            key={index}
+            id={index}
+            referendum={referendum}
+            address={this.props.address}
+          />
+        );
+      }
     });
+  }
+
+  renderPrivateReferendums() {
+    if(this.state.isHolder==true) {
+      return this.props.referendums.map((referendum, index) =>{
+        if(referendum.isPrivate == true){
+          return ( 
+            <RequestRow 
+              key={index}
+              id={index}
+              referendum={referendum}
+              address={this.props.address}
+            />
+          );
+        }
+      });
+    }
+  }
+
+  getHolderStatus = async event =>{
+    event.preventDefault()
+    const address = this.props.address;
+    const socialGroupNft = SocialGroupNft(address)
+    const accounts = await ethereum.request({ method: 'eth_accounts' });
+    if(await socialGroupNft.methods.balanceOf(accounts[0]).call() > 0){
+      this.setState({isHolder:true})
+    }else{
+      this.setState({isHolder:false})
+    }
   }
 
   onSubmit=async event =>{
@@ -177,6 +209,7 @@ class TicketShow extends Component {
             {this.createPage(this.props.address)}
           </Grid.Column>
         </Grid>
+        <h3>Public Referendums</h3>
         <Table>
           <Header>
             <Row>
@@ -191,7 +224,28 @@ class TicketShow extends Component {
             </Row>
           </Header>
           <Body>
-          {this.renderReferendums()}
+            {this.renderReferendums()}
+          </Body>
+        </Table>
+        <h3>Private Referendums</h3>
+        <Button secondary onClick={this.getHolderStatus}>
+          Load Private Referendums
+        </Button>
+        <Table>
+          <Header>
+            <Row>
+              <HeaderCell>ID</HeaderCell>
+              <HeaderCell>Title</HeaderCell>
+              <HeaderCell>Description</HeaderCell>
+              <HeaderCell>Yes Votes</HeaderCell>
+              <HeaderCell>No Votes</HeaderCell>
+              <HeaderCell>VOTE</HeaderCell>
+              <HeaderCell></HeaderCell>
+              <HeaderCell>END</HeaderCell>
+            </Row>
+          </Header>
+          <Body>
+            {this.renderPrivateReferendums()}
           </Body>
         </Table>
       </Layout>

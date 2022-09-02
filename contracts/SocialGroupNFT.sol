@@ -77,7 +77,8 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
         bool isAnonymous,
         uint256 endTime, //days
         bool isPrivate
-    ) public onlyOwner {
+    ) public {
+        require(balanceOf(msg.sender) > 0);
         uint256 lastVote = (block.timestamp + endTime) * 86400;
         Referendum memory newReferendum = Referendum({
             title: title,
