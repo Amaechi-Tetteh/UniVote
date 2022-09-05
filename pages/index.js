@@ -41,7 +41,7 @@ class Index extends Component {
     if (publicReferendums[0].length > 0){
       for(let i = 0; i < publicReferendums.length; i++){
         for(let j =0; j < publicReferendums[i].length; j++){
-          if(publicReferendums[i][j].isPrivate == false){
+          if(publicReferendums[i][j].isPrivate == false && publicReferendums[i][j].complete == false){
             refList.push(publicReferendums[i][j])
           }
         }
@@ -72,7 +72,7 @@ class Index extends Component {
   renderPublicRefs() {
     const items = this.props.refList.map(result =>{
         return {
-          header:'Referendum Name: ' + result.title,
+          header: result.title,
           description:(
           <Link route={`/tickets/${result.origin}`}>
             <a>View Social Group</a>

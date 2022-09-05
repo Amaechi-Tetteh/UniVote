@@ -100,7 +100,7 @@ class TicketShow extends Component {
 
   renderReferendums() {
     return this.props.referendums.map((referendum, index) =>{
-      if(referendum.isPrivate == false){
+      if(referendum.isPrivate == false && referendum.complete == false){
         return ( 
           <RequestRow 
             key={index}
@@ -131,6 +131,22 @@ class TicketShow extends Component {
       return<Message error content="You Must Own An NFT For This Social Group To View Private Referendums"/> 
     }
   }
+
+  renderOldReferendums() {
+    return this.props.referendums.map((referendum, index) =>{
+      if(referendum.complete == true){
+        return ( 
+          <RequestRow 
+            key={index}
+            id={index}
+            referendum={referendum}
+            address={this.props.address}
+          />
+        );
+      }
+    });
+  }
+  
 
   getHolderStatus = async event =>{
     event.preventDefault()
@@ -226,6 +242,24 @@ class TicketShow extends Component {
           </Header>
           <Body>
             {this.renderPrivateReferendums()}
+          </Body>
+        </Table>
+        <h3>Archived Referendums</h3>
+        <Table>
+          <Header>
+            <Row>
+              <HeaderCell>ID</HeaderCell>
+              <HeaderCell>Title</HeaderCell>
+              <HeaderCell>Description</HeaderCell>
+              <HeaderCell>Yes Votes</HeaderCell>
+              <HeaderCell>No Votes</HeaderCell>
+              <HeaderCell>VOTE</HeaderCell>
+              <HeaderCell></HeaderCell>
+              <HeaderCell>END</HeaderCell>
+            </Row>
+          </Header>
+          <Body>
+            {this.renderOldReferendums()}
           </Body>
         </Table>
       </Layout>
