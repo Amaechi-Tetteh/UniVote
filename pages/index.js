@@ -25,7 +25,6 @@ class Index extends Component {
   static async getInitialProps(){
     
     const tickets = await SocialGroupFactory.methods.viewSocialGroups().call();
-
     const publicReferendums = await Promise.all(tickets.map(async address => {
       const socialGroupNft = SocialGroupNft(address);
       const activeReferendums = await socialGroupNft.methods.activeReferendums().call()
@@ -38,6 +37,7 @@ class Index extends Component {
       })
     )
     let refList = []
+    if(publicReferendums.length > 0){
     if (publicReferendums[0].length > 0){
       for(let i = 0; i < publicReferendums.length; i++){
         for(let j =0; j < publicReferendums[i].length; j++){
@@ -47,7 +47,8 @@ class Index extends Component {
         }
       }
     }
-    console.log(publicReferendums[0])
+  }
+    // console.log(publicReferendums[0])
     // console.log(publicReferendums)
     return {tickets, refList};
   }

@@ -28,6 +28,7 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
     Referendum[] public referendums;
 
     uint256 public activeReferendums;
+    uint256 public totalReferendums;
 
     //Track Voters
     address[] public voters;
@@ -97,6 +98,7 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
         
         referendums.push(newReferendum);
         activeReferendums++;
+        totalReferendums++;
         
         for(uint256 i = 0; i < voters.length; i++){
             address current = voters[i];

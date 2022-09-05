@@ -3,7 +3,7 @@ import SocialGroupFactory from './build/contracts/SocialGroupFactory.json';
 
 const instance = new web3.eth.Contract(
     JSON.parse(JSON.stringify(SocialGroupFactory.abi)),
-    '0x9879764E45611a0F8aBe03f54d3E5daa2f3cE0bc'
+    '0xED01582f5DF2f732d257C6426973bFeCdaf1CE72'
 );
 
 export default instance;

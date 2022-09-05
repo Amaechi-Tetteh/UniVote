@@ -25,10 +25,11 @@ class TicketShow extends Component {
     const members = (await socialGroupNft.methods.getVoters().call()).length  
     // const referendums = await socialGroupNft.methods.referendums().call()
     const activeReferendums = await socialGroupNft.methods.activeReferendums().call()
+    const totalReferendums = await socialGroupNft.methods.totalReferendums().call()
     // console.log(referendums[0].toString());
     // console.log("Referendum Count: ",activeReferendums)
     const referendums = await Promise.all(
-      Array(parseInt(activeReferendums)).fill().map((element, index)=> {
+      Array(parseInt(totalReferendums)).fill().map((element, index)=> {
         return socialGroupNft.methods.referendums(index).call()
       })
     );
@@ -39,7 +40,7 @@ class TicketShow extends Component {
       owner: owner,
       memberCount: members,
       referendumCount: activeReferendums,
-      referendums: referendums
+      referendums: referendums,
     };
   }
 
