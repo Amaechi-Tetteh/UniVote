@@ -4,6 +4,7 @@ import {Card,Button,Input,Form} from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
 import Layout from '../components/layout'
 import {Link} from '../routes'
+import SocialGroupNft from '../socialGroupNft';
 
 class Index extends Component {
 
@@ -22,14 +23,38 @@ class Index extends Component {
 
   //Obtain open tickets from Factory Contract
   static async getInitialProps(){
+    
     const tickets = await SocialGroupFactory.methods.viewSocialGroups().call();
-    return {tickets};
+
+    const publicReferendums = await Promise.all(tickets.map(async address => {
+      const socialGroupNft = SocialGroupNft(address);
+      const activeReferendums = await socialGroupNft.methods.activeReferendums().call()
+      const referendums = await Promise.all(await Array(parseInt(activeReferendums)).fill().map( (element, index)=>  {
+        return socialGroupNft.methods.referendums(index).call()
+      }))
+      
+      // console.log("Public Referendums: ",referendums)
+      return referendums
+      })
+    )
+    let refList = []
+    if (publicReferendums[0].length > 0){
+      for(let i = 0; i < publicReferendums.length; i++){
+        for(let j =0; j < publicReferendums[i].length; j++){
+          if(publicReferendums[i][j].isPrivate == false){
+            refList.push(publicReferendums[i][j])
+          }
+        }
+      }
+    }
+    console.log(publicReferendums[0])
+    // console.log(publicReferendums)
+    return {tickets, refList};
   }
 
 
   renderTickets()  {
     const items = this.props.tickets.map(address =>  {
-      let idName;
 
       return {
         header:'Social Group ID: ' + address,
@@ -41,6 +66,23 @@ class Index extends Component {
         fluid: true
       };
     });
+    return <Card.Group items={items} />;
+  }
+
+  renderPublicRefs() {
+    const items = this.props.refList.map(result =>{
+        return {
+          header:'Referendum Name: ' + result.title,
+          description:(
+          <Link route={`/tickets/${result.origin}`}>
+            <a>View Social Group</a>
+          </Link>
+          ),
+          meta: "Social Group ID: "+result.origin,
+          fluid: true
+        };
+      })
+    
     return <Card.Group items={items} />;
   }
 
@@ -72,6 +114,8 @@ class Index extends Component {
           </a>
         </Link>
         {this.renderTickets()}
+        <h3>Open Referendums</h3>
+        {this.renderPublicRefs()}
         </div>
       </Layout>
     );

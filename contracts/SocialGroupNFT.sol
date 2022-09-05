@@ -44,6 +44,7 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
         uint256 endTime;
         bool isPrivate;
         address[] refVoters;
+        address origin;
     }
 
     modifier isActive(uint id) {
@@ -90,7 +91,8 @@ contract SocialGroupNFT is ERC721, ERC721Enumerable, ERC721URIStorage, Pausable,
             startTime: block.timestamp,
             endTime: lastVote,
             isPrivate: isPrivate,
-            refVoters: new address[](0)
+            refVoters: new address[](0),
+            origin: address(this)
         });
         
         referendums.push(newReferendum);

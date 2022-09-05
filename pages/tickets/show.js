@@ -7,7 +7,6 @@ import RequestRow from '../../components/requestRow';
 import {Link} from '../../routes'
 import 'semantic-ui-css/semantic.min.css'
 import {Router} from '../../routes';
-import socialGroupNft from '../../socialGroupNft';
 
 class TicketShow extends Component {
   state ={
@@ -129,7 +128,7 @@ class TicketShow extends Component {
         }
       });
     }else{
-      return<Message error header="Oops!" content="You Must Own An NFT For This Social Group To View Privvate Referendums"/> 
+      return<Message error content="You Must Own An NFT For This Social Group To View Private Referendums"/> 
     }
   }
 
@@ -166,27 +165,6 @@ class TicketShow extends Component {
 
     this.setState({loading:false, value:''});
   };
-
-  // create=async event =>{
-  //   event.preventDefault();
-  //   this.setState({loading:true, errorMessage:''});
-  //   const address = this.props.address;
-  //   const socialGroupNft = SocialGroupNft(address)
-  //   const accounts = await ethereum.request({ method: 'eth_accounts' });
-  //   try {
-  //     await socialGroupNft.methods.createReferendum().send({
-  //       from: accounts[0]
-  //     })
-  //   }catch (err) {
-  //     if(accounts[0] == null){
-  //       this.setState({errorMessage: 'Please Login to Metamask and Refresh The Page!'})
-  //     }else{
-  //       this.setState({errorMessage:err.message});
-  //     }
-  //   }
-
-  //   this.setState({loading:false, value:''});
-  // };
 
   render() {
     const {Header,Row,HeaderCell,Body} = Table
