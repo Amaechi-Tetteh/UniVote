@@ -8,7 +8,7 @@ const SEED_PHRASE = fs.readFileSync(".secret").toString()
 
 const provider = new HDWalletProvider(
     SEED_PHRASE,
-    'https://rinkeby.infura.io/v3/89c198a73ec44d698104e67c25a212d4'
+    'https://goerli.infura.io/v3/81830543415c458db9a881f079fc37f7'
 );
 const web3 = new Web3(provider);
 
